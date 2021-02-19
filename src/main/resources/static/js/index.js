@@ -1,34 +1,63 @@
-function getSideBarData() {
-    var data = [{ id: 'References', icon: 'fas fa-book', value: 'Справочники',}];     data.push({ id: 'Rkk', icon: 'fas fa-file-alt',   value: 'РКК', });
-        data.push({ id: 'ArchivedRkk', icon: 'fas fa-folder', value: 'Архив РКК'})
-        data.push({ id: 'DeletedRkk', icon: 'fas fa-trash-alt', value: 'Удаленные РКК'});
-
-    return data;
-}
-
-const sideBar = {
-    view: 'sidebar',
-    id: 'sidebar',
-    css: 'webix_dark',
-    data: getSideBarData(),
-
-}
-
 var productLineBtnData = [
-    {view: 'button', autowidth: true, value: 'Старт'},
-    {view: 'button', autowidth: true, value: 'Моногород'},
-    {view: 'button', autowidth: true, value: 'Моногород приоритет'},
-    {view: 'button', autowidth: true, value: 'Приоритет'},
-    {view: 'button', autowidth: true, value: 'Бизнес-оборот'},
-    {view: 'button', autowidth: true, value: 'Бизнес'},
-    {view: 'button', autowidth: true, value: 'Рефинансирование'},
-    {view: 'button', autowidth: true, value: 'Экспресс'},
+    {view: 'button', autowidth: true, css: 'fond', value: 'Старт'},
+    {view: 'button', autowidth: true, css: 'fond', value: 'Моногород'},
+    {view: 'button', autowidth: true, css: 'fond', value: 'Моногород приоритет'},
+    {view: 'button', autowidth: true, css: 'fond', value: 'Приоритет'},
+    {view: 'button', autowidth: true, css: 'fond', value: 'Бизнес-оборот'},
+    {view: 'button', autowidth: true, css: 'fond', value: 'Бизнес'},
+    {view: 'button', autowidth: true, css: 'fond', value: 'Рефинансирование'},
+    {view: 'button', autowidth: true, css: 'fond', value: 'Экспресс'},
 ]
 
 var productLineBtns = {
     view: 'flexlayout',
+    gravity:0,
     margin: 10,
     rows: productLineBtnData
+}
+
+var productNameLabel = {
+    cols: [
+        {view: 'icon',  icon: 'fas fa-grip-lines-vertical'},
+        {view: 'label', label: 'Label'}
+    ]
+}
+
+
+var productTime = {
+    cols: [
+        {view: 'icon',  icon: 'fas fa-calendar-alt'},
+        {
+            rows: [
+                { view: 'label', label: 'На срок'},
+                { view: 'label', label: 'От 6 до 24 месяцев'},
+            ]
+        },
+    ]
+}
+
+var productTime = {
+    rows: [
+        {
+            cols: [
+                {view: 'icon',  icon: 'fas fa-calendar-alt'},
+                { view: 'label', label: 'На срок'},
+            ]
+        },
+        {
+            cols: [
+                { view: 'icon',  },
+                { view: 'label', label: 'От 6 до 24 месяцев'},
+            ]
+        },
+    ]
+
+var productDetails = {
+    rows: [
+        productNameLabel,
+        productTime,
+        productAmount,
+    ]
 }
 
 var productLine = {
@@ -42,6 +71,7 @@ const mainPage = {
             responsive: 'mainPageId',
             rows: [
                 productLineBtns,
+                productDetails
             ]
         }
     ]

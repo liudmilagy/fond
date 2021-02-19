@@ -1,12 +1,12 @@
-.fond1 .webix_button{
-    border: 1px solid #17a2b8;
+.fond .webix_button{
+    border: 1px solid #1CA1C1;
     border-radius: 10px;
     background-color: #fff;
     color: #000000;
     font-family: 'PT Sans', Tahoma;
 }
 
-.fond1 .webix_button:focus{
-    background-color: #90CAF9;
+.fond .webix_button:focus{
+    background-color: #55CD97;
     color: #ffffff;
 }
