@@ -43,6 +43,7 @@ function createTimePicker() {
         gravity:0,
         margin: 10,
         rows: timeLineBtnData,
+        align: 'center',
     }
 
     var timeLine = {
@@ -58,6 +59,8 @@ function createTimePicker() {
     return timeLine;
 }
 
+var timePickerLine = createTimePicker();
+
 export const calendar = {
     view: 'form',
     // resize: true,
@@ -67,45 +70,37 @@ export const calendar = {
     rows: [
         view_header('Записаться'),
         {
+            // type: "wide",
             cols: [
+                {}, calendarView, {},
+            ]
+        },
+        timePickerLine,
+        {
+            rows: [
                 {
-                    rows: [
-                        {
-                            // type: "wide",
-                            cols: [
-                                calendarView, {},
-                            ]
-                        },
-                        createTimePicker(),
-                    ]
+                    view: 'text',
+                    label: 'Имя',
+                    labelPosition: 'top',
+                    required: true,
                 },
                 {
-                    rows: [
-                        {
-                            view: 'text',
-                            label: 'Имя',
-                            labelPosition: 'top',
-                            required: true,
-                        },
-                        {
-                            view: 'text',
-                            label: 'Номер телефона',
-                            labelPosition: 'top',
-                            required: true,
-                        },
-                        {
-                            view: 'text',
-                            label: 'Email',
-                            labelPosition: 'top',
-                            required: true,
-                        },
-                        {
-                            view: 'textarea',
-                            label: 'Сообщение',
-                            labelPosition: 'top',
-                            required: true,
-                        }
-                    ]
+                    view: 'text',
+                    label: 'Номер телефона',
+                    labelPosition: 'top',
+                    required: true,
+                },
+                {
+                    view: 'text',
+                    label: 'Email',
+                    labelPosition: 'top',
+                    required: true,
+                },
+                {
+                    view: 'textarea',
+                    label: 'Сообщение',
+                    labelPosition: 'top',
+                    required: true,
                 }
             ]
         },
@@ -115,11 +110,10 @@ export const calendar = {
                     view: 'button',
                     value: 'Записаться',
                     css: 'webix_primary',
+                    maxWidth: 200,
                 },
-                {},
                 {},
             ]
         }
-
     ]
 }

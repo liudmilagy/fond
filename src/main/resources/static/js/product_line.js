@@ -82,6 +82,7 @@ function createProductDetails(product) {
     return {
         id: 'productCell' + product.id,
         // type: 'clean',
+        height: 200,
         rows: [
             label,
             time,
@@ -128,3 +129,18 @@ function createProductLine() {
 }
 
 export const productLine = createProductLine();
+
+// const panels = $$('productViews').getChildViews();
+// panels.forEach((panel) => {
+//     let innerHeight;
+//     let height = panel.getParentView().config.cellHeight;
+//     if (panel.getChildViews()[1]) {
+//         innerHeight = panel.getChildViews()[1].config.height;
+//     } else {
+//         innerHeight = panel.getChildViews()[0].config.height;
+//     }
+//     // console.log(panel.getChildViews()[0]);
+//     let coef = Math.ceil(innerHeight / height);
+//     panel.define({dy: coef});
+//     panel.resize();
+// })
