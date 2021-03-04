@@ -27,14 +27,14 @@ export const menu = {
     ],
     type: {
         subsign: true,
-        width: document.body.clientWidth/5,
+        width: document.body.clientWidth/6,
     },
 }
 
 export function resizeMenuOptions(){
     const menu = $$('menuId');
     menu.customize({
-        width: menu.$width / 5
+        width: menu.$width / 6
     });
     menu.refresh();
 }

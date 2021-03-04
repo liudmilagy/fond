@@ -115,7 +115,7 @@ function createProductLine() {
         borderless: true,
         margin: 3,
         gravity:0,
-        elements: [
+        rows: [
             view_header('Продуктовая линейка'),
             productLineBtns,
             {
