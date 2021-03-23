@@ -1,4 +1,6 @@
-import {view_header} from "./general.js";
+import {view_header} from "../general.js";
+import {createProductBtnLine} from "./product_btn_line.js";
+import {createProductDetailsCells} from "./product_details_cells.js";
 
 var data = [
     {id: 1, name: 'Старт', time: 'до 24 месяцев', amount: 'от 50 000 до 500 000'},
@@ -11,85 +13,6 @@ var data = [
     {id: 8, name: 'Экспресс', time: 'до 18 месяцев', amount: 'от 30 000 до 100 000'},
 
 ]
-
-function createProductBtn(product) {
-    return {
-        id: 'productBtn' + product.id,
-        view: 'button',
-        autowidth: true,
-        css: 'fond',
-        value: product.name,
-        click: () => $$('productCell' + product.id).show(),
-    }
-}
-
-function createProductLabel(product) {
-    return  {
-        cols: [
-            {view: 'icon',  icon: 'fas fa-grip-lines-vertical'},
-            {
-                id: 'productLabel' + product.id,
-                view: 'label',
-                label: product.name
-            }
-        ]
-    }
-}
-
-function createProductTime(product) {
-    return {
-        rows: [
-            {
-                cols: [
-                    {view: 'icon',  icon: 'fas fa-calendar-alt'},
-                    {view: 'label', 'label': 'На срок'},
-                ]
-            },
-            {
-                cols: [
-                    {view: 'icon',  },
-                    {view: 'label', label: product.time,},
-                ]
-            },
-        ]
-    }
-}
-
-function createProductAmount(product) {
-    return {
-        rows: [
-            {
-                cols: [
-                    {view: 'icon',  icon: 'fas fa-wallet'},
-                    {view: 'label', 'label': 'Сумма'},
-                ]
-            },
-            {
-                cols: [
-                    {view: 'icon',  },
-                    {view: 'label', label: product.amount,},
-                ]
-            },
-        ]
-    }
-}
-
-function createProductDetails(product) {
-    var label = createProductLabel(product);
-    var time = createProductTime(product);
-    var amount = createProductAmount(product);
-
-    return {
-        id: 'productCell' + product.id,
-        // type: 'clean',
-        height: 200,
-        rows: [
-            label,
-            time,
-            amount,
-        ]
-    }
-}
 
 function createProductLine() {
     var productLineBtnData = [];
@@ -116,6 +39,7 @@ function createProductLine() {
         borderless: true,
         margin: 3,
         gravity:0,
+        // type:{height:"auto"},
         rows: [
             view_header('Продуктовая линейка'),
             productLineBtns,
@@ -128,7 +52,29 @@ function createProductLine() {
     return productLine;
 }
 
-export const productLine = createProductLine();
+var productBtnLine = createProductBtnLine(data);
+
+var productDetailCells = createProductDetailsCells(data);
+
+export const productLine = {
+    view: 'form',
+    // resize: true,
+    borderless: true,
+    margin: 3,
+    gravity:0,
+    // autoheight: true,
+    // type:{height:"auto"},
+    minHeight: 500,
+    rows: [
+        view_header('Продуктовая линейка'),
+        productBtnLine,
+        {
+            id: 'productViews',
+            cells: productDetailCells,
+        },
+        { gravity:0.001 },
+    ]
+}
 
 // const panels = $$('productViews').getChildViews();
 // panels.forEach((panel) => {

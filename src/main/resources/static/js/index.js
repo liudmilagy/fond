@@ -1,10 +1,10 @@
-import {productLine} from "/js/product_line.js";
+import {productLine} from "/js/product_line/product_line.js";
 import {menu} from "./header/menu.js";
 import {header} from "./header/toolbar.js";
 import {view_header} from "./general.js";
 import {resizeMenuOptions} from "./header/menu.js";
 import {carousel} from "./header/carousel.js";
-import {calculator} from "./calculator.js";
+import {calculator} from "./calculator/calculator.js";
 import {calendar} from "./appointment.js";
 
 function getClientWidth() {

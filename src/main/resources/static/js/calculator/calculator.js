@@ -1,4 +1,4 @@
-import {view_header} from "./general.js";
+import {view_header} from "../general.js";
 
 var programRichselect = {
     view: 'richselect',
