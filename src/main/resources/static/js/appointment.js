@@ -1,10 +1,11 @@
 import {view_header} from "./general.js";
+import {main_padding} from "./general.js";
 
 webix.Date.startOnMonday = true;
 webix.i18n.setLocale("ru-RU");
 
 var data = [
-    {id: 1, value: '10:00',},
+    {id: 1, value: '10:00', disabled:true},
     {id: 2, value: '11:00',},
     {id: 3, value: '12:00',},
     {id: 4, value: '14:00',},
@@ -67,6 +68,7 @@ export const calendar = {
     borderless: true,
     margin: 3,
     gravity:0,
+    padding: main_padding,
     rows: [
         view_header('Записаться'),
         {

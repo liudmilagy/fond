@@ -1,4 +1,5 @@
 import {view_header} from "../general.js";
+import {main_padding} from "../general.js";
 
 var programRichselect = {
     view: 'richselect',
@@ -67,6 +68,7 @@ export const calculator = {
     borderless: true,
     margin: 3,
     gravity:0,
+    padding: main_padding,
     rows: [
         view_header('Калькулятор'),
         {

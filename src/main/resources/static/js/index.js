@@ -35,7 +35,7 @@ webix.ready(function() {
             margin: 10,
             rows: [
                 // carousel,
-                productLine,
+                productLine(),
                 {},
                 calculator,
                 {},

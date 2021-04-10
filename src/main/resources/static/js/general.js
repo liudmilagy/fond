@@ -6,3 +6,5 @@ export function view_header(title) {
         borderless: true,
     }
 }
+
+export const main_padding = 20;
