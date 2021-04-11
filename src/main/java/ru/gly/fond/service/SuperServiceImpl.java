@@ -3,6 +3,7 @@ package ru.gly.fond.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.gly.fond.repository.ClsProductEntityRepo;
 import ru.gly.fond.repository.ClsProductRepo;
 import ru.gly.fond.repository.ClsProvisionRepo;
 import ru.gly.fond.repository.RegProductProvisionRepo;
@@ -22,6 +23,9 @@ public class SuperServiceImpl implements SuperService{
 
     @Autowired
     RegProductProvisionRepo regProductProvisionRepo;
+
+    @Autowired
+    ClsProductEntityRepo clsProductEntityRepo;
 
     @Override
     public Date parseDateFromForm(String stringDate) {

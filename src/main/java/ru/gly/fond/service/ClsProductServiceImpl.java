@@ -1,20 +1,15 @@
 package ru.gly.fond.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import ru.gly.fond.model.*;
 import ru.gly.fond.dto.ProductLineDto;
-import ru.gly.fond.model.ClsProduct;
-import ru.gly.fond.model.ClsProvision;
-import ru.gly.fond.model.ProvisionCodes;
-import ru.gly.fond.model.RegProductProvision;
-import ru.gly.fond.repository.RegProductProvisionRepo;
+import ru.gly.fond.repository.ClsProvisionRepo;
 
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
 @Slf4j
@@ -44,5 +39,13 @@ public class ClsProductServiceImpl extends SuperServiceImpl implements ClsProduc
                 .collect(Collectors.toList());
 
         return productLineList;
+    }
+
+    @Override
+    public List<ClsProductEntity> getProductDataForCalculator() {
+        ClsProvision provisionWithDeposit = clsProvisionRepo.findByCode(ProvisionCodes.WITH_DEPOSIT.getValue());
+        ClsProvision provisionWithoutDeposit = clsProvisionRepo.findByCode(ProvisionCodes.WITHOUT_DEPOSIT.getValue());
+        List<ClsProductEntity> list = clsProductEntityRepo.getProductsForCalculator(provisionWithDeposit.getId(), provisionWithoutDeposit.getId());
+        return list;
     }
 }

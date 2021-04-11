@@ -37,7 +37,7 @@ webix.ready(function() {
                 // carousel,
                 productLine(),
                 {},
-                calculator,
+                calculator(),
                 {},
                 calendar
             ]
