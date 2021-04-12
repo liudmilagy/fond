@@ -1,5 +1,11 @@
+:root{
+    --main_color: #1CA1C1;
+    --hover_color: #1c82a2;
+    --focus_color: #55CD97;
+}
+
 .fond .webix_button{
-    border: 1px solid #1CA1C1;
+    border: 1px solid var(--main_color);
     border-radius: 10px;
     background-color: #fff;
     color: #000000;
@@ -7,6 +13,25 @@
 }
 
 .fond .webix_button:focus{
-    background-color: #55CD97;
+    background-color: var(--focus_color);
     color: #ffffff;
+}
+
+.fond_bg {
+    background: var(--main_color);
+}
+
+.webix_menu-x.fond .webix_list_item{
+    background-color: var(--main_color);
+}
+
+.webix_menu-x.fond .webix_list_item:hover{
+    background-color: var(--hover_color);
+}
+
+.fond_label {
+    /*font-weight: ;*/
+    font-size: x-large;
+    /*text-transform: uppercase;*/
+    color: var(--hover_color);
 }

@@ -45,7 +45,7 @@ webix.ready(function() {
     }, $$('content'));
 
     webix.event(window, "resize", function (event) {
-        resizeMenuOptions();
+        // resizeMenuOptions();
         layout.resize();
         // layout.define("width",document.body.clientWidth);
         // layout.define("height",window.innerHeight);
