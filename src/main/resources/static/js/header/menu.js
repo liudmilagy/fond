@@ -1,4 +1,5 @@
-import {main_body_width, getOtherWidth} from "../general.js";
+import {main_body_width, getOtherWidth, changeContentView} from "../general.js";
+import {appointment_main} from "../appointment/appointment_main.js";
 
 export const menu = {
     view: 'toolbar',
@@ -25,7 +26,7 @@ export const menu = {
                     id: "3", value: "Продуктовая линейка",
                 },
                 {
-                    id: "4", value: "Записаться",
+                    id: "Appointment", value: "Записаться",
                 },
                 {
                     id: "5", value: "Новости",
@@ -39,6 +40,15 @@ export const menu = {
                 width: getMenuWidth(),
                 height: 40,
             },
+            on: {
+                onMenuItemClick: function (id) {
+                    let view;
+                    if (id == 'Appointment') {
+                        view = appointment_main;
+                    }
+                    changeContentView(view);
+                }
+            }
         },
         {width: getOtherWidth()},
     ]

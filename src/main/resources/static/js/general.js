@@ -19,3 +19,12 @@ export function getOtherWidth() {
         return (document.body.clientWidth - main_body_width)/2;
     }
 }
+
+export function changeContentView(newView) {
+    webix.ui({
+        id: 'content',
+        rows: [
+            newView
+        ]
+    }, $$('content'));
+}

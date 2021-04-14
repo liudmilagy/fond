@@ -5,7 +5,7 @@ import {view_header} from "./general.js";
 import {resizeMenuOptions} from "./header/menu.js";
 import {carousel} from "./header/carousel.js";
 import {calculator} from "./calculator/calculator.js";
-import {calendar} from "./appointment.js";
+import {calendar} from "./appointment/appointment.js";
 
 function getClientWidth() {
     return document.body.clientWidth;

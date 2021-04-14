@@ -1,5 +1,5 @@
-import {view_header} from "./general.js";
-import {main_padding} from "./general.js";
+import {view_header} from "../general.js";
+import {main_padding} from "../general.js";
 
 webix.Date.startOnMonday = true;
 webix.i18n.setLocale("ru-RU");
@@ -14,10 +14,10 @@ var data = [
 ]
 
 var calendarView = {
-    weekHeader:true,
-    weekNumber:true,
+    weekHeader:false,
+    weekNumber:false,
     view: "calendar",
-    events:webix.Date.isHoliday
+    // events:webix.Date.isHoliday
 };
 
 function createTimeBtn(time) {
