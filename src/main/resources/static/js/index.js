@@ -29,6 +29,9 @@ webix.ready(function() {
     let layout = webix.ui(mainTemplate);
     webix.ui({
         id: 'content',
+        css: 'fond_bg2',
+        type:"space",
+
         view: 'scrollview',
         scroll: 'xy',
         body: {
