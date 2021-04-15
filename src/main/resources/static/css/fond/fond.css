@@ -4,12 +4,16 @@
     --focus_color: #55CD97;
 }
 
+.fond_webix_bg {
+    background-color: var(--main_color);
+}
+
 .fond .webix_button{
     border: 1px solid var(--main_color);
     border-radius: 10px;
     background-color: #fff;
     color: #000000;
-    font-family: 'PT Sans', Tahoma;
+    /*font-family: 'PT Sans', Tahoma;*/
 }
 
 .fond .webix_button:focus{
@@ -34,6 +38,7 @@
     font-size: x-large;
     /*text-transform: uppercase;*/
     color: var(--hover_color);
+    font-family:Montserrat, serif;
 }
 
 .fond_bg, .fond_bg .webix_layout_wide{
