@@ -29,7 +29,7 @@ public class AppointmentContoller extends SuperController{
     public @ResponseBody
     List<String> getFreeTimes(@RequestParam(value = "id_type_appointment") Long idTypeAppointment, @RequestParam(value = "date_string") String dateString) throws ParseException {
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         Date parsed = formatter.parse(dateString);
         java.sql.Date date = new java.sql.Date(parsed.getTime());
         List<RegTimeTypeAppointment> freeRttas = regTimeTypeAppointmentRepo.findFreeTimes(idTypeAppointment, date);
@@ -37,6 +37,7 @@ public class AppointmentContoller extends SuperController{
         DateFormat df = new SimpleDateFormat("HH:mm");
         List<String> times = freeRttas.stream()
                             .map(ctr -> df.format(ctr.getTime()))
+                            .sorted()
                             .collect(Collectors.toList());
         return times;
     }

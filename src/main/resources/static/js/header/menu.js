@@ -1,5 +1,5 @@
 import {main_body_width, getOtherWidth, changeContentView} from "../general.js";
-import {appointment_main} from "../appointment/appointment_main.js";
+import {appointment} from "../appointment/appointment_main.js";
 
 export const menu = {
     view: 'toolbar',
@@ -44,7 +44,7 @@ export const menu = {
                 onMenuItemClick: function (id) {
                     let view;
                     if (id == 'Appointment') {
-                        view = appointment_main;
+                        view = appointment;
                     }
                     changeContentView(view);
                 }

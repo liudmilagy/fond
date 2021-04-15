@@ -1,3 +1,5 @@
+webix.i18n.setLocale("ru-RU");
+
 import {productLine} from "/js/product_line/product_line.js";
 import {menu} from "./header/menu.js";
 import {header} from "./header/toolbar.js";
@@ -5,7 +7,6 @@ import {view_header} from "./general.js";
 import {resizeMenuOptions} from "./header/menu.js";
 import {carousel} from "./header/carousel.js";
 import {calculator} from "./calculator/calculator.js";
-import {calendar} from "./appointment/appointment.js";
 
 function getClientWidth() {
     return document.body.clientWidth;
@@ -39,7 +40,7 @@ webix.ready(function() {
                 {},
                 calculator(),
                 {},
-                calendar
+                // calendar
             ]
         }
     }, $$('content'));
