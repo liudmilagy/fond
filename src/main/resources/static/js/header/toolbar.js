@@ -14,6 +14,35 @@ function getHeaderLabel(size) {
     }
 }
 
+const icon_contacts = {
+    // autowidth: true,
+    maxWidth: 300,
+    rows: [
+        {
+            template:"<span class='product_icon webix_icon fas fa-phone-alt'></span> 8 (3012) 48-08-08 ",
+            borderless: true,
+        },
+        {
+            template:"<span class='product_icon webix_icon fas fa-envelope'></span> fond03@mail.ru",
+            borderless: true,
+        },
+        {
+            template:"<span class='product_icon webix_icon fas fa-map-marker-alt'></span> ул. Партизанская 28",
+            borderless: true,
+        }
+    ]
+    // view:"list",
+    // scroll: false,
+    // borderless: true,
+    // width: 100,
+    // select:false,
+    // data:[
+    //     { icon:"phone-alt", name:"8 (3012) 48-08-08"},
+    //     { icon:"envelope", name:"fond03@mail.ru"},
+    //     { icon:"map-marker-alt", name:"г. Улан-Удэ,ул. Партизанская 28"},
+    // ]
+}
+
 function getHeader(size) {
     var headerLabel = getHeaderLabel(size);
 
@@ -43,6 +72,7 @@ function getHeader(size) {
                         borderless: true,
                     },
                     headerLabel,
+                    icon_contacts,
                 ]
             },
             { width: getOtherWidth()},

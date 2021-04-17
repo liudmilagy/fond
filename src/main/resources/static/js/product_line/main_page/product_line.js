@@ -99,7 +99,7 @@ export function productLine() {
                 gravity:0,
                 // autoheight: true,
                 // type:{height:"auto"},
-                minHeight: 500,
+                minHeight: 350,
                 padding: main_padding,
                 rows: [
                     view_header('Продуктовая линейка'),
