@@ -82,7 +82,7 @@ function createProductLine(data) {
 
 
 export function productLine() {
-    var xhr = webix.ajax().sync().get('product_line');
+    var xhr = webix.ajax().sync().get('product_list_for_calculator');
     var data = JSON.parse(xhr.responseText);
 
     var productBtnLine = createProductBtnLine(data);

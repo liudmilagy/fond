@@ -25,26 +25,71 @@ function createProductTime(product) {
             {
                 cols: [
                     {view: 'icon',  },
-                    {view: 'label', label: product.time,  css: 'product_label',},
+                    {view: 'label', label: 'до ' + product.limitation + ' мес.',  css: 'product_label',},
                 ]
             },
         ]
     }
 }
 
-function createProductAmount(product) {
+function createProductAmountWithDeposit(product) {
     return {
         rows: [
             {
                 cols: [
                     {view: 'icon',  icon: 'fas fa-wallet',  css: 'product_icon'},
-                    {view: 'label', 'label': 'Сумма', css: 'product_label_title'},
+                    {view: 'label', 'label': 'Сумма (с залогом)', css: 'product_label_title'},
                 ]
             },
             {
                 cols: [
                     {view: 'icon',  },
-                    {view: 'label', label: product.amount,  css: 'product_label',},
+                    {view: 'label', label: 'от '+ product.minAmountWithDeposit + ' до ' + product.maxAmountWithDeposit,  css: 'product_label',},
+                ]
+            },
+        ]
+    }
+}
+
+function createProductAmountWithoutDeposit(product) {
+    return {
+        rows: [
+            {
+                cols: [
+                    {view: 'icon',  icon: 'fas fa-wallet',  css: 'product_icon'},
+                    {view: 'label', 'label': 'Сумма (без залога)', css: 'product_label_title'},
+                ]
+            },
+            {
+                cols: [
+                    {view: 'icon',  },
+                    {view: 'label', label: 'от '+ product.minAmountWithoutDeposit + ' до ' + product.maxAmountWithoutDeposit,  css: 'product_label',},
+                ]
+            },
+        ]
+    }
+}
+
+function createProductTextRateWithDeposit(product) {
+    return {
+        rows: [
+            {
+                cols: [
+                    {view: 'icon',  icon: 'fas fa-percent',  css: 'product_icon'},
+                    {view: 'label', 'label': product.textRateWithDeposit, css: 'product_label'},
+                ]
+            },
+        ]
+    }
+}
+
+function createProductTextRateWithoutDeposit(product) {
+    return {
+        rows: [
+            {
+                cols: [
+                    {view: 'icon',  icon: 'fas fa-percent',  css: 'product_icon'},
+                    {view: 'label', 'label': product.textRateWithoutDeposit, css: 'product_label'},
                 ]
             },
         ]
@@ -54,7 +99,10 @@ function createProductAmount(product) {
 function createProductDetails(product) {
     var label = createProductLabel(product);
     var time = createProductTime(product);
-    var amount = createProductAmount(product);
+    var amountWithDeposit = createProductAmountWithDeposit(product);
+    var amountWithoutDeposit = createProductAmountWithoutDeposit(product);
+    var textRateWithDeposit = createProductTextRateWithDeposit(product);
+    var textRateWithoutDeposit = createProductTextRateWithoutDeposit(product);
 
     return {
         id: 'productCell' + product.id,
@@ -64,7 +112,23 @@ function createProductDetails(product) {
         rows: [
             label,
             time,
-            amount,
+            {
+                cols: [
+                    {
+                        rows: [
+                            amountWithoutDeposit,
+                            textRateWithoutDeposit
+                        ]
+                    },
+                    {
+                        rows: [
+                            amountWithDeposit,
+                            textRateWithDeposit,
+                        ]
+                    },
+                    {}
+                ]
+            },
         ]
     }
 }

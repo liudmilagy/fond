@@ -19,18 +19,20 @@ import javax.persistence.*;
                         "       rpp_w.interest_rate as interest_rate_with_deposit,\n" +
                         "       rpp_w.has_key_rate as has_key_rate_with_deposit,\n" +
                         "       rpp_w.coef_key_rate as coef_key_rate_with_deposit,\n" +
+                        "       rpp_w.text_rate as text_rate_with_deposit,\n" +
                         "       rpp_wo.id as id_without_deposit,\n" +
                         "       rpp_wo.min_amount as min_amount_without_deposit,\n" +
                         "       rpp_wo.max_amount as max_amount_without_deposit,\n" +
                         "       rpp_wo.interest_rate as interest_rate_without_deposit,\n" +
                         "       rpp_wo.has_key_rate as has_key_rate_without_deposit,\n" +
-                        "       rpp_wo.coef_key_rate as coef_key_rate_without_deposit\n" +
+                        "       rpp_wo.coef_key_rate as coef_key_rate_without_deposit,\n" +
+                        "       rpp_wo.text_rate as text_rate_without_deposit\n" +
                         "FROM cls_product\n" +
                         "LEFT JOIN reg_product_provision rpp_w\n" +
                         "    ON cls_product.id = rpp_w.id_product\n" +
                         "        AND rpp_w.id_provision = :id_provision_with_deposit\n" +
                         "LEFT JOIN reg_product_provision rpp_wo\n" +
-                        "    ON cls_product.id = rpp_wo.id\n" +
+                        "    ON cls_product.id = rpp_wo.id_product\n" +
                         "        AND rpp_wo.id_provision = :id_provision_without_deposit\n" +
                         "WHERE is_hidden = false",
         resultSetMapping = "product_entity_result"
@@ -52,6 +54,8 @@ import javax.persistence.*;
                         @FieldResult(name = "interestRateWithDeposit", column = "interest_rate_with_deposit"),
                         @FieldResult(name = "hasKeyRateWithDeposit", column = "has_key_rate_with_deposit"),
                         @FieldResult(name = "coefKeyRateWithDeposit", column = "coef_key_rate_with_deposit"),
+                        @FieldResult(name = "textRateWithDeposit", column = "text_rate_with_deposit"),
+
 
                         @FieldResult(name = "idWithoutDeposit", column = "id_without_deposit"),
                         @FieldResult(name = "minAmountWithoutDeposit", column = "min_amount_without_deposit"),
@@ -59,6 +63,7 @@ import javax.persistence.*;
                         @FieldResult(name = "interestRateWithoutDeposit", column = "interest_rate_without_deposit"),
                         @FieldResult(name = "hasKeyRateWithoutDeposit", column = "has_key_rate_without_deposit"),
                         @FieldResult(name = "coefKeyRateWithoutDeposit", column = "coef_key_rate_without_deposit"),
+                        @FieldResult(name = "textRateWithoutDeposit", column = "text_rate_without_deposit"),
 
                 }
         )
@@ -79,6 +84,8 @@ public class ClsProductEntity {
     private Float           interestRateWithDeposit;
     private Boolean         hasKeyRateWithDeposit;
     private Float           coefKeyRateWithDeposit;
+    private String          textRateWithDeposit;
+
 
     private Long            idWithoutDeposit;
     private Integer         minAmountWithoutDeposit;
@@ -86,6 +93,7 @@ public class ClsProductEntity {
     private Float           interestRateWithoutDeposit;
     private Boolean         hasKeyRateWithoutDeposit;
     private Float           coefKeyRateWithoutDeposit;
+    private String          textRateWithoutDeposit;
 
     public Long getId() {
         return id;
@@ -222,4 +230,22 @@ public class ClsProductEntity {
     public void setCoefKeyRateWithoutDeposit(Float coefKeyRateWithoutDeposit) {
         this.coefKeyRateWithoutDeposit = coefKeyRateWithoutDeposit;
     }
+
+    public String getTextRateWithDeposit() {
+        return textRateWithDeposit;
+    }
+
+    public void setTextRateWithDeposit(String textRateWithDeposit) {
+        this.textRateWithDeposit = textRateWithDeposit;
+    }
+
+    public String getTextRateWithoutDeposit() {
+        return textRateWithoutDeposit;
+    }
+
+    public void setTextRateWithoutDeposit(String textRateWithoutDeposit) {
+        this.textRateWithoutDeposit = textRateWithoutDeposit;
+    }
 }
+
+

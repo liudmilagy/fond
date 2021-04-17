@@ -92,6 +92,16 @@ public class RegProductProvision {
                 this.coefKeyRate = coefKeyRate;
         }
 
+        @Basic
+        @Column(name = "text_rate")
+        private String textRate;
+        public String getTextRate() {
+                return textRate;
+        }
+        public void setTextRate(String textRate) {
+                this.textRate = textRate;
+        }
+
         @Override
         public boolean equals(Object o) {
                 if (this == o) return true;
@@ -104,11 +114,11 @@ public class RegProductProvision {
                         Objects.equals(maxAmount, that.maxAmount) &&
                         Objects.equals(interestRate, that.interestRate) &&
                         Objects.equals(hasKeyRate, that.hasKeyRate) &&
-                        Objects.equals(coefKeyRate, that.coefKeyRate);
-        }
+                        Objects.equals(coefKeyRate, that.coefKeyRate) &&
+                        Objects.equals(textRate, that.textRate);        }
 
         @Override
         public int hashCode() {
-                return Objects.hash(id, product, provision, minAmount, maxAmount, interestRate, hasKeyRate, coefKeyRate);
+                return Objects.hash(id, product, provision, minAmount, maxAmount, interestRate, hasKeyRate, coefKeyRate, textRate);
         }
 }
