@@ -13,7 +13,7 @@
     border-radius: 10px;
     background-color: #fff;
     color: #000000;
-    font-family:Montserrat, serif;
+    /*font-family:Montserrat, serif;*/
     /*font-family: 'PT Sans', Tahoma;*/
 }
 
@@ -35,11 +35,11 @@
 }
 
 .fond_label {
-    font-weight: bolder;
+    /*font-weight: bolder;*/
     font-size: x-large;
     /*text-transform: uppercase;*/
     color: var(--hover_color);
-    font-family:Montserrat, serif;
+    /*font-family:Montserrat, serif;*/
 }
 
 .fond_bg, .fond_bg .webix_layout_wide{
@@ -55,26 +55,26 @@
 }
 
 .product_label_main_title .webix_el_box{
-    font-weight: 600;
+    /*font-weight: 600;*/
     font-size: x-large;
     text-transform: uppercase;
     /*color: var(--hover_color);*/
-    font-family:Montserrat, sans-serif;
+    /*font-family:Montserrat, sans-serif;*/
 }
 .product_label_title .webix_el_box{
-    font-weight: 800;
+    /*font-weight: 800;*/
     font-size: large;
     /*text-transform: uppercase;*/
     /*color: var(--hover_color);*/
-    font-family:Montserrat, sans-serif;
+    /*font-family:Montserrat, sans-serif;*/
 }
 
 .product_label .webix_el_box{
-    font-weight: 700;
+    /*font-weight: 700;*/
     /*font-size: larger;*/
     /*text-transform: uppercase;*/
     /*color: var(--hover_color);*/
-    font-family:Montserrat, sans-serif;
+    /*font-family:Montserrat, sans-serif;*/
 }
 
 .product_icon .webix_icon:before{

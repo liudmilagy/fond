@@ -1,5 +1,4 @@
-import {view_header} from "../general.js";
-import {main_padding} from "../general.js";
+import {view_header, main_padding, main_body_width} from "../general.js";
 
 // var programRichselect = {
 //     view: 'richselect',
@@ -94,7 +93,7 @@ export function calculator() {
         step: 10000,
         min: data[0].minAmountWithDeposit,
         max: data[0].maxAmountWithDeposit,
-        title: webix.template("#value# руб"),
+        title: webix.template("#value#"),
         on:{
             // onChange:function(){
             //     this.define("title", "Final value " + this.getValue());
@@ -180,6 +179,7 @@ export function calculator() {
         margin: 3,
         gravity:0,
         padding: main_padding,
+        width: main_body_width,
         rows: [
             view_header('Калькулятор'),
             {

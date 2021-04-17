@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.gly.fond.model.ClsProduct;
 import ru.gly.fond.model.ClsProductEntity;
 import ru.gly.fond.dto.ProductLineDto;
 
@@ -19,6 +20,13 @@ public class ClsProductController extends SuperController {
     public @ResponseBody
     List<ProductLineDto> getProductList() {
         List<ProductLineDto> list = clsProductService.getProductLineData();
+        return list;
+    }
+
+    @GetMapping("/product_line_short")
+    public @ResponseBody
+    List<ClsProduct> getProductListShort() {
+        List<ClsProduct> list = clsProductRepo.findAllByIsHidden(false);
         return list;
     }
 

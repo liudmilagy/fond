@@ -1,5 +1,6 @@
 import {view_header, changeContentView} from "../general.js";
 // import {appointment_form} from "./appointment_time.js";
+webix.Date.startOnMonday = true;
 
 const appointment_main = {
     id: 'appointmentMainId',

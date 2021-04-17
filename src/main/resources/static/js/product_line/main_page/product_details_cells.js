@@ -6,7 +6,7 @@ function createProductLabel(product) {
             {
                 id: 'productLabel' + product.id,
                 view: 'label',
-                css: 'product_label_main_title',
+                // css: 'product_label_main_title',
                 label: product.name
             }
         ]
@@ -19,13 +19,17 @@ function createProductTime(product) {
             {
                 cols: [
                     {view: 'icon',  icon: 'fas fa-calendar-alt', css: 'product_icon'},
-                    {view: 'label', 'label': 'На срок', css: 'product_label_title',},
+                    {view: 'label', 'label': 'На срок',
+                        // css: 'product_label_title',
+                    },
                 ]
             },
             {
                 cols: [
                     {view: 'icon',  },
-                    {view: 'label', label: 'до ' + product.limitation + ' мес.',  css: 'product_label',},
+                    {view: 'label', label: 'до ' + product.limitation + ' мес.',
+                        // css: 'product_label',
+                    },
                 ]
             },
         ]
@@ -38,13 +42,17 @@ function createProductAmountWithDeposit(product) {
             {
                 cols: [
                     {view: 'icon',  icon: 'fas fa-wallet',  css: 'product_icon'},
-                    {view: 'label', 'label': 'Сумма (с залогом)', css: 'product_label_title'},
+                    {view: 'label', 'label': 'Сумма (с залогом)',
+                        // css: 'product_label_title'
+                    },
                 ]
             },
             {
                 cols: [
                     {view: 'icon',  },
-                    {view: 'label', label: 'от '+ product.minAmountWithDeposit + ' до ' + product.maxAmountWithDeposit,  css: 'product_label',},
+                    {view: 'label', label: 'от '+ product.minAmountWithDeposit + ' до ' + product.maxAmountWithDeposit,
+                        // css: 'product_label',
+                    },
                 ]
             },
         ]
@@ -56,14 +64,20 @@ function createProductAmountWithoutDeposit(product) {
         rows: [
             {
                 cols: [
-                    {view: 'icon',  icon: 'fas fa-wallet',  css: 'product_icon'},
-                    {view: 'label', 'label': 'Сумма (без залога)', css: 'product_label_title'},
+                    {view: 'icon',  icon: 'fas fa-wallet',
+                        css: 'product_icon'
+                    },
+                    {view: 'label', 'label': 'Сумма (без залога)',
+                        // css: 'product_label_title'
+                    },
                 ]
             },
             {
                 cols: [
                     {view: 'icon',  },
-                    {view: 'label', label: 'от '+ product.minAmountWithoutDeposit + ' до ' + product.maxAmountWithoutDeposit,  css: 'product_label',},
+                    {view: 'label', label: 'от '+ product.minAmountWithoutDeposit + ' до ' + product.maxAmountWithoutDeposit,
+                        // css: 'product_label',
+                    },
                 ]
             },
         ]
@@ -76,7 +90,9 @@ function createProductTextRateWithDeposit(product) {
             {
                 cols: [
                     {view: 'icon',  icon: 'fas fa-percent',  css: 'product_icon'},
-                    {view: 'label', 'label': product.textRateWithDeposit, css: 'product_label'},
+                    {view: 'label', 'label': product.textRateWithDeposit,
+                        // css: 'product_label'
+                    },
                 ]
             },
         ]
@@ -89,7 +105,9 @@ function createProductTextRateWithoutDeposit(product) {
             {
                 cols: [
                     {view: 'icon',  icon: 'fas fa-percent',  css: 'product_icon'},
-                    {view: 'label', 'label': product.textRateWithoutDeposit, css: 'product_label'},
+                    {view: 'label', 'label': product.textRateWithoutDeposit,
+                        // css: 'product_label'
+                    },
                 ]
             },
         ]

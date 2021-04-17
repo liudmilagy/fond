@@ -1,5 +1,6 @@
 import {main_body_width, getOtherWidth, changeContentView} from "../general.js";
 import {appointment} from "../appointment/appointment_main.js";
+import {productList} from "../product_line/menu_page/product_list.js";
 
 export const menu = {
     view: 'toolbar',
@@ -23,7 +24,7 @@ export const menu = {
                     submenu: ["Информация о фонде", "Нормативные документы", "Реквизиты"]
                 },
                 {
-                    id: "3", value: "Продуктовая линейка",
+                    id: "ProductList", value: "Продуктовая линейка",
                 },
                 {
                     id: "Appointment", value: "Записаться",
@@ -46,7 +47,18 @@ export const menu = {
                     if (id == 'Appointment') {
                         view = appointment;
                     }
-                    changeContentView(view);
+                    if (id == 'ProductList') {
+                        view = productList;
+                    }
+                    // changeContentView(view);
+                    if (view != null) {
+                        webix.ui({
+                            id: 'content',
+                            rows: [
+                                view
+                            ]
+                        }, $$('content'))
+                    }
                 }
             }
         },

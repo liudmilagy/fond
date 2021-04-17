@@ -22,6 +22,7 @@ public class ClsProduct {
     private String          name;
     private Integer         limitation;
     private Boolean         isHidden;
+    private String          htmlText;
 
     public Long getId() {
         return id;
@@ -61,6 +62,16 @@ public class ClsProduct {
         this.isHidden = isHidden;
     }
 
+    @Basic
+    @Column(name = "html_text")
+    public String getHtmlText() {
+        return htmlText;
+    }
+
+    public void setHtmlText(String htmlText) {
+        this.htmlText = htmlText;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,11 +80,12 @@ public class ClsProduct {
         return Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(limitation, that.limitation) &&
-                Objects.equals(isHidden, that.isHidden);
+                Objects.equals(isHidden, that.isHidden) &&
+                Objects.equals(htmlText, that.htmlText);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, limitation, isHidden);
+        return Objects.hash(id, name, limitation, isHidden, htmlText);
     }
 }

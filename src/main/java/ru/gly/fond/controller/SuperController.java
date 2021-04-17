@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 
 import ru.gly.fond.config.ApplicationConstants;
 import ru.gly.fond.model.ClsTypeAppointment;
+import ru.gly.fond.repository.ClsProductRepo;
 import ru.gly.fond.repository.ClsTypeAppointmentRepo;
 import ru.gly.fond.repository.RegTimeTypeAppointmentRepo;
 import ru.gly.fond.service.AppointmentService;
@@ -30,5 +31,8 @@ public class SuperController {
 
     @Autowired
     protected RegTimeTypeAppointmentRepo regTimeTypeAppointmentRepo;
+
+    @Autowired
+    protected ClsProductRepo clsProductRepo;
 
 }

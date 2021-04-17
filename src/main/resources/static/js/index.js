@@ -1,6 +1,8 @@
+import {getOtherWidth} from "./general.js";
+
 webix.i18n.setLocale("ru-RU");
 
-import {productLine} from "/js/product_line/product_line.js";
+import {productLine} from "/js/product_line/main_page/product_line.js";
 import {menu} from "./header/menu.js";
 import {header} from "./header/toolbar.js";
 import {view_header} from "./general.js";
@@ -37,14 +39,22 @@ webix.ready(function() {
         body: {
             // padding: 20,
             margin: 10,
-            rows: [
-                // carousel,
-                productLine(),
-                {},
-                calculator(),
-                {},
-                // calendar
+            cols: [
+                { width: getOtherWidth()},
+                {
+                    rows: [
+                        // carousel,
+                        productLine(),
+                        {},
+                        calculator(),
+                        {},
+                        // calendar
+                    ]
+                },
+                { width: getOtherWidth()},
             ]
+
+
         }
     }, $$('content'));
 

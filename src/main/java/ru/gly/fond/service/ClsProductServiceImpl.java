@@ -28,6 +28,7 @@ public class ClsProductServiceImpl extends SuperServiceImpl implements ClsProduc
                                         .id(ctr.getId())
                                         .name(ctr.getName())
                                         .time("до " + ctr.getLimitation() + " месяцев")
+                                        .htmlText(ctr.getHtmlText())
                                         .build();
                     RegProductProvision productProvision = productProvisionMap.get(ctr);
 

@@ -12,7 +12,7 @@ import javax.persistence.*;
         name = "get_products_for_calculator",
         query =
                 "SELECT cls_product.id as id, cls_product.name as name, cls_product.name as value,\n" +
-                        "       cls_product.limitation as limitation, cls_product.is_hidden as is_hidden,\n" +
+                        "       cls_product.limitation as limitation, cls_product.is_hidden as is_hidden, cls_product.html_text as html_text, \n" +
                         "       rpp_w.id as id_with_deposit,\n" +
                         "       rpp_w.min_amount as min_amount_with_deposit,\n" +
                         "       rpp_w.max_amount as max_amount_with_deposit,\n" +
@@ -47,6 +47,7 @@ import javax.persistence.*;
                         @FieldResult(name = "value", column = "value"),
                         @FieldResult(name = "limitation", column = "limitation"),
                         @FieldResult(name = "isHidden", column = "is_hidden"),
+                        @FieldResult(name = "htmlText", column = "html_text"),
 
                         @FieldResult(name = "idWithDeposit", column = "id_with_deposit"),
                         @FieldResult(name = "minAmountWithDeposit", column = "min_amount_with_deposit"),
@@ -77,6 +78,7 @@ public class ClsProductEntity {
     private String          value; // для richselect в калькуляторе
     private Integer         limitation;
     private Boolean         isHidden;
+    private String          htmlText;
 
     private Long            idWithDeposit;
     private Integer         minAmountWithDeposit;
@@ -133,6 +135,14 @@ public class ClsProductEntity {
 
     public void setHidden(Boolean hidden) {
         isHidden = hidden;
+    }
+
+    public String getHtmlText() {
+        return htmlText;
+    }
+
+    public void setHtmlText(String htmlText) {
+        this.htmlText = htmlText;
     }
 
     public Long getIdWithDeposit() {
