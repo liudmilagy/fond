@@ -9,6 +9,7 @@ import {view_header} from "./general.js";
 import {resizeMenuOptions} from "./header/menu.js";
 import {carousel} from "./header/carousel.js";
 import {calculator} from "./calculator/calculator.js";
+import {appointment_main_btn} from "./appointment/appointment_main.js";
 
 function getClientWidth() {
     return document.body.clientWidth;
@@ -33,7 +34,6 @@ webix.ready(function() {
         id: 'content',
         css: 'fond_bg2',
         type:"space",
-
         view: 'scrollview',
         scroll: 'xy',
         body: {
@@ -49,6 +49,7 @@ webix.ready(function() {
                         calculator(),
                         {},
                         // calendar
+                        appointment_main_btn,
                     ]
                 },
                 { width: getOtherWidth()},

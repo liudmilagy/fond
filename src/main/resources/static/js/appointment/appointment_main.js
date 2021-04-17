@@ -1,4 +1,5 @@
 import {view_header, changeContentView} from "../general.js";
+import {main_body_width, main_padding} from "../general.js";
 // import {appointment_form} from "./appointment_time.js";
 webix.Date.startOnMonday = true;
 
@@ -238,7 +239,8 @@ const appointmentStep3 =  {
                             css: 'webix_primary',
                             maxWidth: 200,
                             click: () => {
-
+                                $$('appointmentMultiviewId').hide();
+                                webix.message("Вы успешно записаны!", "success");
                             }
                         },
                         {},
@@ -262,17 +264,63 @@ function dateFormat(obj){
 };
 
 export const appointment = {
+    view: 'scrollview',
+    // autowidth: true,
+    autoheight: true,
+    id: 'productInfoId',
+    scroll: 'xy',
+    body: {
+        rows: [
+            {gravity: 0.03},
+            {
+                cols: [
+                    {},
+                    view_header("Онлайн запись"),
+                    {},
+                ]
+            },
+            {gravity: 0.03},
+            // { id: 'idTypeAppointment', hidden: true},
+            {
+                view: 'multiview',
+                id: 'appointmentMultiviewId',
+                minHeight: 500,
+                cells: [
+                    appointmentStep1,
+                    appointmentStep2,
+                    appointmentStep3
+                ]
+            },
+            {}
+        ]
+    }
+}
+
+
+export const appointment_main_btn = {
+    view: 'form',
+    id: 'appointmentMainBtn',
+    borderless: true,
+    margin: 3,
+    gravity:0,
+    padding: main_padding,
+    width: main_body_width,
+    type: 'space',
     rows: [
-        view_header("Онлайн запись"),
-        // { id: 'idTypeAppointment', hidden: true},
+        view_header('Онлайн запись'),
         {
-            view: 'multiview',
-            id: 'appointmentMultiviewId',
-            cells: [
-                appointmentStep1,
-                appointmentStep2,
-                appointmentStep3
-            ]
+            view: 'label',
+            label:  'Прием клиентов осуществляется по предварительной записи',
+            align: 'center',
+        },
+        {
+            id: 'appointmentBtnId',
+            view: 'button',
+            autowidth: true,
+            css: 'webix_primary',
+            align: 'center',
+            value: 'Записаться',
+            click: () => changeContentView(appointment),
         }
     ]
 }
