@@ -13,7 +13,7 @@ export const productInfo = {
     view: 'scrollview',
     // autowidth: true,
     // autoheight: true,
-    id: 'productInfoId',
+    id: 'productInfoTab',
     scroll: 'xy',
     body: {
         cols: [

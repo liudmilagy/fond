@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ru.gly.fond.model.ClsProduct;
 import ru.gly.fond.model.ClsProductEntity;
 import ru.gly.fond.dto.ProductLineDto;
+import ru.gly.fond.model.RegProductFile;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,5 +35,15 @@ public class ClsProductController extends SuperController {
     public @ResponseBody List<ClsProductEntity> getProductDataForCalculator(){
         List<ClsProductEntity> list = clsProductService.getProductDataForCalculator();
         return list;
+    }
+
+    @GetMapping("/product_files/{id_product}")
+    public @ResponseBody List<RegProductFile> getRegProductFiles(@PathVariable("id_product") Long productId) {
+        if (productId != -1) {
+            ClsProduct product = clsProductRepo.findById(productId).orElse(null);
+            List<RegProductFile> list = regProductFileRepo.findRegProductFilesByProductAndIsDeleted(product, false).orElse(null);
+            return list;
+        } else
+            return null;
     }
 }

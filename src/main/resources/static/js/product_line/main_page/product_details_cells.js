@@ -13,6 +13,29 @@ function createProductDetails(product) {
     var textRateWithoutDeposit = createProductTextRateWithoutDeposit(product);
     var icon = createProductIcon(product);
 
+    var buttonsInDetails = {
+        cols: [
+            {
+                id: 'appointmentBtn' + product.id,
+                view: 'button',
+                autowidth: true,
+                css: 'fond_round_blue',
+                value: 'Записаться на прием',
+                click: () => changeContentView(appointment),
+            },
+            { gravity: 0.1 },
+            {
+                id: 'productDocBtn' + product.id,
+                view: 'button',
+                autowidth: true,
+                css: 'fond_round_sea',
+                value: 'Необходимые документы',
+                //click: () => changeContentView(appointment),
+            },
+            {}
+        ]
+    }
+
     var amountRows = {
             cols: [
                 {
@@ -37,28 +60,7 @@ function createProductDetails(product) {
         ]
     }
 
-    var buttonsInDetails = {
-        cols: [
-            {
-                id: 'appointmentBtn' + product.id,
-                view: 'button',
-                autowidth: true,
-                css: 'fond_round_blue',
-                value: 'Записаться на прием',
-                click: () => changeContentView(appointment),
-            },
-            { gravity: 0.1 },
-            {
-                id: 'productDocBtn' + product.id,
-                view: 'button',
-                autowidth: true,
-                css: 'fond_round_sea',
-                value: 'Необходимые документы',
-                //click: () => changeContentView(appointment),
-            },
-            {}
-        ]
-    }
+
 
     return {
         id: 'productCell' + product.id,
@@ -71,7 +73,7 @@ function createProductDetails(product) {
                 rows: [
                     time,
                     amountRows,
-                    {gravity: 0.075},
+                    {},
                     buttonsInDetails
                 ]
             },

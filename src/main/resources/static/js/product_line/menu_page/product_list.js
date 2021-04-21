@@ -1,5 +1,6 @@
 import {getOtherWidth, view_header, changeContentView} from "../../general.js";
 import {productInfo} from "./product_info.js";
+import {productDataForm} from "./product_data_form.js";
 
 const productTable = {
         view: 'datatable',
@@ -38,8 +39,8 @@ const productTable = {
             },
             onItemClick: function(id, e, node) {
                 let row = $$('productTableId').getItem(id);
-                webix.ui(productInfo, $$('productListId'));
-                // $$('productInfoId').parse(row);
+                // webix.ui(productInfo, $$('productListId'));
+                webix.ui(productDataForm('productInfoTab', row.id), $$('productListId'));
                 $$('labelId').setValue(row.name);
                 $$('textHtmlId').setHTML(row.htmlText);
             }

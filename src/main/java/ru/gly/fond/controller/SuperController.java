@@ -8,6 +8,7 @@ import ru.gly.fond.config.ApplicationConstants;
 import ru.gly.fond.model.ClsTypeAppointment;
 import ru.gly.fond.repository.ClsProductRepo;
 import ru.gly.fond.repository.ClsTypeAppointmentRepo;
+import ru.gly.fond.repository.RegProductFileRepo;
 import ru.gly.fond.repository.RegTimeTypeAppointmentRepo;
 import ru.gly.fond.service.AppointmentService;
 import ru.gly.fond.service.ClsProductService;
@@ -34,5 +35,8 @@ public class SuperController {
 
     @Autowired
     protected ClsProductRepo clsProductRepo;
+
+    @Autowired
+    protected RegProductFileRepo regProductFileRepo;
 
 }

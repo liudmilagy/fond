@@ -18,18 +18,20 @@
 }
 
 .fond_round_blue .webix_button{
-    border: 1px solid #1CA1C1;
+    border: 1px solid rgba(28, 161, 193, 0.29);
+    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
     border-radius: 10px;
-    background-color: #fff;
+    background-color: rgba(28, 161, 193, 0.29);
     color: #000000;
     /*font-family:Montserrat, serif;*/
     /*font-family: 'PT Sans', Tahoma;*/
 }
 
 .fond_round_sea .webix_button{
-    border: 1px solid #55CD97;
+    border: 1px solid rgba(85, 205, 151, 0.25);
+    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
     border-radius: 10px;
-    background-color: #fff;
+    background-color: rgba(85, 205, 151, 0.25);
     color: #000000;
     /*font-family:Montserrat, serif;*/
     /*font-family: 'PT Sans', Tahoma;*/
