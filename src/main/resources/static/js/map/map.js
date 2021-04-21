@@ -2,7 +2,7 @@ export function map() {
     const ya_map = {
         view: 'form',
         id: 'mapId',
-        height: 500,
+        height: 400,
         borderless: true,
         rows: [
             {
@@ -10,7 +10,7 @@ export function map() {
                 id: "map",
                 load: ["Map", "Placemark"],
                 lang:"ru-RU",
-                zoom: 18,
+                zoom: 17,
                 center: [51.839244, 107.576130]
             }
         ],

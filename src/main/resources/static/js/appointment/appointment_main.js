@@ -203,7 +203,7 @@ export const appointment = {
     view: 'scrollview',
     // autowidth: true,
     autoheight: true,
-    id: 'productInfoId',
+    id: 'appointmentId',
     scroll: 'xy',
     body: {
         rows: [

@@ -1,78 +1,15 @@
 import {view_header, main_padding, main_body_width, numberFormatWithoutDecimal} from "../general.js";
 
-// var programRichselect = {
-//     view: 'richselect',
-//     label: 'Программа',
-//     labelPosition: 'top',
-//     value: 1,
-//     options: [
-//         {id: 1, value: 'Старт',},
-//         {id: 2, value: 'Моногород',},
-//         {id: 3, value: 'Моногород приоритет',},
-//         {id: 4, value: 'Приоритет',},
-//         {id: 5, value: 'Бизнес-оборот',},
-//         {id: 6, value: 'Бизнес',},
-//         {id: 7, value: 'Рефинансирование',},
-//         {id: 8, value: 'Экспресс', },
-//     ]
-// }
-//
-// var amountSlider = {
-//     view: 'slider',
-//     label: 'Размер займа',
-//     labelPosition: 'top',
-//     value: '300000',
-//     step: 10000,
-//     min: 100000,
-//     max: 300000,
-//     name: 'slider1',
-//     title: webix.template("#value# руб"),
-//     on:{
-//         // onChange:function(){
-//         //     this.define("title", "Final value " + this.getValue());
-//         //     this.refresh();
-//         // },
-//         // onSliderDrag:function(){
-//         //     this.define("title", "Dragging... Currently "+this.getValue());
-//         //     this.refresh();
-//         // }
-//     }
-// }
-//
-// var timeSlider = {
-//     view: 'slider',
-//     label: 'Срок займа',
-//     labelPosition: 'top',
-//     value: '12',
-//     step: 1,
-//     min: 6,
-//     max: 36,
-//     name: 'slider2',
-//     title: webix.template("#value# мес."),
-// }
-//
-// var depositRadio = {
-//     // view: 'radio',
-//     // label: '',
-//     // value: 1,
-//     // options: [
-//     //     {id: 1, value: 'Без залога'},
-//     //     {id: 2, value: 'С залогом'},
-//     // ]
-//     view: "switch", onLabel: "С залогом", offLabel:"Без залога", value: 0
-// }
-//
-//  const calculator =
-
 export function calculator() {
 
     var xhr = webix.ajax().sync().get('product_list_for_calculator');
     var data = JSON.parse(xhr.responseText);
 
-    var key_rate = 6; // webix.ajax().sync().get();
+    var key_rate = 4.5; // webix.ajax().sync().get();
 
     var programRichselect = {
         view: 'richselect',
+        id: 'programRichselectId',
         label: 'Программа',
         labelPosition: 'top',
         name: 'programRichselect',
@@ -81,12 +18,18 @@ export function calculator() {
     }
 
     var depositRadio = {
-        view: "switch", name: 'deposit', onLabel: "С залогом", offLabel:"Без залога", value: 0
+        view: "switch", name: 'deposit', id: 'depositId', onLabel: "С залогом", offLabel:"Без залога", value: 0,
+        on: {
+            onChange: () => {
+                webix.message("Раздел в разработке.")
+            }
+        }
     }
 
     var amountSlider = {
         view: 'slider',
         name: 'amountSlider',
+        id: 'amountSliderId',
         label: 'Размер займа',
         labelPosition: 'top',
         value: data[0].minAmountWithDeposit,
@@ -108,6 +51,7 @@ export function calculator() {
 
     var timeSlider = {
         view: 'slider',
+        id: 'timeSliderId',
         label: 'Срок займа',
         labelPosition: 'top',
         value: '12',
@@ -129,6 +73,7 @@ export function calculator() {
             {},
             {
                 view: 'label',
+                id: 'rateLabelId',
                 label: getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
                                 data[0].coefKeyRateWithDeposit, key_rate),
                 align: 'right',
@@ -146,9 +91,10 @@ export function calculator() {
             {},
             {
                 view: 'label',
-                label: getMonthlyPayment(getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
-                                                data[0].coefKeyRateWithDeposit, key_rate),
-                                        data[0].minAmountWithDeposit, data[0].limitation),
+                // label: getMonthlyPayment(getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
+                //                                 data[0].coefKeyRateWithDeposit, key_rate),
+                //                         data[0].minAmountWithDeposit, data[0].limitation),
+                label: 0,
                 align: 'right',
             },
         ]
@@ -164,9 +110,10 @@ export function calculator() {
             {},
             {
                 view: 'label',
-                label: getOverPayment(getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
-                                            data[0].coefKeyRateWithDeposit, key_rate),
-                                     data[0].minAmountWithDeposit, data[0].limitation),
+                // label: getOverPayment(getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
+                //                             data[0].coefKeyRateWithDeposit, key_rate),
+                //                      data[0].minAmountWithDeposit, data[0].limitation),
+                label: 0,
                 align: 'right',
             },
         ]
@@ -244,4 +191,17 @@ function getMonthlyPayment(rate, amount, limitation) {
 
 function getOverPayment(rate, amount, limitation) {
     return (rate + amount + limitation) / 100; //поменять формулу
+}
+
+export function setCalculatorValues(product) {
+    $$('programRichselectId').setValue(product);
+    $$('depositId').setValue(product);
+    $$('amountSliderId').config.min = product.minAmountWithDeposit;
+    $$('amountSliderId').config.max = product.maxAmountWithDeposit;
+    $$('amountSliderId').setValue(product.minAmountWithDeposit);
+
+    $$('timeSliderId').config.max = product.limitation;
+    $$('timeSliderId').setValue(product.limitation);
+
+    $$('rateLabelId').setValue(getRate(product.interestRateWithoutDeposit, product.hasKeyRateWithoutDeposit, product.coefKeyRateWithoutDeposit, 4.5))
 }

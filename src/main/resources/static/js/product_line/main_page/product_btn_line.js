@@ -1,3 +1,5 @@
+import {setCalculatorValues} from "../../calculator/calculator.js";
+
 function createProductBtn(product) {
     return {
         id: 'productBtn' + product.id,
@@ -5,7 +7,10 @@ function createProductBtn(product) {
         autowidth: true,
         css: 'fond',
         value: product.name,
-        click: () => $$('productCell' + product.id).show(),
+        click: () => {
+            $$('productCell' + product.id).show();
+            setCalculatorValues(product);
+        }
     }
 }
 

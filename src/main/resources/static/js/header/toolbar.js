@@ -5,10 +5,10 @@ function getHeaderLabel(size) {
         borderless: true,
         rows: [
             {
-                template: '<span style="font-size: larger; font-family:Montserrat, serif; font-weight: bolder;">Микрокредитная компания</span><br>' +
-                    '<span style="font-size: larger; font-family:Montserrat, serif; font-weight: bolder;">Фонд поддержки малого предпринимательства Республики Бурятия</span><br>' +
-                    '<span style="font-size: smaller; font-family:Montserrat, serif;">ОГРН 1020300978147, ИНН 0323072429, КПП 032301001</span><br>' +
-                    '<span style="font-size: smaller; font-family:Montserrat, serif;">670000, Республика Бурятия, г. Улан-Удэ,ул. Партизанская 28</span>',
+                template: '<span style="font-size: x-large; font-family:Montserrat, serif; font-weight: bolder;">Микрокредитная компания</span><br>' +
+                    '<span style="font-size: x-large; font-family:Montserrat, serif; font-weight: bolder;">Фонд поддержки малого предпринимательства Республики Бурятия</span><br>'
+                    // '<span style="font-size: smaller; font-family:Montserrat, serif;">ОГРН 1020300978147, ИНН 0323072429, КПП 032301001</span><br>' +
+                    // '<span style="font-size: smaller; font-family:Montserrat, serif;">670000, Республика Бурятия, г. Улан-Удэ,ул. Партизанская 28</span>',
             }
         ]
     }
