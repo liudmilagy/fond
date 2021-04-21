@@ -53,7 +53,7 @@ export function createProductAmountWithDeposit(product) {
             {
                 cols: [
                     {view: 'icon',  icon: 'fas fa-wallet',  css: 'product_icon'},
-                    {view: 'label', 'label': 'Сумма (с залогом)',
+                    {view: 'label', 'label': 'Сумма (с залогом), руб.',
                         // css: 'product_label_title'
                     },
                 ]
@@ -77,7 +77,7 @@ export function createProductAmountWithoutDeposit(product) {
                     {view: 'icon',  icon: 'fas fa-wallet',
                         css: 'product_icon'
                     },
-                    {view: 'label', 'label': 'Сумма (без залога)',
+                    {view: 'label', 'label': 'Сумма (без залога), руб.',
                         // css: 'product_label_title'
                     },
                 ]

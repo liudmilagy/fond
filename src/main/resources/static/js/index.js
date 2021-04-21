@@ -10,6 +10,7 @@ import {resizeMenuOptions} from "./header/menu.js";
 import {carousel} from "./header/carousel.js";
 import {calculator} from "./calculator/calculator.js";
 import {map} from "./map/map.js"
+import {footer} from "./footer/footer.js";
 
 function getClientWidth() {
     return document.body.clientWidth;
@@ -38,23 +39,27 @@ webix.ready(function() {
         body: {
             // padding: 20,
             margin: 10,
-            cols: [
-                { width: getOtherWidth()},
+            rows: [
                 {
-                    rows: [
-                        // carousel,
-                        productLine(),
-                        {},
-                        calculator(),
-                        {},
-                        {},
-                        map()
-                    ]
+                    cols: [
+                        { width: getOtherWidth()},
+                        {
+                            rows: [
+                                // carousel,
+                                productLine(),
+                                {},
+                                calculator(),
+                                {},
+                                {},
+                                map(),
+                                {},
+                            ]
+                        },
+                        { width: getOtherWidth()},
+                    ],
                 },
-                { width: getOtherWidth()},
+                footer
             ]
-
-
         }
     }, $$('content'));
 

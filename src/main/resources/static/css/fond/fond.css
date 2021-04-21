@@ -8,6 +8,11 @@
     background-color: var(--main_color);
 }
 
+.fond_footer {
+    background: var(--main_color);
+    color: #ffffff;
+}
+
 .fond .webix_button{
     border: 1px solid var(--main_color);
     border-radius: 10px;

@@ -2,7 +2,8 @@ export function map() {
     const ya_map = {
         view: 'form',
         id: 'mapId',
-        height: 400,
+        height: 500,
+        borderless: true,
         rows: [
             {
                 view: "yandex-map",
