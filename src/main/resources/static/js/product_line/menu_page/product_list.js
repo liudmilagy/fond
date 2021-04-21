@@ -39,8 +39,7 @@ const productTable = {
             },
             onItemClick: function(id, e, node) {
                 let row = $$('productTableId').getItem(id);
-                // webix.ui(productInfo, $$('productListId'));
-                webix.ui(productDataForm('productInfoTab', row.id), $$('productListId'));
+                webix.ui(productDataForm('productInfoTab', row.id, row.name), $$('productListId'));
                 $$('labelId').setValue(row.name);
                 $$('textHtmlId').setHTML(row.htmlText);
             }

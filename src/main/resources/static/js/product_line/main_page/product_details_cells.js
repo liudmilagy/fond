@@ -3,6 +3,7 @@ import {createProductTime, createProductIcon, createProductLabel,
     createProductAmountWithDeposit, createProductAmountWithoutDeposit,
     createProductTextRateWithDeposit, createProductTextRateWithoutDeposit} from "./create_details.js";
 import {appointment} from "../../appointment/appointment_main.js";
+import {productDataForm} from "../menu_page/product_data_form.js";
 
 function createProductDetails(product) {
     var label = createProductLabel(product);
@@ -31,6 +32,11 @@ function createProductDetails(product) {
                 css: 'fond_round_sea',
                 value: 'Необходимые документы',
                 //click: () => changeContentView(appointment),
+                click: () => {
+                    changeContentView(productDataForm('productDocsTab', product.id, product.name));
+                    $$('labelId').setValue(product.name);
+                    $$('textHtmlId').setHTML(product.htmlText);
+                }
             },
             {}
         ]
