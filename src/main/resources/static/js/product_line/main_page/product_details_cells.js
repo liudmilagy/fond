@@ -1,137 +1,8 @@
-function createProductLabel(product) {
-    return  {
-        cols: [
-            // {view: 'icon',  icon: 'fas fa-grip-lines-vertical'},
-            { gravity: 0.01},
-            {
-                id: 'productLabel' + product.id,
-                view: 'label',
-                // css: 'product_label_main_title',
-                label: product.name
-            }
-        ]
-    }
-}
-
-function createProductIcon(product) {
-    // var tmplt = {
-    //     view: 'template',
-    //     id: 'template' + product.id,
-    // }
-    // var icon_tag = "fas fa-" + product.iconName;
-    // $$('template' + product.id).setHTML("<span class='webix_icon " + icon_tag+ "' style='font-size: 100px'></span>")
-    // // $$('template' + product.id).refresh();
-    // return tmplt;
-    return {
-        view: 'template',
-        id: 'template' + product.id,
-        borderless: true,
-        width: 150,
-        height: 150,
-        template: "<span class='webix_icon product_icon fas fa-" + product.iconName + "' style='font-size: 150px'></span>"
-    }
-}
-
-function createProductTime(product) {
-    return {
-        rows: [
-            {
-                cols: [
-                    {view: 'icon',  icon: 'fas fa-calendar-alt', css: 'product_icon'},
-                    {view: 'label', 'label': 'На срок',
-                        // css: 'product_label_title',
-                    },
-                ]
-            },
-            {
-                cols: [
-                    {view: 'icon',  },
-                    {view: 'label', label: 'до ' + product.limitation + ' мес.',
-                        // css: 'product_label',
-                    },
-                ]
-            },
-        ]
-    }
-}
-
-function createProductAmountWithDeposit(product) {
-    return {
-        rows: [
-            {
-                cols: [
-                    {view: 'icon',  icon: 'fas fa-wallet',  css: 'product_icon'},
-                    {view: 'label', 'label': 'Сумма (с залогом)',
-                        // css: 'product_label_title'
-                    },
-                ]
-            },
-            {
-                cols: [
-                    {view: 'icon',  },
-                    {view: 'label', label: 'от '+ product.minAmountWithDeposit + ' до ' + product.maxAmountWithDeposit,
-                        // css: 'product_label',
-                    },
-                ]
-            },
-        ]
-    }
-}
-
-function createProductAmountWithoutDeposit(product) {
-    return {
-        rows: [
-            {
-                cols: [
-                    {view: 'icon',  icon: 'fas fa-wallet',
-                        css: 'product_icon'
-                    },
-                    {view: 'label', 'label': 'Сумма (без залога)',
-                        // css: 'product_label_title'
-                    },
-                ]
-            },
-            {
-                cols: [
-                    {view: 'icon',  },
-                    {view: 'label', label: 'от '+ product.minAmountWithoutDeposit + ' до ' + product.maxAmountWithoutDeposit,
-                        // css: 'product_label',
-                    },
-                ]
-            },
-        ]
-    }
-}
-
-function createProductTextRateWithDeposit(product) {
-    return {
-        rows: [
-            {
-                cols: [
-                    {view: 'icon',  icon: 'fas fa-percent',  css: 'product_icon'},
-                    {view: 'label', 'label': product.textRateWithDeposit,
-                        // css: 'product_label'
-                    },
-                ]
-            },
-        ]
-    }
-}
-
-function createProductTextRateWithoutDeposit(product) {
-    return {
-        rows: [
-            {
-                cols: [
-                    {view: 'icon',  icon: 'fas fa-percent',  css: 'product_icon'},
-                    {view: 'label', 'label': product.textRateWithoutDeposit,
-                        // css: 'product_label'
-                    },
-                ]
-            },
-        ]
-    }
-}
+import {changeContentView, numberFormatWithoutDecimal} from "../../general.js";
+import {createProductTime, createProductIcon, createProductLabel,
+    createProductAmountWithDeposit, createProductAmountWithoutDeposit,
+    createProductTextRateWithDeposit, createProductTextRateWithoutDeposit} from "./create_details.js";
+import {appointment} from "../../appointment/appointment_main.js";
 
 function createProductDetails(product) {
     var label = createProductLabel(product);
@@ -141,6 +12,53 @@ function createProductDetails(product) {
     var textRateWithDeposit = createProductTextRateWithDeposit(product);
     var textRateWithoutDeposit = createProductTextRateWithoutDeposit(product);
     var icon = createProductIcon(product);
+
+    var amountRows = {
+            cols: [
+                {
+                    rows: [
+                        amountWithoutDeposit,
+                        textRateWithoutDeposit
+                    ]
+                },
+                {
+                    rows: [
+                        amountWithDeposit,
+                        textRateWithDeposit,
+                    ]
+                },
+                {}
+            ]
+        };
+    var iconAndLabel = {
+        rows: [
+            icon,
+            label
+        ]
+    }
+
+    var buttonsInDetails = {
+        cols: [
+            {
+                id: 'appointmentBtn' + product.id,
+                view: 'button',
+                autowidth: true,
+                css: 'fond_round_blue',
+                value: 'Записаться на прием',
+                click: () => changeContentView(appointment),
+            },
+            { gravity: 0.1 },
+            {
+                id: 'productDocBtn' + product.id,
+                view: 'button',
+                autowidth: true,
+                css: 'fond_round_sea',
+                value: 'Необходимые документы',
+                //click: () => changeContentView(appointment),
+            },
+            {}
+        ]
+    }
 
     return {
         id: 'productCell' + product.id,
@@ -152,28 +70,13 @@ function createProductDetails(product) {
                 autowidth: true,
                 rows: [
                     time,
-                    {
-                        cols: [
-                            {
-                                rows: [
-                                    amountWithoutDeposit,
-                                    textRateWithoutDeposit
-                                ]
-                            },
-                            {
-                                rows: [
-                                    amountWithDeposit,
-                                    textRateWithDeposit,
-                                ]
-                            },
-                            {}
-                        ]
-                    },
+                    amountRows,
+                    {gravity: 0.075},
+                    buttonsInDetails
                 ]
             },
-            icon,
+            iconAndLabel
         ]
-
     }
 }
 

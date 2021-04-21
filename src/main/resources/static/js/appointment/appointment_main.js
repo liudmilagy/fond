@@ -1,69 +1,5 @@
-import {view_header, changeContentView} from "../general.js";
-import {main_body_width, main_padding} from "../general.js";
-// import {appointment_form} from "./appointment_time.js";
+import {view_header, changeContentView, main_body_width, main_padding} from "../general.js";
 webix.Date.startOnMonday = true;
-
-const appointment_main = {
-    id: 'appointmentMainId',
-    view: 'form',
-    rows: [
-        {
-            cols: [
-                {},
-                view_header("Онлайн запись"),
-                {},
-            ]
-        },
-        {
-            cols:[
-                {},
-                {
-                    view:"datatable",
-                    id:"appointment_datatable",
-                    // height:120,
-                    // xCount:1,
-                    header:false,
-                    select: "row",
-                    scroll: false,
-                    borderless: true,
-                    type: {
-                        height: 60,
-                        width:"auto"
-                    },
-                    columns: [
-                        {
-                            template:"<div class='webix_strong'>#name#</div> #description# ",
-                            fillspace: true,
-                            adjust: true,
-                        },
-                        {   header:"",
-                            template:function(obj){
-                                return "<div class='webix_button webix_primary'><button class='btn_click'>Записаться</button></div>";
-                            }
-                        }
-                    ],
-                    onClick:{
-                        btn_click: function(ev, id, html){
-                            // webix.alert("Clicked row "+id);
-                            let row = $$('appointment_datatable').getItem(id);
-                            let data = {
-                                'idTypeAppointment': row.id,
-                                'nameTypeAppointment': row.name,
-                            };
-
-                            webix.ui(appointment_form, $$('appointmentMainId'));
-                            $$('appointmentFormId').parse(data);
-                        }
-                    },
-                    url: 'type_appointments',
-                },
-                {}
-            ]
-        },
-        {}
-    ]
-
-}
 
 const appointmentStep1 = {
         cols:[
@@ -294,33 +230,4 @@ export const appointment = {
             {}
         ]
     }
-}
-
-
-export const appointment_main_btn = {
-    view: 'form',
-    id: 'appointmentMainBtn',
-    borderless: true,
-    margin: 3,
-    gravity:0,
-    padding: main_padding,
-    width: main_body_width,
-    type: 'space',
-    rows: [
-        view_header('Онлайн запись'),
-        {
-            view: 'label',
-            label:  'Прием клиентов осуществляется по предварительной записи',
-            align: 'center',
-        },
-        {
-            id: 'appointmentBtnId',
-            view: 'button',
-            autowidth: true,
-            css: 'webix_primary',
-            align: 'center',
-            value: 'Записаться',
-            click: () => changeContentView(appointment),
-        }
-    ]
 }

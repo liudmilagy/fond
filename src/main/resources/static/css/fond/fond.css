@@ -17,6 +17,24 @@
     /*font-family: 'PT Sans', Tahoma;*/
 }
 
+.fond_round_blue .webix_button{
+    border: 1px solid #1CA1C1;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000000;
+    /*font-family:Montserrat, serif;*/
+    /*font-family: 'PT Sans', Tahoma;*/
+}
+
+.fond_round_sea .webix_button{
+    border: 1px solid #55CD97;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000000;
+    /*font-family:Montserrat, serif;*/
+    /*font-family: 'PT Sans', Tahoma;*/
+}
+
 .fond .webix_button:focus{
     background-color: var(--focus_color);
     color: #ffffff;

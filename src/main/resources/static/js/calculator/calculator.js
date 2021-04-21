@@ -1,4 +1,4 @@
-import {view_header, main_padding, main_body_width} from "../general.js";
+import {view_header, main_padding, main_body_width, numberFormatWithoutDecimal} from "../general.js";
 
 // var programRichselect = {
 //     view: 'richselect',

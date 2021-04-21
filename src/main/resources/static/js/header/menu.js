@@ -52,12 +52,7 @@ export const menu = {
                     }
                     // changeContentView(view);
                     if (view != null) {
-                        webix.ui({
-                            id: 'content',
-                            rows: [
-                                view
-                            ]
-                        }, $$('content'))
+                        changeContentView(view);
                     }
                 }
             }

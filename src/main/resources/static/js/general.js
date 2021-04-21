@@ -20,11 +20,19 @@ export function getOtherWidth() {
     }
 }
 
+export const numberFormatWithoutDecimal = {
+    groupSize:3,        // the number of digits in a group
+    groupDelimiter:" ", // a mark that divides numbers with many digits into groups
+    decimalDelimiter:",",// the decimal delimiter
+    decimalSize:0       // the number of digits after the decimal mark
+};
+
+
 export function changeContentView(newView) {
     webix.ui({
         id: 'content',
         rows: [
-            newView
+            webix.copy(newView)
         ]
     }, $$('content'));
 }
