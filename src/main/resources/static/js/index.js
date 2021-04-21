@@ -10,6 +10,7 @@ import {resizeMenuOptions} from "./header/menu.js";
 import {carousel} from "./header/carousel.js";
 import {calculator} from "./calculator/calculator.js";
 import {appointment_main_btn} from "./appointment/appointment_main.js";
+import {map} from "./map/map.js"
 
 function getClientWidth() {
     return document.body.clientWidth;
@@ -50,6 +51,8 @@ webix.ready(function() {
                         {},
                         // calendar
                         appointment_main_btn,
+                        {},
+                        map
                     ]
                 },
                 { width: getOtherWidth()},

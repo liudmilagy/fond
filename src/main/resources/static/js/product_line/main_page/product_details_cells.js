@@ -13,6 +13,25 @@ function createProductLabel(product) {
     }
 }
 
+function createProductIcon(product) {
+    // var tmplt = {
+    //     view: 'template',
+    //     id: 'template' + product.id,
+    // }
+    // var icon_tag = "fas fa-" + product.iconName;
+    // $$('template' + product.id).setHTML("<span class='webix_icon " + icon_tag+ "' style='font-size: 100px'></span>")
+    // // $$('template' + product.id).refresh();
+    // return tmplt;
+    return {
+        view: 'template',
+        id: 'template' + product.id,
+        borderless: true,
+        width: 150,
+        height: 150,
+        template: "<span class='webix_icon product_icon fas fa-" + product.iconName + "' style='font-size: 150px'></span>"
+    }
+}
+
 function createProductTime(product) {
     return {
         rows: [
@@ -121,33 +140,40 @@ function createProductDetails(product) {
     var amountWithoutDeposit = createProductAmountWithoutDeposit(product);
     var textRateWithDeposit = createProductTextRateWithDeposit(product);
     var textRateWithoutDeposit = createProductTextRateWithoutDeposit(product);
+    var icon = createProductIcon(product);
 
     return {
         id: 'productCell' + product.id,
         // type: 'clean',
         // autoheight:true,
         height: '100%',
-        rows: [
-            label,
-            time,
+        cols: [
             {
-                cols: [
+                autowidth: true,
+                rows: [
+                    time,
                     {
-                        rows: [
-                            amountWithoutDeposit,
-                            textRateWithoutDeposit
+                        cols: [
+                            {
+                                rows: [
+                                    amountWithoutDeposit,
+                                    textRateWithoutDeposit
+                                ]
+                            },
+                            {
+                                rows: [
+                                    amountWithDeposit,
+                                    textRateWithDeposit,
+                                ]
+                            },
+                            {}
                         ]
                     },
-                    {
-                        rows: [
-                            amountWithDeposit,
-                            textRateWithDeposit,
-                        ]
-                    },
-                    {}
                 ]
             },
+            icon,
         ]
+
     }
 }
 

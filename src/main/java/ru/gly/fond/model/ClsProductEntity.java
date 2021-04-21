@@ -13,6 +13,7 @@ import javax.persistence.*;
         query =
                 "SELECT cls_product.id as id, cls_product.name as name, cls_product.name as value,\n" +
                         "       cls_product.limitation as limitation, cls_product.is_hidden as is_hidden, cls_product.html_text as html_text, \n" +
+                        "       cls_product.not_active as not_active, cls_product.icon_name as icon_name,\n" +
                         "       rpp_w.id as id_with_deposit,\n" +
                         "       rpp_w.min_amount as min_amount_with_deposit,\n" +
                         "       rpp_w.max_amount as max_amount_with_deposit,\n" +
@@ -48,6 +49,8 @@ import javax.persistence.*;
                         @FieldResult(name = "limitation", column = "limitation"),
                         @FieldResult(name = "isHidden", column = "is_hidden"),
                         @FieldResult(name = "htmlText", column = "html_text"),
+                        @FieldResult(name = "notActive", column = "not_active"),
+                        @FieldResult(name = "iconName", column = "icon_name"),
 
                         @FieldResult(name = "idWithDeposit", column = "id_with_deposit"),
                         @FieldResult(name = "minAmountWithDeposit", column = "min_amount_with_deposit"),
@@ -79,6 +82,8 @@ public class ClsProductEntity {
     private Integer         limitation;
     private Boolean         isHidden;
     private String          htmlText;
+    private Boolean         notActive;
+    private String          iconName;
 
     private Long            idWithDeposit;
     private Integer         minAmountWithDeposit;
@@ -255,6 +260,22 @@ public class ClsProductEntity {
 
     public void setTextRateWithoutDeposit(String textRateWithoutDeposit) {
         this.textRateWithoutDeposit = textRateWithoutDeposit;
+    }
+
+    public Boolean getNotActive() {
+        return notActive;
+    }
+
+    public void setNotActive(Boolean notActive) {
+        this.notActive = notActive;
+    }
+
+    public String getIconName() {
+        return iconName;
+    }
+
+    public void setIconName(String iconName) {
+        this.iconName = iconName;
     }
 }
 

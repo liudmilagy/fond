@@ -42,4 +42,6 @@ public class AppointmentContoller extends SuperController{
         return times;
     }
 
+//    @PostMapping
+
 }

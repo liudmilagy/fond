@@ -23,6 +23,8 @@ public class ClsProduct {
     private Integer         limitation;
     private Boolean         isHidden;
     private String          htmlText;
+    private Boolean         notActive;
+    private String          iconName;
 
     public Long getId() {
         return id;
@@ -72,6 +74,26 @@ public class ClsProduct {
         this.htmlText = htmlText;
     }
 
+    @Basic
+    @Column(name = "not_active")
+    public Boolean getNotActive() {
+        return notActive;
+    }
+
+    public void setNotActive(Boolean notActive) {
+        this.notActive = notActive;
+    }
+
+    @Basic
+    @Column(name = "icon_name")
+    public String getIconName() {
+        return iconName;
+    }
+
+    public void setIconName(String iconName) {
+        this.iconName = iconName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,11 +103,13 @@ public class ClsProduct {
                 Objects.equals(name, that.name) &&
                 Objects.equals(limitation, that.limitation) &&
                 Objects.equals(isHidden, that.isHidden) &&
-                Objects.equals(htmlText, that.htmlText);
+                Objects.equals(htmlText, that.htmlText) &&
+                Objects.equals(notActive, that.notActive) &&
+                Objects.equals(iconName, that.iconName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, limitation, isHidden, htmlText);
+        return Objects.hash(id, name, limitation, isHidden, htmlText, notActive, iconName);
     }
 }
