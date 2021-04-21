@@ -63,6 +63,7 @@ function createProductDetails(product) {
 
     var iconAndLabel = {
         rows: [
+            {gravity: 0.5},
             icon,
             // label
         ]
