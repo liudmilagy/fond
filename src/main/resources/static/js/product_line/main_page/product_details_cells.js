@@ -51,21 +51,21 @@ function createProductDetails(product) {
                     ]
                 },
                 {
+                    gravity: 0.5,
                     rows: [
                         amountWithDeposit,
                         textRateWithDeposit,
                     ]
                 },
-                {}
             ]
-        };
+    };
+
     var iconAndLabel = {
         rows: [
             icon,
-            label
+            // label
         ]
     }
-
 
 
     return {
@@ -75,7 +75,7 @@ function createProductDetails(product) {
         height: '100%',
         cols: [
             {
-                autowidth: true,
+                // autowidth: true,
                 rows: [
                     time,
                     amountRows,
@@ -83,7 +83,12 @@ function createProductDetails(product) {
                     buttonsInDetails
                 ]
             },
-            iconAndLabel
+            {
+                gravity: 0.3,
+                rows: [
+                    iconAndLabel
+                ]
+            }
         ]
     }
 }
