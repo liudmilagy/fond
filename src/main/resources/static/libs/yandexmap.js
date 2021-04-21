@@ -56,6 +56,10 @@ webix.protoUI({
                 });
                 this._waitMap.resolve(this._map);
                 webix._ldYMap = null;
+
+                var myPlacemark = new ymaps.Placemark(c.center);
+                this._map.geoObjects.add(myPlacemark);
+
             }, this)
         );
     },
