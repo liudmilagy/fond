@@ -45,6 +45,7 @@ function createProductDetails(product) {
     var amountRows = {
             cols: [
                 {
+                    gravity: 0.5,
                     rows: [
                         amountWithoutDeposit,
                         textRateWithoutDeposit
@@ -75,7 +76,7 @@ function createProductDetails(product) {
         height: '100%',
         cols: [
             {
-                // autowidth: true,
+                autowidth: true,
                 rows: [
                     time,
                     amountRows,
