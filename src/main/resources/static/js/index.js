@@ -11,6 +11,7 @@ import {carousel} from "./header/carousel.js";
 import {calculator} from "./calculator/calculator.js";
 import {map} from "./map/map.js"
 import {footer} from "./footer/footer.js";
+import {news} from "./news/news_main.js";
 
 function getClientWidth() {
     return document.body.clientWidth;
@@ -50,6 +51,8 @@ webix.ready(function() {
                                 {},
                                 calculator(),
                                 {},
+                                {},
+                                news(),
                                 {},
                                 map(),
                                 {},
