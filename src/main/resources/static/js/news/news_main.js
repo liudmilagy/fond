@@ -1,6 +1,6 @@
 import {main_body_width, main_padding, view_header} from "../general.js";
 
-export function news() {
+function newsDataview() {
     // var xhr = webix.ajax().sync().get('product_list_for_calculator');
     // var data = JSON.parse(xhr.responseText);
 
@@ -15,7 +15,7 @@ export function news() {
         type:{
             width: 400,
             height: 500,
-            template:"<img src='#img#' width = 400 height=300><br>" +
+            template:"<img src='#img#' height='300'><br>" +
                 "#title#",
         },
         scroll: false,
@@ -28,5 +28,17 @@ export function news() {
             { id:6, title:"snow", img:"https://cdn.pixabay.com/photo/2016/12/13/11/24/hoarfrost-1903886_960_720.jpg"}
         ],
     }
+}
 
+export function news() {
+    return {
+        // view: 'form',
+        // width: main_body_width,
+        // borderless: true,
+        rows: [
+            view_header('Новости'),
+            newsDataview(),
+            { gravity:0.001 },
+        ]
+    }
 }
