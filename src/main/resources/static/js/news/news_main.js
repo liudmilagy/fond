@@ -13,9 +13,9 @@ function newsDataview() {
         gravity:0,
         minHeight: 350,
         type:{
-            width: 400,
-            height: 500,
-            template:"<img src='#img#' height='300'><br>" +
+            width: 300,
+            height: 400,
+            template:"<img src='#img#' height='225'><br>" +
                 "#title#",
         },
         scroll: false,
