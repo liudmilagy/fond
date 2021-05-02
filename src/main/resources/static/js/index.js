@@ -11,6 +11,7 @@ import {carousel} from "./header/carousel.js";
 import {calculator} from "./calculator/calculator.js";
 import {map} from "./map/map.js"
 import {footer} from "./footer/footer.js";
+import {news} from "./news/news_main.js";
 import {changeContentView} from "./general.js";
 import  {main_page} from "./main/main_page.js";
 
@@ -29,44 +30,43 @@ const mainTemplate = {
     ]
 }
 
-
-
 webix.ready(function() {
     // let layout = webix.ui(createProductLine());
     let layout = webix.ui(mainTemplate);
-    changeContentView(main_page);
-    // webix.ui({
-    //     // id: 'content',
-    //     css: 'fond_bg2',
-    //     type:"space",
-    //     view: 'scrollview',
-    //     scroll: 'xy',
-    //     body: {
-    //         // padding: 20,
-    //         margin: 10,
-    //         rows: [
-    //             {
-    //                 cols: [
-    //                     { width: getOtherWidth()},
-    //                     {
-    //                         rows: [
-    //                             // carousel,
-    //                             productLine(),
-    //                             {},
-    //                             calculator(),
-    //                             {},
-    //                             {},
-    //                             map(),
-    //                             {},
-    //                         ]
-    //                     },
-    //                     { width: getOtherWidth()},
-    //                 ],
-    //             },
-    //             footer
-    //         ]
-    //     }
-    // }, $$('content'));
+    webix.ui({
+        id: 'content',
+        css: 'fond_bg2',
+        type:"space",
+        view: 'scrollview',
+        scroll: 'xy',
+        body: {
+            // padding: 20,
+            margin: 10,
+            rows: [
+                {
+                    cols: [
+                        { width: getOtherWidth()},
+                        {
+                            rows: [
+                                // carousel,
+                                productLine(),
+                                {},
+                                calculator(),
+                                {},
+                                {},
+                                news(),
+                                {},
+                                map(),
+                                {},
+                            ]
+                        },
+                        { width: getOtherWidth()},
+                    ],
+                },
+                footer
+            ]
+        }
+    }, $$('content'));
 
     webix.event(window, "resize", function (event) {
         // resizeMenuOptions();
