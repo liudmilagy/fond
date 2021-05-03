@@ -20,7 +20,8 @@ export function createProductIcon(product) {
         borderless: true,
         // width: 150,
         // height: 150,
-        template: "<span class='webix_icon product_icon fas fa-" + product.iconName + "' style='font-size: 150px'></span>"
+        //css: 'product_big_icon',
+        template: "<span class='webix_icon product_icon fas fa-" + product.iconName + "' style='font-size: 150px; color: #6c5b7b'></span>"
     }
 }
 

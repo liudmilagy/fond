@@ -20,7 +20,7 @@ function createProductDetails(product) {
                 id: 'appointmentBtn' + product.id,
                 view: 'button',
                 autowidth: true,
-                css: 'fond_round_blue',
+                css: 'fond_round_1',
                 value: 'Записаться на прием',
                 click: () => changeContentView(appointment),
             },
@@ -29,7 +29,7 @@ function createProductDetails(product) {
                 id: 'productDocBtn' + product.id,
                 view: 'button',
                 autowidth: true,
-                css: 'fond_round_sea',
+                css: 'fond_round_2',
                 value: 'Необходимые документы',
                 //click: () => changeContentView(appointment),
                 click: () => {

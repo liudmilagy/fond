@@ -1,7 +1,10 @@
 :root{
-    --main_color: #1CA1C1;
-    --hover_color: #1c82a2;
-    --focus_color: #55CD97;
+    --main_color: #f8b195;
+    --hover_color: #e39d82;
+    --focus_color: #f67280;
+    --light_focus_color: rgba(246, 114, 128, 0.27);
+    --text_color: #6c5b7b;
+    --btn_color: #355c7d;
 }
 
 .fond_webix_bg {
@@ -9,7 +12,7 @@
 }
 
 .fond_footer {
-    background: var(--main_color);
+    background: var(--text_color);
     color: #ffffff;
 }
 
@@ -17,27 +20,7 @@
     border: 1px solid var(--main_color);
     border-radius: 10px;
     background-color: #fff;
-    color: #000000;
-    /*font-family:Montserrat, serif;*/
-    /*font-family: 'PT Sans', Tahoma;*/
-}
-
-.fond_round_blue .webix_button{
-    border: 1px solid rgba(28, 161, 193, 0.29);
-    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
-    border-radius: 10px;
-    background-color: rgba(28, 161, 193, 0.29);
-    color: #000000;
-    /*font-family:Montserrat, serif;*/
-    /*font-family: 'PT Sans', Tahoma;*/
-}
-
-.fond_round_sea .webix_button{
-    border: 1px solid rgba(85, 205, 151, 0.25);
-    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
-    border-radius: 10px;
-    background-color: rgba(85, 205, 151, 0.25);
-    color: #000000;
+    color: var(--text_color);
     /*font-family:Montserrat, serif;*/
     /*font-family: 'PT Sans', Tahoma;*/
 }
@@ -47,23 +30,50 @@
     color: #ffffff;
 }
 
+.fond_round_1 .webix_button{
+    border: #6c5b7b;
+    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+    border-radius: 10px;
+    background-color: #6c5b7b;
+    color: #ffffff;
+    /*font-family:Montserrat, serif;*/
+    /*font-family: 'PT Sans', Tahoma;*/
+}
+
+.fond_round_2 .webix_button{
+    border: #355c7d;
+    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+    border-radius: 10px;
+    background-color: #355c7d;
+    color: #ffffff;
+    /*font-family:Montserrat, serif;*/
+    /*font-family: 'PT Sans', Tahoma;*/
+}
+
 .fond_bg {
-    background: var(--main_color);
+    background: var(--text_color);
 }
 
 .webix_menu-x.fond .webix_list_item{
-    background-color: var(--main_color);
+    /*background-color: var(--main_color);*/
+    background-color: #ffffff;
+    color: #6c5b7b;
+    font-weight: bolder;
+    font-size: larger;
+    text-align: center;
+    /*text-transform: uppercase;*/
+    vertical-align: middle;
 }
 
 .webix_menu-x.fond .webix_list_item:hover{
-    background-color: var(--hover_color);
+    background-color: var(--light_focus_color);
 }
 
 .fond_label {
-    /*font-weight: bolder;*/
+    font-weight: bolder;
     font-size: x-large;
     /*text-transform: uppercase;*/
-    color: var(--hover_color);
+    color: var(--text_color);
     /*font-family:Montserrat, serif;*/
 }
 
@@ -103,7 +113,12 @@
 }
 
 .product_icon .webix_icon:before{
-    color: var(--hover_color);
+    color: var(--focus_color);
+    font-size: 1.5rem;
+}
+
+.product_big_icon .webix_icon:before{
+    color: var(--text_color);
     font-size: 1.5rem;
 }
 
@@ -123,8 +138,8 @@
 
 .heading {
     position: absolute;
-    top: 120px;
-    right: 100px;
+    top: 40%;
+    right: 10%;
     color: white;
     font-size: 3em;
     font-weight: bolder;
@@ -132,8 +147,8 @@
 
 .heading2 {
     position: absolute;
-    top: 180px;
-    right: 100px;
+    top: 60%;
+    right: 10%;
     color: white;
     font-size: 1.5em;
     font-weight: normal;

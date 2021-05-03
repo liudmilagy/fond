@@ -5,10 +5,10 @@ import {about_fond} from "../about_fond/about_fond.js";
 import {main_page} from "../main/main_page.js";
 
 export const menu = {
-    view: 'toolbar',
-    css: 'fond_bg',
-    height: 40,
-    borderless: true,
+    // view: 'toolbar',
+    // css: 'fond_bg',
+    // height: 40,
+    // borderless: true,
     cols: [
         {width: getOtherWidth()},
         {
@@ -18,9 +18,9 @@ export const menu = {
             css: 'fond',
             autowidth: true,
             data: [
-                {
-                    id: "Main", value: "Главная",
-                },
+                // {
+                //     id: "Main", value: "Главная",
+                // },
                 {
                     id: "2", value: "О Фонде",
                     submenu: [
@@ -81,16 +81,16 @@ export const menu = {
 export function resizeMenuOptions(){
     const menu = $$('menuId');
     menu.customize({
-        width: menu.$width / 6
+        width: menu.$width / 5
     });
     menu.refresh();
 }
 
 function getMenuWidth() {
     if (document.body.clientWidth < main_body_width) {
-        return document.body.clientWidth/6;
+        return document.body.clientWidth/5;
     } else {
-        return main_body_width/6;
+        return main_body_width/5;
     }
 }
 
