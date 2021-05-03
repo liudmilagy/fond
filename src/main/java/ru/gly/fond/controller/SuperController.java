@@ -10,9 +10,7 @@ import ru.gly.fond.repository.ClsProductRepo;
 import ru.gly.fond.repository.ClsTypeAppointmentRepo;
 import ru.gly.fond.repository.RegProductFileRepo;
 import ru.gly.fond.repository.RegTimeTypeAppointmentRepo;
-import ru.gly.fond.service.AppointmentService;
-import ru.gly.fond.service.ClsProductService;
-import ru.gly.fond.service.SuperService;
+import ru.gly.fond.service.*;
 
 @Log4j2
 @Controller
@@ -38,5 +36,8 @@ public class SuperController {
 
     @Autowired
     protected RegProductFileRepo regProductFileRepo;
+
+    @Autowired
+    protected NewsService newsService;
 
 }
