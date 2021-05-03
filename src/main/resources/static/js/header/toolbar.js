@@ -5,8 +5,8 @@ function getHeaderLabel(size) {
         borderless: true,
         rows: [
             {
-                template: '<span style="font-size: x-large; font-family:Montserrat, serif; font-weight: bolder;">Микрокредитная компания</span><br>' +
-                    '<span style="font-size: x-large; font-family:Montserrat, serif; font-weight: bolder;">Фонд поддержки малого предпринимательства Республики Бурятия</span><br>'
+                template: '<span style="font-size: x-large; font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b;">Микрокредитная компания</span><br>' +
+                    '<span style="font-size: x-large; font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b;">Фонд поддержки малого предпринимательства Республики Бурятия</span><br>'
                     // '<span style="font-size: smaller; font-family:Montserrat, serif;">ОГРН 1020300978147, ИНН 0323072429, КПП 032301001</span><br>' +
                     // '<span style="font-size: smaller; font-family:Montserrat, serif;">670000, Республика Бурятия, г. Улан-Удэ,ул. Партизанская 28</span>',
             }
@@ -19,15 +19,15 @@ const icon_contacts = {
     maxWidth: 300,
     rows: [
         {
-            template:"<span class='product_icon webix_icon fas fa-phone-alt'></span> 8 (3012) 48-08-08 ",
+            template:"<span class='product_icon webix_icon fas fa-phone-alt' style='color: #6c5b7b;'></span> 8 (3012) 48-08-08 ",
             borderless: true,
         },
         {
-            template:"<span class='product_icon webix_icon fas fa-envelope'></span> fond03@mail.ru",
+            template:"<span class='product_icon webix_icon fas fa-envelope ' style='color: #6c5b7b;'></span> fond03@mail.ru",
             borderless: true,
         },
         {
-            template:"<span class='product_icon webix_icon fas fa-map-marker-alt'></span> ул. Партизанская 28",
+            template:"<span class='product_icon webix_icon fas fa-map-marker-alt' style='color: #6c5b7b;'></span> ул. Партизанская 28",
             borderless: true,
         }
     ]

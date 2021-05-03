@@ -15,13 +15,14 @@ export function calculator() {
         name: 'programRichselect',
         options: data,
         value: data[0],
+        css: 'fond'
     }
 
     var depositRadio = {
         view: "switch", name: 'deposit', id: 'depositId', onLabel: "С залогом", offLabel:"Без залога", value: 0,
         on: {
             onChange: () => {
-                webix.message("Раздел в разработке.")
+                // webix.message("Раздел в разработке.")
             }
         }
     }

@@ -62,10 +62,13 @@ function createProductDetails(product) {
     };
 
     var iconAndLabel = {
+        view: 'form',
+        borderless: true,
+        align: 'center',
         rows: [
-            {gravity: 0.5},
             icon,
-            // label
+            label,
+            {gravity: 0.05}
         ]
     }
 
@@ -74,14 +77,15 @@ function createProductDetails(product) {
         id: 'productCell' + product.id,
         // type: 'clean',
         // autoheight:true,
-        height: '100%',
+        // height: '100%',
+        height: 250,
         cols: [
             {
                 autowidth: true,
                 rows: [
                     time,
                     amountRows,
-                    {},
+                    {gravity: 0.01},
                     buttonsInDetails
                 ]
             },

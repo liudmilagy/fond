@@ -18,10 +18,10 @@ export function createProductIcon(product) {
         view: 'template',
         id: 'template' + product.id,
         borderless: true,
-        // width: 150,
-        // height: 150,
+        // width: 160,
+        // height: 160,
         //css: 'product_big_icon',
-        template: "<span class='webix_icon product_icon fas fa-" + product.iconName + "' style='font-size: 150px; color: #6c5b7b'></span>"
+        template: "<span class='webix_icon product_icon fas fa-" + product.iconName + "' style='font-size: 120px; color: #6c5b7b'></span>"
     }
 }
 
@@ -32,7 +32,7 @@ export function createProductTime(product) {
                 cols: [
                     {view: 'icon',  icon: 'fas fa-calendar-alt', css: 'product_icon'},
                     {view: 'label', 'label': 'На срок',
-                        // css: 'product_label_title',
+                        css: 'product_label_title',
                     },
                 ]
             },
@@ -55,7 +55,7 @@ export function createProductAmountWithDeposit(product) {
                 cols: [
                     {view: 'icon',  icon: 'fas fa-wallet',  css: 'product_icon'},
                     {view: 'label', 'label': 'Сумма (с залогом), руб.',
-                        // css: 'product_label_title'
+                        css: 'product_label_title'
                     },
                 ]
             },
@@ -79,7 +79,7 @@ export function createProductAmountWithoutDeposit(product) {
                         css: 'product_icon'
                     },
                     {view: 'label', 'label': 'Сумма (без залога), руб.',
-                        // css: 'product_label_title'
+                        css: 'product_label_title'
                     },
                 ]
             },
@@ -87,7 +87,7 @@ export function createProductAmountWithoutDeposit(product) {
                 cols: [
                     {view: 'icon',  },
                     {view: 'label', label: 'от '+ product.minAmountWithoutDeposit + ' до ' + product.maxAmountWithoutDeposit,
-                        // css: 'product_label',
+                        // css: 'product_label_title',
                     },
                 ]
             },
@@ -102,7 +102,7 @@ export function createProductTextRateWithDeposit(product) {
                 cols: [
                     {view: 'icon',  icon: 'fas fa-percent',  css: 'product_icon'},
                     {view: 'label', 'label': product.textRateWithDeposit,
-                        // css: 'product_label'
+                        css: 'product_label_title'
                     },
                 ]
             },
@@ -117,7 +117,7 @@ export function createProductTextRateWithoutDeposit(product) {
                 cols: [
                     {view: 'icon',  icon: 'fas fa-percent',  css: 'product_icon'},
                     {view: 'label', 'label': product.textRateWithoutDeposit,
-                        // css: 'product_label'
+                        css: 'product_label_title'
                     },
                 ]
             },
