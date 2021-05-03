@@ -106,3 +106,42 @@
     color: var(--hover_color);
     font-size: 1.5rem;
 }
+
+.text-block {
+    position: absolute;
+    top: 150px;
+    right: 20px;
+    opacity : 50%;
+    background-color: black;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    /*-webkit-transform: skew(-15deg);*/
+    /*-moz-transform: skew(15deg);*/
+    /*-o-transform: skew(15deg);*/
+}
+
+.heading {
+    position: absolute;
+    top: 120px;
+    right: 100px;
+    color: white;
+    font-size: 3em;
+    font-weight: bolder;
+}
+
+.heading2 {
+    position: absolute;
+    top: 180px;
+    right: 100px;
+    color: white;
+    font-size: 1.5em;
+    font-weight: normal;
+    text-align: right;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}

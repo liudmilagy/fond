@@ -14,6 +14,7 @@ import {footer} from "./footer/footer.js";
 import {news} from "./news/news_main.js";
 import {changeContentView} from "./general.js";
 import  {main_page} from "./main/main_page.js";
+import {image_header} from "./image_header/image_header.js";
 
 function getClientWidth() {
     return document.body.clientWidth;
@@ -43,6 +44,7 @@ webix.ready(function() {
             // padding: 20,
             margin: 10,
             rows: [
+                image_header,
                 {
                     cols: [
                         { width: getOtherWidth()},
