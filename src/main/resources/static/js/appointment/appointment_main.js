@@ -89,7 +89,7 @@ const appointmentStep2 = {
                     id: 'timeListId',
                     select: true,
                     borderless: true,
-                    scroll: false,
+                    scroll: true,
                     type: {
                         width: 'auto',
                         height: 'auto'
@@ -148,22 +148,26 @@ const appointmentStep3 =  {
                 },
                 {
                     view: 'text',
+                    id: 'clientNameId',
                     label: 'Имя',
                     labelPosition: 'top',
                     required: true,
                 },
                 {
                     view: 'text',
+                    id: 'phoneNumberId',
                     label: 'Номер телефона',
                     labelPosition: 'top',
                 },
                 {
                     view: 'text',
+                    id: 'emailId',
                     label: 'Email',
                     labelPosition: 'top',
                 },
                 {
                     view: 'textarea',
+                    id: 'messageId',
                     label: 'Сообщение',
                     labelPosition: 'top',
                 },
@@ -175,8 +179,23 @@ const appointmentStep3 =  {
                             css: 'webix_primary',
                             maxWidth: 200,
                             click: () => {
-                                $$('appointmentMultiviewId').hide();
-                                webix.message("Вы успешно записаны!", "success");
+                                var params = {
+                                    'idTypeAppointment': $$('idTypeAppointment').getValue(),
+                                    'date': $$('chosenDateId').getValue(),
+                                    'time': $$('chosenTimeId').getValue(),
+                                    'clientName': $$('clientNameId').getValue(),
+                                    'phoneNumber': $$('phoneNumberId').getValue(),
+                                    'email': $$('emailId').getValue(),
+                                    'message': $$('messageId').getValue(),
+                                }
+
+                                webix.ajax().headers({
+                                    'Content-Type': 'application/json'
+                                }).post('save_client_appointment',
+                                    params).then(function (data) {
+                                        $$('appointmentMultiviewId').hide();
+                                        webix.message("Вы успешно записаны!", "success");
+                                });
                             }
                         },
                         {},

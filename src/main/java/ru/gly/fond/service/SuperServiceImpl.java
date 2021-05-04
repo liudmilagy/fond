@@ -31,6 +31,9 @@ public class SuperServiceImpl implements SuperService{
     @Autowired
     ClsNewsRepo clsNewsRepo;
 
+    @Autowired
+    ClsTypeAppointmentRepo clsTypeAppointmentRepo;
+
     @Value("${upload.path:/uploads}")
     String uploadingDir;
 

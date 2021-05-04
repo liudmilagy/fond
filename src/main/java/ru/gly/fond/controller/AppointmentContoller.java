@@ -4,7 +4,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ru.gly.fond.dto.ClientAppointmentDto;
 import ru.gly.fond.model.ClsTypeAppointment;
+import ru.gly.fond.model.RegClientAppointment;
 import ru.gly.fond.model.RegTimeTypeAppointment;
 
 import java.text.DateFormat;
@@ -42,6 +44,16 @@ public class AppointmentContoller extends SuperController{
         return times;
     }
 
-//    @PostMapping
+    @PostMapping("/save_client_appointment")
+    public @ResponseBody
+    RegClientAppointment saveClientAppointment(@RequestBody ClientAppointmentDto clientAppointmentDto) {
+        try {
+            RegClientAppointment rca = appointmentService.createClientAppointment(clientAppointmentDto);
+            regClientAppointmentRepo.save(rca);
+            return rca;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 }
