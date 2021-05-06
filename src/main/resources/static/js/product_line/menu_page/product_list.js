@@ -39,26 +39,18 @@ const productTable = {
             },
             onItemClick: function(id, e, node) {
                 let row = $$('productTableId').getItem(id);
-                webix.ui(productDataForm('productInfoTab', row.id, row.name), $$('productListId'));
-                $$('labelId').setValue(row.name);
-                $$('textHtmlId').setHTML(row.htmlText);
+                window.location.href = "/product_list/product/" + row.id;
             }
         },
     }
 
 export const productList = {
     id: 'productListId',
-    cols: [
-        {width: getOtherWidth()},
-        {
-            rows:[
-                {gravity: 0.1},
-                view_header('Продуктовая линейка'),
-                {gravity: 0.04},
-                productTable,
-                {},
-            ]
-        },
-        {width: getOtherWidth()},
+    rows:[
+        {gravity: 0.1},
+        view_header('Продуктовая линейка'),
+        {gravity: 0.04},
+        productTable,
+        {},
     ]
 }

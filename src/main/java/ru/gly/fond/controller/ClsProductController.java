@@ -2,14 +2,14 @@ package ru.gly.fond.controller;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import ru.gly.fond.model.ClsProduct;
 import ru.gly.fond.model.ClsProductEntity;
 import ru.gly.fond.dto.ProductLineDto;
 import ru.gly.fond.model.RegProductFile;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,5 +45,24 @@ public class ClsProductController extends SuperController {
             return list;
         } else
             return null;
+    }
+
+    @GetMapping("/product_list")
+    public String viewProductList(Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+
+        return "product_list_view";
+    }
+
+    @GetMapping("/product_list/product/{id_product}")
+    public String viewProduct(@PathVariable("id_product") Long productId, Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+        model.addAttribute("product_id", productId);
+        return "product_view";
+    }
+
+    @GetMapping("/product_list/product/cls_product")
+    public @ResponseBody ClsProduct getProduct(@RequestParam("productId") Long productId) {
+        return clsProductRepo.findById(productId).orElse(null);
     }
 }

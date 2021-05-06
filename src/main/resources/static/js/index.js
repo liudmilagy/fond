@@ -15,25 +15,16 @@ import {news} from "./news/news_main.js";
 import {changeContentView} from "./general.js";
 import  {main_page} from "./main/main_page.js";
 import {image_header} from "./image_header/image_header.js";
+import {mainTemplate} from "./views/mainTemplate.js";
 
 function getClientWidth() {
     return document.body.clientWidth;
 }
 
-const mainTemplate = {
-    rows: [
-        // mainHeader,
-        header,
-        menu,
-        {
-            id: 'content',
-        },
-    ]
-}
-
 webix.ready(function() {
     // let layout = webix.ui(createProductLine());
     let layout = webix.ui(mainTemplate);
+    let otherWidth = getOtherWidth();
     webix.ui({
         id: 'content',
         css: 'fond_bg2',
@@ -47,7 +38,7 @@ webix.ready(function() {
                 image_header,
                 {
                     cols: [
-                        { width: getOtherWidth()},
+                        { width: otherWidth},
                         {
                             rows: [
                                 // carousel,
@@ -62,7 +53,7 @@ webix.ready(function() {
                                 {},
                             ]
                         },
-                        { width: getOtherWidth()},
+                        { width: otherWidth},
                     ],
                 },
                 footer
@@ -71,7 +62,8 @@ webix.ready(function() {
     }, $$('content'));
 
     webix.event(window, "resize", function (event) {
-        // resizeMenuOptions();
+        resizeMenuOptions();
+        otherWidth = getOtherWidth();
         layout.resize();
         // layout.define("width",document.body.clientWidth);
         // layout.define("height",window.innerHeight);

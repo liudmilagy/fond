@@ -1,6 +1,3 @@
-import {getOtherWidth} from "../../general.js";
-
-
 const productHtml = {
     view: 'template',
     id: 'textHtmlId',
@@ -16,15 +13,9 @@ export const productInfo = {
     id: 'productInfoTab',
     scroll: 'xy',
     body: {
-        cols: [
-            {width: getOtherWidth()},
-            {
-                rows: [
-                    {view: 'label', id: 'labelId', hidden: true},
-                    productHtml,
-                ]
-            },
-            {width: getOtherWidth()},
+        rows: [
+            {view: 'label', id: 'labelId', hidden: true},
+            productHtml,
         ]
     }
 }
