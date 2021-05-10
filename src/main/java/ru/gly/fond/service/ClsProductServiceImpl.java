@@ -33,7 +33,7 @@ public class ClsProductServiceImpl extends SuperServiceImpl implements ClsProduc
                     RegProductProvision productProvision = productProvisionMap.get(ctr);
 
                     if (productProvision != null) {
-                        el.setAmount("от " + productProvision.getMinAmount() + " до " + productProvision.getMaxAmount() + " руб.");
+                        el.setAmount("от " + withLargeIntegers(productProvision.getMinAmount()) + " до " + withLargeIntegers(productProvision.getMaxAmount()) + " руб.");
                     }
                     return el;
                 })
