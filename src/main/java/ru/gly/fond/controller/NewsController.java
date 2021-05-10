@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ru.gly.fond.dto.NewsMainPage;
+import ru.gly.fond.dto.NewsDto;
 import ru.gly.fond.model.ClsNews;
+import ru.gly.fond.model.ClsProduct;
 import ru.gly.fond.model.RegNewsFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -22,15 +24,22 @@ import java.util.Map;
 public class NewsController extends SuperController {
 
     @GetMapping("/news_list")
-    public String viewProductList(Model model, HttpSession session) {
+    public String viewNewsist(Model model, HttpSession session) {
         model.addAttribute("application_name", applicationConstants.getApplicationName());
 
         return "news_list_view";
     }
 
+    @GetMapping("/news_list/news")
+    public String viewNews(@RequestParam(value = "hash_id") String hashId, Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+        model.addAttribute("hash_id", hashId);
+        return "news_view";
+    }
+
     @GetMapping("/news_main")
-    public @ResponseBody List<NewsMainPage> get4LastNews() {
-        List<NewsMainPage> list = newsService.get4LastNews();
+    public @ResponseBody List<NewsDto> get4LastNews() {
+        List<NewsDto> list = newsService.get4LastNews();
         return list;
     }
 
@@ -41,11 +50,24 @@ public class NewsController extends SuperController {
         int page = start == null ? 0 : start / 10;
         int size = count == null ? 10 : count;
         Map<String, Object> result = new HashMap<>();
-        Page<NewsMainPage> templates = newsService.findNews(page, size);
+        Page<NewsDto> templates = newsService.findNews(page, size);
 
         result.put("data", templates.getContent());
         result.put("pos", (long) page * size);
         result.put("total_count", templates.getTotalElements());
         return result;
     }
+
+    @GetMapping("/news_list/cls_news")
+    public @ResponseBody
+    Map<String, Object> getNews(@RequestParam("hash_id") String hashId) {
+        Map<String, Object> map = new HashMap<>();
+        ClsNews news = clsNewsRepo.findByHashId(hashId).orElse(null);
+        List<RegNewsFile> newsFiles = regNewsFileRepo.findAllByNewsAndIsDeleted(news, false);
+
+        map.put("news", news);
+        map.put("newsFiles", newsFiles);
+        return  map;
+    }
+
 }

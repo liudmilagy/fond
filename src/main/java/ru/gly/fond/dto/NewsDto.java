@@ -12,10 +12,11 @@ import java.util.Date;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewsMainPage {
+public class NewsDto {
     private Long id;
     private String heading;
     private String startTime;
 //    private RegNewsFile imgCover;
     private String attachmentPath;
+    private String hashId;
 }

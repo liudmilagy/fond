@@ -6,6 +6,7 @@ function newsDataview() {
 
     return {
         view: 'dataview',
+        id: 'newsDataviewId',
         width: main_body_width,
         // resize: true,
         borderless: true,
@@ -15,12 +16,18 @@ function newsDataview() {
         type:{
             width: 300,
             height: 400,
-            template: "<img src='#attachmentPath#' height='225' width='300' style='object-fit: cover'><br>" +
+            template: "<div class = 'news_item'><img src='#attachmentPath#' height='225' width='300' style='object-fit: cover'><br>" +
                 "#startTime#<br>"+
-                "#heading#",
+                "#heading#</div>",
         },
         scroll: false,
         url: 'news_main',
+        onClick:{
+            "news_item":function(ev, id){
+                var item = $$('newsDataviewId').getItem(id);
+                window.location.href = "/news_list/news?hash_id=" + item.hashId;
+            }
+        }
     }
 }
 

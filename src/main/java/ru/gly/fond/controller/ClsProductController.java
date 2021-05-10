@@ -37,7 +37,7 @@ public class ClsProductController extends SuperController {
         return list;
     }
 
-    @GetMapping("/product_files/{id_product}")
+    @GetMapping("/product_list/product/product_files/{id_product}")
     public @ResponseBody List<RegProductFile> getRegProductFiles(@PathVariable("id_product") Long productId) {
         if (productId != -1) {
             ClsProduct product = clsProductRepo.findById(productId).orElse(null);

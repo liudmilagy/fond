@@ -1,14 +1,18 @@
 import {getOtherWidth, main_body_width} from "../general.js";
+import {lft_wdth, rght_wdth} from "../general.js";
 
 function getHeaderLabel(size) {
     return {
         borderless: true,
         rows: [
             {
-                template: '<span style="font-size: x-large; font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b;">Микрокредитная компания</span><br>' +
-                    '<span style="font-size: x-large; font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b;">Фонд поддержки малого предпринимательства Республики Бурятия</span><br>'
+                template: '<div class="header_item"><span style="font-size: x-large; font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b;">Микрокредитная компания</span><br>' +
+                    '<span style="font-size: x-large; font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b;">Фонд поддержки малого предпринимательства Республики Бурятия</span></div>',
                     // '<span style="font-size: smaller; font-family:Montserrat, serif;">ОГРН 1020300978147, ИНН 0323072429, КПП 032301001</span><br>' +
                     // '<span style="font-size: smaller; font-family:Montserrat, serif;">670000, Республика Бурятия, г. Улан-Удэ,ул. Партизанская 28</span>',
+                onClick:{
+                    "header_item": () => {window.location.href = "/";}
+                }
             }
         ]
     }
@@ -49,7 +53,7 @@ function getHeader(size) {
     return {
         borderless: true,
         cols: [
-            { width: getOtherWidth()},
+            lft_wdth,
             {
                 view: 'toolbar',
                 id: 'headerId',
@@ -58,28 +62,35 @@ function getHeader(size) {
                 borderless: true,
                 elements: [
                     {
-                        view: 'button',
-                        type: 'image',
-                        image: '../imgs/icon_my_business.webp',
+                        // view: 'button',
+                        // type: 'image',
+                        // image: '../imgs/icon_fond.webp',
                         width: size,
                         borderless: true,
+                        template:'<div class="index_item"><img src="../imgs/icon_fond.webp" style="object-fit:cover"></div>',
+                        onClick:{
+                            "index_item": () => {window.location.href = "/";}
+                        }
                     },
                     {
-                        view: 'button',
-                        type: 'image',
-                        image: '../imgs/icon_fond.webp',
+                        // view: 'button',
+                        // type: 'image',
+                        // image: '../imgs/icon_my_business.webp',
                         width: size,
                         borderless: true,
-                    },
+                        template:'<div class="business_item"><img src="../imgs/icon_my_business.webp" style="object-fit:cover"></div>',
+                        onClick:{
+                            "business_item": () => {
+                                window.open("https://fpmp03.ru/");
+                                }
+                            }
+                        },
                     headerLabel,
                     icon_contacts,
                 ]
             },
-            { width: getOtherWidth()},
-
+           rght_wdth,
         ]
-
-
     }
 }
 

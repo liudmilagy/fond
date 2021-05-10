@@ -16,6 +16,7 @@ import {changeContentView} from "./general.js";
 import  {main_page} from "./main/main_page.js";
 import {image_header} from "./image_header/image_header.js";
 import {mainTemplate} from "./views/mainTemplate.js";
+import {lft_wdth, resizeSides, rght_wdth} from "./general.js";
 
 function getClientWidth() {
     return document.body.clientWidth;
@@ -24,7 +25,6 @@ function getClientWidth() {
 webix.ready(function() {
     // let layout = webix.ui(createProductLine());
     let layout = webix.ui(mainTemplate);
-    let otherWidth = getOtherWidth();
     webix.ui({
         id: 'content',
         css: 'fond_bg2',
@@ -38,7 +38,7 @@ webix.ready(function() {
                 image_header,
                 {
                     cols: [
-                        { width: otherWidth},
+                        lft_wdth,
                         {
                             rows: [
                                 // carousel,
@@ -53,7 +53,7 @@ webix.ready(function() {
                                 {},
                             ]
                         },
-                        { width: otherWidth},
+                        rght_wdth,
                     ],
                 },
                 footer
@@ -63,7 +63,7 @@ webix.ready(function() {
 
     webix.event(window, "resize", function (event) {
         resizeMenuOptions();
-        otherWidth = getOtherWidth();
+        resizeSides();
         layout.resize();
         // layout.define("width",document.body.clientWidth);
         // layout.define("height",window.innerHeight);

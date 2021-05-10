@@ -1,3 +1,5 @@
+import {view_header} from "../general.js";
+
 var news_url = 'news_list_pager'
 
 //define proxy
@@ -74,6 +76,14 @@ export const newsList = {
     id: 'newsListId',
     rows: [
         {
+            cols: [
+                {},
+                view_header('Новости'),
+                {},
+            ]
+        },
+        {gravity: 0.04},
+        {
             view: "dataview",
             id: "newsListDataview",
             margin: 20, paddingX: 10,
@@ -95,9 +105,10 @@ export const newsList = {
             datafetch: 10,
             scroll: false,
             url: 'idata->' + news_url,
-            onClick: {
-                "news_item": function (ev, id) {
-                    // openArchiveNews(ev, id);
+            onClick:{
+                "news_item":function(ev, id){
+                    var item = $$('newsListDataview').getItem(id);
+                    window.location.href = "/news_list/news?hash_id=" + item.hashId;
                 }
             }
         },

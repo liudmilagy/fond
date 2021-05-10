@@ -223,7 +223,8 @@ export const appointment = {
     // autowidth: true,
     autoheight: true,
     id: 'appointmentId',
-    scroll: 'xy',
+    // scroll: 'xy',
+    scroll: false,
     body: {
         rows: [
             {gravity: 0.03},

@@ -3,12 +3,14 @@ package ru.gly.fond.controller;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gly.fond.dto.ClientAppointmentDto;
 import ru.gly.fond.model.ClsTypeAppointment;
 import ru.gly.fond.model.RegClientAppointment;
 import ru.gly.fond.model.RegTimeTypeAppointment;
 
+import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
@@ -19,6 +21,13 @@ import java.util.stream.Collectors;
 @Log4j2
 @Controller
 public class AppointmentContoller extends SuperController{
+
+    @GetMapping("/appointment")
+    public String viewAppointment(Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+
+        return "appointment_view";
+    }
 
     @GetMapping("/type_appointments")
     public @ResponseBody

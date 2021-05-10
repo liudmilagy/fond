@@ -39,6 +39,12 @@ public class SuperController {
     protected NewsService newsService;
 
     @Autowired
+    protected ClsNewsRepo clsNewsRepo;
+
+    @Autowired
+    protected RegNewsFileRepo regNewsFileRepo;
+
+    @Autowired
     protected RegClientAppointmentRepo regClientAppointmentRepo;
 
 }

@@ -22,8 +22,8 @@ function createProductDetails(product) {
                 autowidth: true,
                 css: 'fond_round_1',
                 value: 'Записаться на прием',
-                click: () => changeContentView(appointment),
-            },
+                click: () =>  window.location.href = "/appointment"
+                },
             { gravity: 0.1 },
             {
                 id: 'productDocBtn' + product.id,
@@ -33,9 +33,7 @@ function createProductDetails(product) {
                 value: 'Необходимые документы',
                 //click: () => changeContentView(appointment),
                 click: () => {
-                    changeContentView(productDataForm('productDocsTab', product.id, product.name));
-                    $$('labelId').setValue(product.name);
-                    $$('textHtmlId').setHTML(product.htmlText);
+                    window.location.href = "/product_list/product/" + product.id;
                 }
             },
             {}

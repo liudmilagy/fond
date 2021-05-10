@@ -38,10 +38,7 @@ export const menu = {
         onMenuItemClick: function (id) {
             let view;
             if (id == 'Appointment') {
-                view = appointment;
-                if ($$('appointmentId')) {
-                    $$('appointmentId').destructor();
-                }
+                window.location.href = "/appointment";
             }
             if (id == 'ProductList') {
                 window.location.href = "/product_list";
@@ -51,10 +48,6 @@ export const menu = {
             }
             if (id == 'aboutFond') {
                 view = about_fond;
-            }
-            // changeContentView(view);
-            if (view != null) {
-                changeContentView(view);
             }
         }
     }

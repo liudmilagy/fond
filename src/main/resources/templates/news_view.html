@@ -11,7 +11,6 @@
     <link type="text/css" rel="stylesheet" th:href="@{/libs/webix.css}">
     <link type="text/css" rel="stylesheet" th:href="@{/libs/all.min.css}">
     <link type="text/css" rel="stylesheet" th:href="@{/css/fond/fond.css}">
-    <link type="text/css" rel="stylesheet" th:href="@{/css/images.css}">
     <style>
         @import url(//fonts.googleapis.com/css2?family=Montserrat);
         .webix_view{
@@ -20,9 +19,9 @@
     </style>
 </head>
 <body>
-<script type="module" th:src="@{/js/views/product_view.js}"></script>
+<script type="module" th:src="@{/js/views/news_view.js}"></script>
 <script th:inline="javascript">
-    const ID = [[${product_id}]];
+    const HASH_ID = [[${hash_id}]];
 </script>
 </body>
 </html>

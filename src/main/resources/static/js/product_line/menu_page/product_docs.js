@@ -1,4 +1,5 @@
 import {getOtherWidth, getImageClassByExtension} from "../../general.js";
+import {lft_wdth, rght_wdth} from "../../general.js";
 
 function getFileIcon(fileExtension) {
     let docImg;
@@ -35,9 +36,12 @@ export function productDocs(name_for_id, list_url) {
         // autoheight: true,
         id: 'productDocsTab',
         scroll: 'xy',
+        // scroll: false,
+        borderless: true,
         body: {
             cols: [
-                {width: getOtherWidth() + 100},
+                // {width: getOtherWidth() + 100},
+                // lft_wdth,
                 {
                     rows: [
                         {
@@ -48,27 +52,12 @@ export function productDocs(name_for_id, list_url) {
                             css: 'contacts',
                             borderless: true,
                             align: 'center',
-                            // scroll: 'y',
                             scroll: false,
-                            // maxWidth: 600,
-                            // minHeight: 200,
                             select: 1,
-                            // template: function (obj) {
-                            //     let docImg = getFileIcon(obj.fileExtension);
-                            //     let result = "<div class='overall'>" +
-                            //         "<div>" +
-                            //         "<img style='position: absolute' src = " + docImg + "> " +
-                            //         "<div class='doc_title'>" + obj.originalFileName.slice(0, -4) + "</div>" +
-                            //         "<div class='download_docs'>" +
-                            //         "<a style='text-decoration: none; color: #1ca1c1' href=uploads/" + obj.fileName + obj.fileExtension + " download>Скачать файл</a>" +
-                            //         "</div>" +
-                            //         "</div>" +
-                            //         "</div>"
-                            //     return result;
-                            // },
                             template: function (obj) {
                                 let imageClass = getImageClassByExtension(obj.fileExtension);
-                                return '<div class="'+ imageClass + '" style="font-size: x-large"></div>' +"<a style='text-decoration: none; color: #1ca1c1' href=uploads/" + obj.fileName + obj.fileExtension  + " download>" + obj.originalFileName + "</a>";
+                                return '<div class="'+ imageClass + '" style="font-size: xx-large;"></div>' +
+                                    '<a style="text-decoration: none; color: #1ca1c1; vertical-align: central" href=uploads/' + obj.fileName + obj.fileExtension  + ' download>' + obj.originalFileName + '</a>';
                             },
                             url: list_url,
                             xCount: 2,
@@ -93,7 +82,8 @@ export function productDocs(name_for_id, list_url) {
                         },
                     ]
                 },
-                {width: getOtherWidth() + 100},
+                // {width: getOtherWidth() + 100},
+                // rght_wdth,
             ]
         }
     }

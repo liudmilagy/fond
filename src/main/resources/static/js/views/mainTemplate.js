@@ -1,6 +1,6 @@
 import {header} from "../header/toolbar.js";
-import {getOtherWidth} from "../general.js";
 import {menu} from "../header/menu.js";
+import {lft_wdth, rght_wdth} from "../general.js";
 
 export const mainTemplate = {
     rows: [
@@ -8,9 +8,9 @@ export const mainTemplate = {
         header,
         {
             cols: [
-                {width: getOtherWidth()},
+                lft_wdth,
                 menu,
-                {width: getOtherWidth()},
+                rght_wdth,
             ]
         },
         {

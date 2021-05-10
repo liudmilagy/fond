@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import ru.gly.fond.model.ClsNews;
 import ru.gly.fond.model.RegNewsFile;
 
 import java.util.List;
@@ -32,4 +33,6 @@ public interface RegNewsFileRepo extends JpaRepository<RegNewsFile, Long> {
             nativeQuery = true
     )
     void updateFilesAsNotDeletedAndSetNewsId(Set<Long> newsFileIds, Long newsId);
+
+    List<RegNewsFile> findAllByNewsAndIsDeleted(ClsNews news, Boolean isDeleted);
 }

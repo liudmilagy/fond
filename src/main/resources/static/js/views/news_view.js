@@ -1,40 +1,40 @@
 import {mainTemplate} from "./mainTemplate.js";
-import {getOtherWidth} from "../general.js";
+import {getOtherWidth, lft_wdth, rght_wdth, resizeSides} from "../general.js";
 import {resizeMenuOptions} from "../header/menu.js";
-import {productDataForm} from "../product_line/menu_page/product_data_form.js";
-import {lft_wdth, resizeSides, rght_wdth} from "../general.js";
+import {newsForm, generateNewsTemplate} from "../news/news_form.js";
 
 webix.ready(function() {
     let layout = webix.ui(mainTemplate);
-    let otherWidth = getOtherWidth();
 
     var params = {
-        'productId': ID
+        'hash_id': HASH_ID
     }
-    var xhr = webix.ajax().sync().get("cls_product", params);
+    var xhr = webix.ajax().sync().get("cls_news", params);
     var data = JSON.parse(xhr.responseText);
+    // $$('newsFormId').parse(data);
+
+    var newsTemplate = generateNewsTemplate(data)
+    // webix.ui(newsForm, $$('archiveNewsId'));
     webix.ui({
         id: 'content',
         css: 'fond_bg2',
         type:"space",
         view: 'scrollview',
-        scroll: false,
-        borderless: true,
+        scroll: 'xy',
         body: {
             // padding: 20,
             margin: 10,
-            borderless: true,
             cols: [
                 lft_wdth,
-                productDataForm('productInfoTab', data.id, data.name),
+                newsForm,
                 rght_wdth,
             ]
         }
     }, $$('content'));
 
-    $$('labelId').setValue(data.name);
-    $$('textHtmlId').setHTML(data.htmlText);
-
+    $$('newsFormTemplateId').parse({
+        'newsTemplate': newsTemplate
+    });
     webix.event(window, "resize", function (event) {
         resizeMenuOptions();
         resizeSides();

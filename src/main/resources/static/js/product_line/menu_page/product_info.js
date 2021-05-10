@@ -1,7 +1,7 @@
 const productHtml = {
     view: 'template',
     id: 'textHtmlId',
-    // scroll: true,
+    scroll: true,
     borderless: true,
     autoheight: true,
 }
@@ -11,7 +11,9 @@ export const productInfo = {
     // autowidth: true,
     // autoheight: true,
     id: 'productInfoTab',
-    scroll: 'xy',
+    // scroll: 'xy',
+    scroll: false,
+    borderless: true,
     body: {
         rows: [
             {view: 'label', id: 'labelId', hidden: true},
