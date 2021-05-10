@@ -1,6 +1,13 @@
 import {getOtherWidth} from "./general.js";
 
-webix.i18n.setLocale("ru-RU");
+webix.i18n.locales["ru-RU"] = {
+    groupSize:3,        // the number of digits in a group
+    groupDelimiter:" ", // a mark that divides numbers with many digits into groups
+    decimalDelimiter:",",// the decimal delimiter
+    decimalSize:0       // the number of digits after the decimal mark
+};
+
+webix.i18n.setLocale("ru-RU")
 
 import {productLine} from "/js/product_line/main_page/product_line.js";
 import {menu} from "./header/menu.js";

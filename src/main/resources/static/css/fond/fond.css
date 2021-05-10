@@ -160,3 +160,19 @@
     text-align: center;
     color: white;
 }
+
+.calculator_result>.webix_el_box {
+    /*font-weight: bolder;*/
+    font-size: larger;
+    /*text-transform: uppercase;*/
+    /*color: var(--text_color);*/
+    /*font-family:Montserrat, serif;*/
+}
+
+/*.calculator_result .webix_inp_label {*/
+/*    !*font-weight: bolder;*!*/
+/*    font-size: larger;*/
+/*    !*text-transform: uppercase;*!*/
+/*    !*color: var(--text_color);*!*/
+/*    !*font-family:Montserrat, serif;*!*/
+/*}*/

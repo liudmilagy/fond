@@ -37,7 +37,11 @@ export function calculator() {
         step: 10000,
         min: data[0].minAmountWithDeposit,
         max: data[0].maxAmountWithDeposit,
-        title: webix.template("#value#"),
+        title:
+            (obj) => {
+            return webix.i18n.numberFormat(obj.value)
+            },
+        css: 'calculator_result',
         on:{
             // onChange:function(){
             //     this.define("title", "Final value " + this.getValue());
@@ -48,6 +52,22 @@ export function calculator() {
             //     this.refresh();
             // }
         }
+    }
+
+    var amountAxis = {
+        cols: [
+            {
+                view: 'label',
+                label: data[0].minAmountWithDeposit,
+                align: 'left',
+            },
+            {},
+            {
+                view: 'label',
+                label: data[0].maxAmountWithDeposit,
+                align: 'right',
+            }
+        ]
     }
 
     var timeSlider = {
@@ -61,6 +81,7 @@ export function calculator() {
         max: data[0].limitation,
         name: 'slider2',
         title: webix.template("#value# мес."),
+        css: 'calculator_result',
     }
 
     var rate = {
@@ -70,14 +91,17 @@ export function calculator() {
                 view: 'label',
                 label: 'Процентная ставка годовых (%)',
                 align: 'left',
+                css: 'calculator_result',
             },
-            {},
+            {   gravity: 0.5},
             {
                 view: 'label',
                 id: 'rateLabelId',
                 label: getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
                                 data[0].coefKeyRateWithDeposit, key_rate),
                 align: 'right',
+                css: 'calculator_result',
+
             }
         ]
     }
@@ -88,8 +112,9 @@ export function calculator() {
                 view: 'label',
                 label: 'Ежемесячный платёж, руб.',
                 align: 'left',
+                css: 'calculator_result',
             },
-            {},
+            {   gravity: 0.5},
             {
                 view: 'label',
                 // label: getMonthlyPayment(getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
@@ -97,6 +122,7 @@ export function calculator() {
                 //                         data[0].minAmountWithDeposit, data[0].limitation),
                 label: 0,
                 align: 'right',
+                css: 'calculator_result',
             },
         ]
     }
@@ -107,8 +133,9 @@ export function calculator() {
                 view: 'label',
                 label: 'Переплата',
                 align: 'left',
+                css: 'calculator_result',
             },
-            {},
+            {   gravity: 0.5},
             {
                 view: 'label',
                 // label: getOverPayment(getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
@@ -116,6 +143,7 @@ export function calculator() {
                 //                      data[0].minAmountWithDeposit, data[0].limitation),
                 label: 0,
                 align: 'right',
+                css: 'calculator_result',
             },
         ]
     }
@@ -139,6 +167,7 @@ export function calculator() {
                             programRichselect,
                             depositRadio,
                             amountSlider,
+                            // amountAxis,
                             timeSlider
                         ]
                     },
@@ -146,20 +175,25 @@ export function calculator() {
                         margin: 10,
                         rows: [
                             rate,
+                            {},
                             monthlyPayment,
+                            {},
                             overpayment,
+                            {},
                             {
                                 cols: [
                                     {
                                         view: 'label',
                                         label: 'Общая выплата',
                                         align: 'left',
+                                        css: 'calculator_result',
                                     },
-                                    {},
+                                    {   gravity: 0.5},
                                     {
                                         view: 'label',
                                         label: '610 000 руб.',
                                         align: 'right',
+                                        css: 'calculator_result',
                                     },
                                 ]
                             },

@@ -62,7 +62,7 @@ export function createProductAmountWithDeposit(product) {
             {
                 cols: [
                     {view: 'icon',  },
-                    {view: 'label', label: 'от '+ product.minAmountWithDeposit + ' до ' + product.maxAmountWithDeposit,
+                    {view: 'label', label: 'от '+ webix.i18n.numberFormat(product.minAmountWithDeposit) + ' до ' + webix.i18n.numberFormat(product.maxAmountWithDeposit),
                     },
                 ]
             },
@@ -86,7 +86,7 @@ export function createProductAmountWithoutDeposit(product) {
             {
                 cols: [
                     {view: 'icon',  },
-                    {view: 'label', label: 'от '+ product.minAmountWithoutDeposit + ' до ' + product.maxAmountWithoutDeposit,
+                    {view: 'label', label: 'от '+ webix.i18n.numberFormat(product.minAmountWithoutDeposit) + ' до ' + webix.i18n.numberFormat(product.maxAmountWithoutDeposit),
                         // css: 'product_label_title',
                     },
                 ]
