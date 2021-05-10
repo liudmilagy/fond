@@ -23,7 +23,7 @@ export const menu = {
             id: "Appointment", value: "Записаться",
         },
         {
-            id: "5", value: "Новости",
+            id: "News", value: "Новости",
         },
         {
             id: "6", value: "Контакты",
@@ -45,6 +45,9 @@ export const menu = {
             }
             if (id == 'ProductList') {
                 window.location.href = "/product_list";
+            }
+            if (id == 'News') {
+                window.location.href = "/news";
             }
             if (id == 'aboutFond') {
                 view = about_fond;

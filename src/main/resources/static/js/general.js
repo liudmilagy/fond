@@ -20,6 +20,28 @@ export function getOtherWidth() {
     }
 }
 
+export const lft_wdth = {
+    id: 'leftId',
+    width: getOtherWidth(),
+}
+
+export const rght_wdth = {
+    id: 'rightId',
+    width: getOtherWidth(),
+}
+
+export function resizeSides() {
+    const lft = $$('leftId');
+    // lft.$width = getOtherWidth();
+    lft.define("width", getOtherWidth());
+    lft.resize();
+
+    const rght = $$('rightId');
+    // rght.$width = getOtherWidth();
+    rght.define("width", getOtherWidth());
+    rght.resize();
+}
+
 export const numberFormatWithoutDecimal = {
     groupSize:3,        // the number of digits in a group
     groupDelimiter:" ", // a mark that divides numbers with many digits into groups
