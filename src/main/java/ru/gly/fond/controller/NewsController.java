@@ -21,7 +21,7 @@ import java.util.Map;
 @Controller
 public class NewsController extends SuperController {
 
-    @GetMapping("/news")
+    @GetMapping("/news_list")
     public String viewProductList(Model model, HttpSession session) {
         model.addAttribute("application_name", applicationConstants.getApplicationName());
 

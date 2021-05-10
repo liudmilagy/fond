@@ -47,7 +47,7 @@ export const menu = {
                 window.location.href = "/product_list";
             }
             if (id == 'News') {
-                window.location.href = "/news";
+                window.location.href = "/news_list";
             }
             if (id == 'aboutFond') {
                 view = about_fond;
