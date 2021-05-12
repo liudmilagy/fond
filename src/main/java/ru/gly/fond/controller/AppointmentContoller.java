@@ -59,6 +59,7 @@ public class AppointmentContoller extends SuperController{
         try {
             RegClientAppointment rca = appointmentService.createClientAppointment(clientAppointmentDto);
             regClientAppointmentRepo.save(rca);
+            emailService.sendMessage(rca);
             return rca;
         } catch (Exception e) {
             return null;

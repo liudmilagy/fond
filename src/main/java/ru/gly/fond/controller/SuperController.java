@@ -47,4 +47,7 @@ public class SuperController {
     @Autowired
     protected RegClientAppointmentRepo regClientAppointmentRepo;
 
+    @Autowired
+    protected EmailService emailService;
+
 }
