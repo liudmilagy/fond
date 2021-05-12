@@ -24,6 +24,8 @@ public class NewsServiceImpl extends SuperServiceImpl implements NewsService  {
     public List<NewsDto> get4LastNews() {
         List<ClsNews> list = clsNewsRepo.find4LastNews(new Timestamp(System.currentTimeMillis()));
         DateFormat df = new SimpleDateFormat("dd.MM.yyy");
+
+
         List<NewsDto> news4 = list.stream()
                                     .map(ctr -> NewsDto.builder()
                                                 .id(ctr.getId())
@@ -31,7 +33,9 @@ public class NewsServiceImpl extends SuperServiceImpl implements NewsService  {
                                                 .startTime(df.format(ctr.getStartTime()))
 //                                                .imgCover(regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null))
                                                 .hashId(ctr.getHashId())
-                                                .attachmentPath(regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getAttachmentPath() + regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getFileExtension())
+                                                .attachmentPath( (ctr.getIdImgCover() != null) ?
+                                                        ((regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null) != null)?
+                                                                regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getAttachmentPath() + regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getFileExtension():"") : "")
                                                 .build())
                                     .collect(Collectors.toList());
 
@@ -45,12 +49,14 @@ public class NewsServiceImpl extends SuperServiceImpl implements NewsService  {
 
         List<NewsDto> newsList = list.stream()
                                         .map(ctr -> NewsDto.builder()
-                                                    .id(ctr.getId())
-                                                    .heading(ctr.getHeading())
-                                                    .startTime(df.format(ctr.getStartTime()))
-                                                    .hashId(ctr.getHashId())
-                                                    .attachmentPath(regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getAttachmentPath() + regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getFileExtension())
-                                                    .build())
+                                                .id(ctr.getId())
+                                                .heading(ctr.getHeading())
+                                                .startTime(df.format(ctr.getStartTime()))
+                                                .hashId(ctr.getHashId())
+                                                .attachmentPath( (ctr.getIdImgCover() != null) ?
+                                                        ((regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null) != null)?
+                                                                regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getAttachmentPath() + regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getFileExtension():"") : "")
+                                                .build())
                                         .collect(Collectors.toList());
         Pageable pageable = PageRequest.of(page, size);
         long start = pageable.getOffset();
