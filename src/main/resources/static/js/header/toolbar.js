@@ -53,7 +53,6 @@ function getHeader(size) {
     return {
         borderless: true,
         cols: [
-            lft_wdth,
             {
                 view: 'toolbar',
                 id: 'headerId',
@@ -89,7 +88,6 @@ function getHeader(size) {
                     icon_contacts,
                 ]
             },
-           rght_wdth,
         ]
     }
 }

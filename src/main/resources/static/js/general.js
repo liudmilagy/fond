@@ -31,13 +31,19 @@ export const rght_wdth = {
 }
 
 export function resizeSides() {
+    const lftMain = $$('leftMainTemplateId');
+    lftMain.define("width", getOtherWidth());
+    lftMain.resize();
+
+    const rghtMain = $$('rightMainTemplateId');
+    rghtMain.define("width", getOtherWidth());
+    rghtMain.resize();
+
     const lft = $$('leftId');
-    // lft.$width = getOtherWidth();
     lft.define("width", getOtherWidth());
     lft.resize();
 
     const rght = $$('rightId');
-    // rght.$width = getOtherWidth();
     rght.define("width", getOtherWidth());
     rght.resize();
 }
