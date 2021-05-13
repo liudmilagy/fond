@@ -25,13 +25,18 @@ public class EmailServiceImpl extends SuperServiceImpl implements EmailService {
 
     @Override
     public void sendSimpleMessage(String to, String from, String subject, String text) throws MailException {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
-        message.setFrom(from);
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(to);
+            message.setSubject(subject);
+            message.setText(text);
+            message.setFrom(from);
 
-        javaMailSender.send(message);
+            javaMailSender.send(message);
+        } catch (Exception e) {
+            log.error("Не удалось отправить письмо. " + e.getMessage());
+        }
+
     }
 
     @Override
