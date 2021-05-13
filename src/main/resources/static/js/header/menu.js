@@ -26,7 +26,7 @@ export const menu = {
             id: "News", value: "Новости",
         },
         {
-            id: "6", value: "Контакты",
+            id: "Contacts", value: "Контакты",
         },
     ],
     type: {
@@ -36,7 +36,6 @@ export const menu = {
     },
     on: {
         onMenuItemClick: function (id) {
-            let view;
             if (id == 'Appointment') {
                 window.location.href = "/appointment";
             }
@@ -47,7 +46,13 @@ export const menu = {
                 window.location.href = "/news_list";
             }
             if (id == 'aboutFond') {
-                view = about_fond;
+                window.location.href = "/about_fond";
+            }
+            if (id == 'normDocs') {
+                window.location.href = "/documents";
+            }
+            if (id == 'Contacts') {
+                window.location.href = "/contacts";
             }
         }
     }
@@ -65,7 +70,7 @@ function getMenuWidth() {
     if (document.body.clientWidth < main_body_width) {
         return document.body.clientWidth/5;
     } else {
-        return main_body_width/5;
+        return (main_body_width - 5)/5;
     }
 }
 
