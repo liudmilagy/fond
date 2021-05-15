@@ -35,7 +35,7 @@ public class NewsServiceImpl extends SuperServiceImpl implements NewsService  {
                                                 .hashId(ctr.getHashId())
                                                 .attachmentPath( (ctr.getIdImgCover() != null) ?
                                                         ((regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null) != null)?
-                                                                regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getAttachmentPath() + regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getFileExtension():"") : "")
+                                                                regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getAttachmentPath():"") : "")
                                                 .build())
                                     .collect(Collectors.toList());
 
@@ -55,7 +55,7 @@ public class NewsServiceImpl extends SuperServiceImpl implements NewsService  {
                                                 .hashId(ctr.getHashId())
                                                 .attachmentPath( (ctr.getIdImgCover() != null) ?
                                                         ((regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null) != null)?
-                                                                regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getAttachmentPath() + regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getFileExtension():"") : "")
+                                                                regNewsFileRepo.findById(ctr.getIdImgCover()).orElse(null).getAttachmentPath():"") : "")
                                                 .build())
                                         .collect(Collectors.toList());
         Pageable pageable = PageRequest.of(page, size);

@@ -4,14 +4,12 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import ru.gly.fond.dto.NewsDto;
 import ru.gly.fond.model.ClsNews;
 import ru.gly.fond.model.ClsProduct;
 import ru.gly.fond.model.RegNewsFile;
+import ru.gly.fond.model.RegProductFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -58,16 +56,34 @@ public class NewsController extends SuperController {
         return result;
     }
 
-    @GetMapping("/news_list/cls_news")
+    @RequestMapping(
+            value = {"/news_list/news_dto", "/news_dto"},
+            method = RequestMethod.GET
+    )
     public @ResponseBody
-    Map<String, Object> getNews(@RequestParam("hash_id") String hashId) {
+    NewsDto getNews(@RequestParam("hash_id") String hashId) {
         Map<String, Object> map = new HashMap<>();
         ClsNews news = clsNewsRepo.findByHashId(hashId).orElse(null);
-        List<RegNewsFile> newsFiles = regNewsFileRepo.findAllByNewsAndIsDeleted(news, false);
-
-        map.put("news", news);
-        map.put("newsFiles", newsFiles);
-        return  map;
+        RegNewsFile imgCover = regNewsFileRepo.findById(news.getIdImgCover()).orElse(null);
+        NewsDto newsDto = NewsDto.builder()
+                        .id(news.getId())
+                        .heading(news.getHeading())
+                        .hashId(news.getHashId())
+                        .startTime(news.getStartTime().toString())
+                        .attachmentPath(imgCover.getAttachmentPath())
+                        .htmlText(news.getHtmlText())
+                        .build();
+        return  newsDto;
     }
 
+    @RequestMapping(
+            value = {"news_files/{hash_id}", "/news_list/news_files/{hash_id}", "/news_list/cls_news/news_files{hash_id}"},
+            method = RequestMethod.GET
+    )
+    public @ResponseBody
+    List<RegNewsFile> getNewsFiles(@PathVariable("hash_id") String hashId) {
+        ClsNews news = clsNewsRepo.findByHashId(hashId).orElse(null);
+        List<RegNewsFile> newsFiles = regNewsFileRepo.findRegNewsFileByNews_IdAndIsDeletedAndIsHidden(news.getId(), false, false);
+        return newsFiles;
+    }
 }

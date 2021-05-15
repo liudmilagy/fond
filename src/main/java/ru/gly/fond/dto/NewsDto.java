@@ -19,4 +19,5 @@ public class NewsDto {
 //    private RegNewsFile imgCover;
     private String attachmentPath;
     private String hashId;
+    private String htmlText;
 }

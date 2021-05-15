@@ -1,7 +1,7 @@
 import {mainTemplate} from "./mainTemplate.js";
-import {getOtherWidth, lft_wdth, rght_wdth, resizeSides} from "../general.js";
+import {lft_wdth, rght_wdth, resizeSides} from "../general.js";
 import {resizeMenuOptions} from "../header/menu.js";
-import {newsForm, generateNewsTemplate} from "../news/news_form.js";
+import {newsForm} from "../news/news_form.js";
 
 webix.ready(function() {
     let layout = webix.ui(mainTemplate);
@@ -9,32 +9,29 @@ webix.ready(function() {
     var params = {
         'hash_id': HASH_ID
     }
-    var xhr = webix.ajax().sync().get("cls_news", params);
+    var xhr = webix.ajax().sync().get("/news_dto", params);
     var data = JSON.parse(xhr.responseText);
-    // $$('newsFormId').parse(data);
-
-    var newsTemplate = generateNewsTemplate(data)
-    // webix.ui(newsForm, $$('archiveNewsId'));
     webix.ui({
         id: 'content',
         css: 'fond_bg2',
         type:"space",
         view: 'scrollview',
-        scroll: 'xy',
+        // scroll: 'xy',
+        scroll: false,
         body: {
-            // padding: 20,
             margin: 10,
             cols: [
                 lft_wdth,
-                newsForm,
+                newsForm('news_file', 'news_files/' + HASH_ID),
                 rght_wdth,
             ]
         }
     }, $$('content'));
 
-    $$('newsFormTemplateId').parse({
-        'newsTemplate': newsTemplate
-    });
+    $$('newsHeaderId').setValue(data.heading);
+    $$('htmlText').setHTML(data.htmlText);
+    // $$('imgCoverId').parse(data);
+
     webix.event(window, "resize", function (event) {
         resizeMenuOptions();
         resizeSides();

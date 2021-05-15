@@ -60,18 +60,6 @@ var options = {
     day: 'numeric',
 };
 
-function generateNewsRow(obj) {
-    // var startTime = obj.startTime ? new Date(obj.startTime) : "";
-    // let startTimeString = startTime.toLocaleString("ru", options)
-
-    return
-    "<div class='news_item'>" +
-    "<img src='#attachmentPath#' height='225' width='300' style='object-fit: cover'>" +
-    "#heading# <br>" +
-    "Дата публикации: #startTime#"+
-    "</div>"
-}
-
 export const newsList = {
     id: 'newsListId',
     rows: [
