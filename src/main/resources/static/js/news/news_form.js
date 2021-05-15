@@ -54,17 +54,13 @@ export function newsForm(file_name_for_id, file_list_url) {
         {
             cols: [
                 {},
-                // {
-                //     id: 'imgCoverId',
-                //     view: 'template',
-                //     template: '<img src= #attachmentPath# class="content" style="background-repeat: no-repeat; background-position: center; background-size: cover"/></img>',
-                //     width: 300,
-                //     height: 225,
-                // },
                 {
                     id: 'imgCoverId',
-                    view: 'photo',
-                    name: 'photo',
+                    view: 'template',
+                    borderless: true,
+                    template: '<img src= #attachmentPath# style="background-repeat: no-repeat; background-position: center; background-size: cover"/>',
+                    width: 300,
+                    height: 225,
                 },
                 {}
             ]
@@ -72,7 +68,7 @@ export function newsForm(file_name_for_id, file_list_url) {
         {
             view: 'template',
             id: 'htmlText',
-            scroll: true,
+            scroll: false,
             borderless: true,
             autoheight: true,
         },

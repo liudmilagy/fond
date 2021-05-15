@@ -16,8 +16,8 @@ webix.ready(function() {
         css: 'fond_bg2',
         type:"space",
         view: 'scrollview',
-        // scroll: 'xy',
-        scroll: false,
+        scroll: 'xy',
+        // scroll: false,
         body: {
             margin: 10,
             cols: [
@@ -30,7 +30,7 @@ webix.ready(function() {
 
     $$('newsHeaderId').setValue(data.heading);
     $$('htmlText').setHTML(data.htmlText);
-    // $$('imgCoverId').parse(data);
+    $$('imgCoverId').parse(data);
 
     webix.event(window, "resize", function (event) {
         resizeMenuOptions();
