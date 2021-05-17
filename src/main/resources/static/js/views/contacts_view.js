@@ -42,7 +42,7 @@ function contactsDocs(name_for_id, list_url) {
     }
 }
 
-function normativeDocsForm(file_name_for_id, file_list_url) {
+function contactsForm(file_name_for_id, file_list_url) {
     return {
         id: 'contactsFormId',
         borderless: true,
@@ -88,7 +88,7 @@ webix.ready(function() {
         }
     }, $$('content'));
 
-    $$('contactsHeaderId').setValue("О фонде");
+    $$('contactsHeaderId').setValue("Контакты");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {
