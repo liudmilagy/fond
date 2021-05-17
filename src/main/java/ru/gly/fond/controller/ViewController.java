@@ -34,4 +34,48 @@ public class ViewController extends SuperController {
         List<RegTabFile> tabFiles = regTabFileRepo.findRegTabFileByTab_IdAndIsDeleted(tab.getId(), false);
         return tabFiles;
     }
+
+    @GetMapping("/documents")
+    public String viewNormativeDocs(Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+
+        return "normative_docs_view";
+    }
+
+    @GetMapping("/normative_docs_info")
+    public @ResponseBody
+    String getNormativeDocsHTML() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.NORMATIVE_DOCS.getValue());
+        return tab.getHtmlText();
+    }
+
+    @GetMapping("/normative_docs_files")
+    public @ResponseBody
+    List<RegTabFile> getNormativeDocsFiles() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.NORMATIVE_DOCS.getValue());
+        List<RegTabFile> tabFiles = regTabFileRepo.findRegTabFileByTab_IdAndIsDeleted(tab.getId(), false);
+        return tabFiles;
+    }
+
+    @GetMapping("/contacts")
+    public String viewContacts(Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+
+        return "contacts_view";
+    }
+
+    @GetMapping("/contacts_info")
+    public @ResponseBody
+    String getContactsHTML() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.CONTACTS.getValue());
+        return tab.getHtmlText();
+    }
+
+    @GetMapping("/contacts_files")
+    public @ResponseBody
+    List<RegTabFile> getContactsFiles() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.CONTACTS.getValue());
+        List<RegTabFile> tabFiles = regTabFileRepo.findRegTabFileByTab_IdAndIsDeleted(tab.getId(), false);
+        return tabFiles;
+    }
 }

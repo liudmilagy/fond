@@ -1,6 +1,4 @@
-import {main_body_width, changeContentView} from "../general.js";
-import {appointment} from "../appointment/appointment_main.js";
-import {about_fond} from "../about_fond/about_fond.js";
+import {main_body_width} from "../general.js";
 
 export const menu = {
     view: 'menu',
