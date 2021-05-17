@@ -1,4 +1,5 @@
 import {view_header, main_padding, main_body_width, numberFormatWithoutDecimal} from "../general.js";
+import {collapsedSideBarWidth} from "../general.js";
 
 export function calculator() {
 
@@ -54,21 +55,6 @@ export function calculator() {
         }
     }
 
-    var amountAxis = {
-        cols: [
-            {
-                view: 'label',
-                label: data[0].minAmountWithDeposit,
-                align: 'left',
-            },
-            {},
-            {
-                view: 'label',
-                label: data[0].maxAmountWithDeposit,
-                align: 'right',
-            }
-        ]
-    }
 
     var timeSlider = {
         view: 'slider',
@@ -148,62 +134,90 @@ export function calculator() {
         ]
     }
 
-    return {
-        view: 'form',
-        // resize: true,
-        borderless: true,
-        margin: 3,
-        gravity:0,
-        padding: main_padding,
-        width: main_body_width,
-        rows: [
-            view_header('Калькулятор'),
+    var fullPayment = {
+        cols: [
             {
-                margin: 30,
-                cols: [
-                    {
-                        margin: 10,
-                        rows: [
-                            programRichselect,
-                            depositRadio,
-                            amountSlider,
-                            // amountAxis,
-                            timeSlider
-                        ]
-                    },
-                    {
-                        margin: 10,
-                        rows: [
-                            rate,
-                            {},
-                            monthlyPayment,
-                            {},
-                            overpayment,
-                            {},
-                            {
-                                cols: [
-                                    {
-                                        view: 'label',
-                                        label: 'Общая выплата',
-                                        align: 'left',
-                                        css: 'calculator_result',
-                                    },
-                                    {   gravity: 0.5},
-                                    {
-                                        view: 'label',
-                                        label: '610 000 руб.',
-                                        align: 'right',
-                                        css: 'calculator_result',
-                                    },
-                                ]
-                            },
-                        ]
-                    }
-                ]
-            }]
+                view: 'label',
+                label: 'Общая выплата',
+                align: 'left',
+                css: 'calculator_result',
+            },
+            {   gravity: 0.5},
+            {
+                view: 'label',
+                label: '610 000 руб.',
+                align: 'right',
+                css: 'calculator_result',
+            },
+        ]
     }
 
-}
+    var leftSideCalculator =  {
+        margin: 10,
+        rows: [
+            programRichselect,
+            depositRadio,
+            amountSlider,
+            // amountAxis,
+            timeSlider
+        ]
+    }
+
+    var rightSideCalculator = {
+        margin: 10,
+        rows: [
+            rate,
+            {},
+            monthlyPayment,
+            {},
+            overpayment,
+            {},
+            fullPayment
+        ]
+    }
+
+    var width = main_body_width;
+    if (document.body.clientWidth < main_body_width) {
+        width = document.body.clientWidth - collapsedSideBarWidth;
+        return {
+            view: 'form',
+            // resize: true,
+            borderless: true,
+            margin: 3,
+            gravity:0,
+            padding: main_padding,
+            width: width,
+            rows: [
+                view_header('Калькулятор'),
+                {
+                    margin: 30,
+                    rows: [
+                        leftSideCalculator,
+                        rightSideCalculator
+                    ]
+                }]
+        }
+    } else {
+        return {
+            view: 'form',
+            // resize: true,
+            borderless: true,
+            margin: 3,
+            gravity:0,
+            padding: main_padding,
+            width: width,
+            rows: [
+                view_header('Калькулятор'),
+                {
+                    margin: 30,
+                    cols: [
+                        leftSideCalculator,
+                        rightSideCalculator
+                    ]
+                }]
+        }
+    }
+    }
 
 function getRate(interestRate, hasKeyRate, coefKeyRate, keyRate) {
     var rate = 0;

@@ -15,7 +15,7 @@ import {resizeMenuOptions} from "./header/menu.js";
 import {carousel} from "./header/carousel.js";
 import {calculator} from "./calculator/calculator.js";
 import {map} from "./map/map.js"
-import {footer} from "./footer/footer.js";
+import {footer} from "./footer/footer.js"
 import {news} from "./news/news_main.js";
 import {changeContentView} from "./general.js";
 import  {main_page} from "./main/main_page.js";
@@ -32,7 +32,7 @@ function bigMainPage() {
         view: 'scrollview',
         scroll: 'xy',
         body: {
-            // padding: 20,
+            padding: 20,
             margin: 10,
             rows: [
                 image_header,
@@ -41,7 +41,7 @@ function bigMainPage() {
                         lft_wdth,
                         {
                             rows: [
-                                // carousel,
+            //                     // carousel,
                                 productLine(),
                                 {},
                                 calculator(),
@@ -56,7 +56,7 @@ function bigMainPage() {
                         rght_wdth,
                     ],
                 },
-                footer
+                footer()
             ]
         }
     }, $$('content'));
@@ -75,31 +75,29 @@ function bigMainPage() {
 function smallMainPage() {
     let layout = webix.ui(mainTemplate);
     webix.ui({
-        id: 'content',
-        css: 'fond_bg2',
-        type:"space",
-        view: 'scrollview',
-        scroll: 'xy',
-        body: {
-            // padding: 20,
-            margin: 10,
-            rows: [
-                image_header,
-
-                productLine(),
-                {},
-                calculator(),
-                {},
-                {},
-                news(),
-                {},
-                map(),
-                {},
-
-                footer
-            ]
-        }
-    }, $$('content'));
+            id: 'content',
+            css: 'fond_bg2',
+            type:"space",
+            view: 'scrollview',
+            scroll: 'xy',
+            body: {
+                // padding: 20,
+                margin: 10,
+                rows: [
+                    image_header,
+                    productLine(),
+                    {},
+                    calculator(),
+                    {},
+                    {},
+                    news(),
+                    {},
+                    map(),
+                    // {},
+                    footer()
+                ]
+            }
+        }, $$('content'));
 }
 
 webix.ready(function() {

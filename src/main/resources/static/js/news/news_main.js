@@ -1,13 +1,18 @@
-import {main_body_width, main_padding, view_header} from "../general.js";
+import {main_body_width, main_padding, view_header,collapsedSideBarWidth} from "../general.js";
 
 function newsDataview() {
     var xhr = webix.ajax().sync().get('news_main');
     var data = JSON.parse(xhr.responseText);
 
+    var width = main_body_width;
+    if (document.body.clientWidth < main_body_width) {
+        width = document.body.clientWidth - collapsedSideBarWidth;
+    }
+
     return {
         view: 'dataview',
         id: 'newsDataviewId',
-        width: main_body_width,
+        width: width,
         // resize: true,
         borderless: true,
         margin: 3,

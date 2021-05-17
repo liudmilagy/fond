@@ -4,6 +4,7 @@ export function view_header(title) {
         type: 'header',
         css: 'fond_label',
         template: title,
+        autoheight: true,
         borderless: true,
     }
 }
@@ -55,6 +56,18 @@ export function resizeSides() {
     if (rght) {
         rght.define("width", getOtherWidth());
         rght.resize();
+    }
+
+    const lftFooter = $$('leftFooterId');
+    if (lftFooter) {
+        lftFooter.define("width", getOtherWidth());
+        lftFooter.resize();
+    }
+
+    const rghtFooter = $$('rightMainTemplateId');
+    if (rghtFooter) {
+        rghtFooter.define("width", getOtherWidth());
+        rghtFooter.resize();
     }
 
 }
