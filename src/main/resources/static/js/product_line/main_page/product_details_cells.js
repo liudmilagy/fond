@@ -1,9 +1,7 @@
-import {changeContentView, numberFormatWithoutDecimal} from "../../general.js";
 import {createProductTime, createProductIcon, createProductLabel,
     createProductAmountWithDeposit, createProductAmountWithoutDeposit,
     createProductTextRateWithDeposit, createProductTextRateWithoutDeposit} from "./create_details.js";
-import {appointment} from "../../appointment/appointment_main.js";
-import {productDataForm} from "../menu_page/product_data_form.js";
+
 
 function createProductDetails(product) {
     var label = createProductLabel(product);
@@ -77,6 +75,7 @@ function createProductDetails(product) {
         // autoheight:true,
         // height: '100%',
         height: 250,
+        responsive: true,
         cols: [
             {
                 autowidth: true,

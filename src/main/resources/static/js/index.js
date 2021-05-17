@@ -1,5 +1,3 @@
-import {getOtherWidth} from "./general.js";
-
 webix.i18n.locales["ru-RU"] = {
     groupSize:3,        // the number of digits in a group
     groupDelimiter:" ", // a mark that divides numbers with many digits into groups
@@ -23,14 +21,9 @@ import {changeContentView} from "./general.js";
 import  {main_page} from "./main/main_page.js";
 import {image_header} from "./image_header/image_header.js";
 import {mainTemplate} from "./views/mainTemplate.js";
-import {lft_wdth, resizeSides, rght_wdth} from "./general.js";
+import {lft_wdth, resizeSides, rght_wdth, main_body_width} from "./general.js";
 
-function getClientWidth() {
-    return document.body.clientWidth;
-}
-
-webix.ready(function() {
-    // let layout = webix.ui(createProductLine());
+function bigMainPage() {
     let layout = webix.ui(mainTemplate);
     webix.ui({
         id: 'content',
@@ -77,5 +70,43 @@ webix.ready(function() {
         // layout.resize();
 
     });
+}
+
+function smallMainPage() {
+    let layout = webix.ui(mainTemplate);
+    webix.ui({
+        id: 'content',
+        css: 'fond_bg2',
+        type:"space",
+        view: 'scrollview',
+        scroll: 'xy',
+        body: {
+            // padding: 20,
+            margin: 10,
+            rows: [
+                image_header,
+
+                productLine(),
+                {},
+                calculator(),
+                {},
+                {},
+                news(),
+                {},
+                map(),
+                {},
+
+                footer
+            ]
+        }
+    }, $$('content'));
+}
+
+webix.ready(function() {
+    if (document.body.clientWidth < main_body_width) {
+        return smallMainPage();
+    } else {
+        return bigMainPage();
+    }
 
 })

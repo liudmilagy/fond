@@ -176,3 +176,37 @@
 /*    !*color: var(--text_color);*!*/
 /*    !*font-family:Montserrat, serif;*!*/
 /*}*/
+
+
+/*--MenuDESIGN--*/
+.my_menubar {
+    background-color: #4A4E58;
+    border-right: 1px;
+    border-color: #4A4E58;
+    color: #FFFFFF;
+}
+
+.webix_badge {
+    margin: 9px 0 0 12px !important;
+}
+
+.my_menubar_item {
+    background-color: #4A4E58 !important;
+    line-height: 40px;
+    border-color: #4A4E58 !important;
+    color: #FFFFFF !important;
+}
+
+.my_menubar_item:hover {
+    background-color: #373a42 !important;
+    color: #FFFFFF !important;
+}
+
+.webix_list_item .webix_icon {
+    margin-right: 12px !important;
+}
+
+body {margin: 0}
+.boldLabel {
+    font-weight: bold; border-width: 2px; border-style: solid; border-color: #000000;
+}

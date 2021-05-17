@@ -1,15 +1,22 @@
-import {getOtherWidth, view_header, changeContentView} from "../../general.js";
+import {getOtherWidth, view_header, changeContentView, main_body_width} from "../../general.js";
 import {productInfo} from "./product_info.js";
 import {productDataForm} from "./product_data_form.js";
 
-const productTable = {
-        view: 'datatable',
-        id: 'productTableId',
-        autoheight: true,
-        scroll: false,
-        select: 'row',
-        columns: [
+function getProductTableColumns() {
+    var columnsData = []
+    if (document.body.clientWidth < main_body_width) {
+        columnsData = [
             { id: 'index', header: '',},
+            {
+                id: 'name',
+                header: 'Продукт',
+                fillspace: 2,
+                adjust: true,
+            },
+        ]
+    } else {
+        columnsData = [
+            {id: 'index', header: '',},
             {
                 id: 'name',
                 header: 'Продукт',
@@ -28,7 +35,18 @@ const productTable = {
                 fillspace: 2,
                 adjust: true,
             },
-        ],
+        ]
+    }
+    return columnsData;
+}
+
+const productTable = {
+        view: 'datatable',
+        id: 'productTableId',
+        autoheight: true,
+        scroll: false,
+        select: 'row',
+        columns:getProductTableColumns(),
         data: [],
         url: 'product_line',
         on:{

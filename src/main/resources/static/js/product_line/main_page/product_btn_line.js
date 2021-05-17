@@ -1,4 +1,5 @@
 import {setCalculatorValues} from "../../calculator/calculator.js";
+import {main_body_width, collapsedSideBarWidth} from "../../general.js";
 
 function createProductBtn(product) {
     return {
@@ -15,6 +16,7 @@ function createProductBtn(product) {
 }
 
 export function createProductBtnLine(data) {
+
     var productLineBtnData = [];
 
     for (var k in data) {

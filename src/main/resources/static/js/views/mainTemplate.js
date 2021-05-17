@@ -1,10 +1,31 @@
 import {header} from "../header/toolbar.js";
 import {menu} from "../header/menu.js";
-import {getOtherWidth, lft_wdth, rght_wdth} from "../general.js";
+import {getOtherWidth, main_body_width} from "../general.js";
 
-export const mainTemplate = {
+function getMainTemplate() {
+    if (document.body.clientWidth < main_body_width) {
+        return smallMainTemplate;
+    } else {
+        return bigMainTemplate;
+    }
+}
+
+const smallMainTemplate = {
     rows: [
-        // mainHeader,
+        header,
+        {
+            cols:[
+                menu,
+                {
+                    id: 'content',
+                },
+            ]
+        }
+    ]
+}
+
+const bigMainTemplate = {
+    rows: [
         {
             cols: [
                 {
@@ -28,3 +49,5 @@ export const mainTemplate = {
         },
     ]
 }
+
+export const mainTemplate = getMainTemplate();

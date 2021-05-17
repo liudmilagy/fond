@@ -1,52 +1,70 @@
 import {view_header, changeContentView, main_body_width, main_padding} from "../general.js";
 webix.Date.startOnMonday = true;
 
-const appointmentStep1 = {
-        cols:[
+function appointmentHeader() {
+    if (document.body.clientWidth < main_body_width) {
+        return  view_header("Онлайн запись")
+    } else return {
+        cols: [
             {},
-            {
-                view:"datatable",
-                id:"appointment_datatable",
-                // height:120,
-                // xCount:1,
-                header:false,
-                select: "row",
-                scroll: false,
-                borderless: true,
-                type: {
-                    height: 60,
-                    width:"auto"
-                },
-                columns: [
-                    {
-                        template:"<div class='webix_strong'>#name#</div> #description# ",
-                        fillspace: true,
-                        adjust: true,
-                    },
-                    {   header:"",
-                        template:function(obj){
-                            return "<div class='webix_button webix_primary'><button class='btn_click'>Записаться</button></div>";
-                        }
-                    }
-                ],
-                onClick:{
-                    btn_click: function(ev, id, html){
-                        // webix.alert("Clicked row "+id);
-                        let row = $$('appointment_datatable').getItem(id);
-                        let data = {
-                            'idTypeAppointment': row.id,
-                            // 'nameTypeAppointment': row.name,
-                        };
+            view_header("Онлайн запись"),
+            {},
+        ]
+    }
+}
 
-                        // webix.ui(appointment_form, $$('appointmentMainId'));
-                        $$("appointmentMultiviewId").getChildViews()[1].show();
-                        $$('idTypeAppointment').setValue(row.id);
-                    }
-                },
-                url: 'type_appointments',
-            },
+const appointmentStep1Main = {
+    view:"datatable",
+    id:"appointment_datatable",
+    // height:120,
+    // xCount:1,
+    header:false,
+    select: "row",
+    scroll: false,
+    borderless: true,
+    type: {
+        height: 60,
+        width:"auto"
+    },
+    columns: [
+        {
+            template:"<div class='webix_strong'>#name#</div> #description# ",
+            fillspace: true,
+            adjust: true,
+        },
+        {   header:"",
+            template:function(obj){
+                return "<div class='webix_button webix_primary'><button class='btn_click'>Записаться</button></div>";
+            }
+        }
+    ],
+    onClick:{
+        btn_click: function(ev, id, html){
+            // webix.alert("Clicked row "+id);
+            let row = $$('appointment_datatable').getItem(id);
+            let data = {
+                'idTypeAppointment': row.id,
+                // 'nameTypeAppointment': row.name,
+            };
+
+            // webix.ui(appointment_form, $$('appointmentMainId'));
+            $$("appointmentMultiviewId").getChildViews()[1].show();
+            $$('idTypeAppointment').setValue(row.id);
+        }
+    },
+    url: 'type_appointments',
+}
+
+function appointmentStep1() {
+    if (document.body.clientWidth < main_body_width) {
+        return appointmentStep1Main
+    } else return {
+        cols: [
+            {},
+            appointmentStep1Main,
             {}
         ]
+    }
 }
 
 
@@ -118,93 +136,99 @@ const appointmentStep2 = {
     ]
 }
 
-const appointmentStep3 =  {
-    cols: [
-        {},
+const appointmentStep3Main = {
+    rows: [
         {
-            rows: [
-                {
-                  view:'label',
-                  id: 'idTypeAppointment',
-                  hidden: true,
-                },
-                {
-                    cols: [
-                        {
-                            view: 'text',
-                            id: 'chosenDateId',
-                            label: 'Дата',
-                            labelPosition: 'top',
-                            disabled: true,
-                        },
-                        {
-                            view: 'text',
-                            id: 'chosenTimeId',
-                            label: 'Время',
-                            labelPosition: 'top',
-                            disabled: true,
-                        }
-                    ],
-                },
-                {
-                    view: 'text',
-                    id: 'clientNameId',
-                    label: 'Имя',
-                    labelPosition: 'top',
-                    required: true,
-                },
-                {
-                    view: 'text',
-                    id: 'phoneNumberId',
-                    label: 'Номер телефона',
-                    labelPosition: 'top',
-                },
-                {
-                    view: 'text',
-                    id: 'emailId',
-                    label: 'Email',
-                    labelPosition: 'top',
-                },
-                {
-                    view: 'textarea',
-                    id: 'messageId',
-                    label: 'Сообщение',
-                    labelPosition: 'top',
-                },
-                {
-                    cols: [
-                        {
-                            view: 'button',
-                            value: 'Записаться',
-                            css: 'webix_primary',
-                            maxWidth: 200,
-                            click: () => {
-                                var params = {
-                                    'idTypeAppointment': $$('idTypeAppointment').getValue(),
-                                    'date': $$('chosenDateId').getValue(),
-                                    'time': $$('chosenTimeId').getValue(),
-                                    'clientName': $$('clientNameId').getValue(),
-                                    'phoneNumber': $$('phoneNumberId').getValue(),
-                                    'email': $$('emailId').getValue(),
-                                    'message': $$('messageId').getValue(),
-                                }
-
-                                webix.ajax().headers({
-                                    'Content-Type': 'application/json'
-                                }).post('save_client_appointment',
-                                    params).then(function (data) {
-                                        $$('appointmentMultiviewId').hide();
-                                        webix.message("Вы успешно записаны!", "success");
-                                });
-                            }
-                        },
-                        {},
-                    ]
-                }
-            ]
+            view:'label',
+            id: 'idTypeAppointment',
+            hidden: true,
         },
-        {}
+        {
+            cols: [
+                {
+                    view: 'text',
+                    id: 'chosenDateId',
+                    label: 'Дата',
+                    labelPosition: 'top',
+                    disabled: true,
+                },
+                {
+                    view: 'text',
+                    id: 'chosenTimeId',
+                    label: 'Время',
+                    labelPosition: 'top',
+                    disabled: true,
+                }
+            ],
+        },
+        {
+            view: 'text',
+            id: 'clientNameId',
+            label: 'Имя',
+            labelPosition: 'top',
+            required: true,
+        },
+        {
+            view: 'text',
+            id: 'phoneNumberId',
+            label: 'Номер телефона',
+            labelPosition: 'top',
+        },
+        {
+            view: 'text',
+            id: 'emailId',
+            label: 'Email',
+            labelPosition: 'top',
+        },
+        {
+            view: 'textarea',
+            id: 'messageId',
+            label: 'Сообщение',
+            labelPosition: 'top',
+        },
+        {
+            cols: [
+                {
+                    view: 'button',
+                    value: 'Записаться',
+                    css: 'webix_primary',
+                    maxWidth: 200,
+                    click: () => {
+                        var params = {
+                            'idTypeAppointment': $$('idTypeAppointment').getValue(),
+                            'date': $$('chosenDateId').getValue(),
+                            'time': $$('chosenTimeId').getValue(),
+                            'clientName': $$('clientNameId').getValue(),
+                            'phoneNumber': $$('phoneNumberId').getValue(),
+                            'email': $$('emailId').getValue(),
+                            'message': $$('messageId').getValue(),
+                        }
+
+                        webix.ajax().headers({
+                            'Content-Type': 'application/json'
+                        }).post('save_client_appointment',
+                            params).then(function (data) {
+                            $$('appointmentMultiviewId').hide();
+                            webix.message("Вы успешно записаны!", "success");
+                        });
+                    }
+                },
+                {},
+            ]
+        }
     ]
+}
+
+function appointmentStep3() {
+    if (document.body.clientWidth < main_body_width) {
+        return appointmentStep3Main
+    } else  return {
+        cols: [
+            {},
+            appointmentStep3Main,
+            {}
+        ]
+    }
 }
 
 function dateFormat(obj){
@@ -228,13 +252,7 @@ export const appointment = {
     body: {
         rows: [
             {gravity: 0.03},
-            {
-                cols: [
-                    {},
-                    view_header("Онлайн запись"),
-                    {},
-                ]
-            },
+            appointmentHeader(),
             {gravity: 0.03},
             // { id: 'idTypeAppointment', hidden: true},
             {
@@ -242,9 +260,9 @@ export const appointment = {
                 id: 'appointmentMultiviewId',
                 minHeight: 500,
                 cells: [
-                    appointmentStep1,
+                    appointmentStep1(),
                     appointmentStep2,
-                    appointmentStep3
+                    appointmentStep3()
                 ]
             },
             {}

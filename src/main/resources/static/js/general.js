@@ -12,6 +12,8 @@ export const main_padding = 20;
 
 export const main_body_width = 1200;
 
+export const collapsedSideBarWidth = 41;
+
 export function getOtherWidth() {
     if (document.body.clientWidth < main_body_width) {
         return 0;
@@ -32,20 +34,29 @@ export const rght_wdth = {
 
 export function resizeSides() {
     const lftMain = $$('leftMainTemplateId');
-    lftMain.define("width", getOtherWidth());
-    lftMain.resize();
+    if (lftMain) {
+        lftMain.define("width", getOtherWidth());
+        lftMain.resize();
+    }
 
     const rghtMain = $$('rightMainTemplateId');
-    rghtMain.define("width", getOtherWidth());
-    rghtMain.resize();
+    if (rghtMain) {
+        rghtMain.define("width", getOtherWidth());
+        rghtMain.resize();
+    }
 
     const lft = $$('leftId');
-    lft.define("width", getOtherWidth());
-    lft.resize();
+    if (lft) {
+        lft.define("width", getOtherWidth());
+        lft.resize();
+    }
 
     const rght = $$('rightId');
-    rght.define("width", getOtherWidth());
-    rght.resize();
+    if (rght) {
+        rght.define("width", getOtherWidth());
+        rght.resize();
+    }
+
 }
 
 export const numberFormatWithoutDecimal = {

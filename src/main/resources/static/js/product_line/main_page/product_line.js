@@ -1,6 +1,6 @@
 import {createProductBtnLine} from "./product_btn_line.js";
 import {createProductDetailsCells} from "./product_details_cells.js";
-import {main_padding, main_body_width, getOtherWidth, view_header} from "../../general.js";
+import {main_padding, main_body_width, getOtherWidth, view_header, collapsedSideBarWidth} from "../../general.js";
 
 export function productLine() {
     var xhr = webix.ajax().sync().get('product_list_for_calculator');
@@ -9,10 +9,15 @@ export function productLine() {
     var productBtnLine = createProductBtnLine(data);
     var productDetailCells = createProductDetailsCells(data);
 
+    var width = main_body_width;
+    if (document.body.clientWidth < main_body_width) {
+        width = document.body.clientWidth - collapsedSideBarWidth;
+    }
+
     return {
                 view: 'form',
-                width: main_body_width,
-                // resize: true,
+                width: width,
+                resize: true,
                 borderless: true,
                 margin: 3,
                 gravity:0,
