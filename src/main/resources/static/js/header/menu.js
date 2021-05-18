@@ -4,7 +4,7 @@ var menuData = [
     {
         id: "2", value: "О Фонде",
         submenu: [
-            {id: 'aboutFond', icon: 'fas fa-wallet', value: "Информация о фонде"},
+            {id: 'aboutFond',value: "Информация о фонде"},
             {id: 'normDocs', value: 'Нормативные документы'}
         ]
     },
@@ -19,6 +19,28 @@ var menuData = [
     },
     {
         id: "Contacts", value: "Контакты",
+    },
+];
+
+var sideBarData = [
+    {
+        id: "2", icon: 'fas fa-info-circle', value: "О Фонде",
+        data: [
+            {id: 'aboutFond', icon: 'fas fa-book-open', value: "Информация о фонде"},
+            {id: 'normDocs',  icon: 'fas fa-file-contract', value: 'Нормативные документы'}
+        ]
+    },
+    {
+        id: "ProductList", icon: 'fas fa-wallet', value: "Продуктовая линейка",
+    },
+    {
+        id: "Appointment",  icon: 'fas fa-calendar-alt', value: "Записаться",
+    },
+    {
+        id: "News", icon:'fas fa-newspaper', value: "Новости",
+    },
+    {
+        id: "Contacts", icon: 'fas fa-address-card', value: "Контакты",
     },
 ];
 
@@ -73,7 +95,8 @@ const bigMenu = {
 const smallMenu = {
     view: 'sidebar',
     id: 'menuId',
-    data: menuData,
+    css: 'webix_dark',
+    data: sideBarData,
     collapsed:true,
     on: {
         onAfterSelect: function (id) {

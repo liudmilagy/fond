@@ -60,7 +60,7 @@ var options = {
     day: 'numeric',
 };
 
-export const newsList = {
+const bigNewsList = {
     id: 'newsListId',
     rows: [
         {
@@ -109,4 +109,57 @@ export const newsList = {
             template: '{common.first()}{common.prev()}{common.pages()}{common.next()}{common.last()}'
         }
     ]
+}
+
+const smallNewsList = {
+    id: 'newsListId',
+    rows: [
+        view_header('Новости'),
+        {gravity: 0.04},
+        {
+            view: "dataview",
+            id: "newsListDataview",
+            margin: 20, paddingX: 10,
+            // scroll: 'y',
+            borderless: true,
+            template: "<div class='news_item'>" +
+                "<img src='#attachmentPath#' height='187.5' width='250' style='object-fit: cover'>" +
+                "#heading# <br>" +
+                "Дата публикации: #startTime#"+
+                "</div>",
+            xCount: 1,
+            type: {
+                // Если height поставить auto,
+                // то скроллинг с динамической загрузкой новостей не будет работать
+                height: 250,
+                width: "auto",
+                float: "right"
+            },
+            datafetch: 10,
+            scroll: false,
+            url: 'idata->' + news_url,
+            onClick:{
+                "news_item":function(ev, id){
+                    var item = $$('newsListDataview').getItem(id);
+                    window.location.href = "/news_list/news?hash_id=" + item.hashId;
+                }
+            }
+        },
+        {
+            view: 'pager',
+            id: 'Pager',
+            height: 38,
+            size: 25,
+            group: 5,
+            template: '{common.first()}{common.prev()}{common.pages()}{common.next()}{common.last()}'
+        }
+    ]
+}
+
+export function newsList(isBigForm) {
+    if (isBigForm) {
+        return bigNewsList;
+    } else {
+       return smallNewsList;
+    }
 }

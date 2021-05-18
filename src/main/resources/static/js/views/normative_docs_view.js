@@ -88,7 +88,7 @@ webix.ready(function() {
         }
     }, $$('content'));
 
-    $$('normativeDocsHeaderId').setValue("О фонде");
+    $$('normativeDocsHeaderId').setValue("Нормативные документы");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {

@@ -1,5 +1,4 @@
-import {getOtherWidth, main_body_width} from "../general.js";
-import {lft_wdth, rght_wdth} from "../general.js";
+import {main_body_width} from "../general.js";
 
 const bigHeaderLabel = {
     borderless: true,
@@ -61,8 +60,10 @@ function smallHeader(size) {
             elements: [
                 {
                     view: 'icon',
-                    icon: 'fas fa-icon',
-                    click: () => {$$('menuId').toggle()}
+                    icon: 'fas fa-bars',
+                    click: () => {
+                        $$('menuId').toggle()
+                    }
                 },
                 smallHeaderLabel
             ]

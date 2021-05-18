@@ -2,6 +2,7 @@ import {mainTemplate} from "./mainTemplate.js";
 import {lft_wdth, rght_wdth, resizeSides} from "../general.js";
 import {resizeMenuOptions} from "../header/menu.js";
 import {getImageClassByExtension} from "../general.js";
+import {map} from "../map/map.js";
 
 function contactsDocs(name_for_id, list_url) {
     return  {
@@ -42,7 +43,7 @@ function contactsDocs(name_for_id, list_url) {
     }
 }
 
-function normativeDocsForm(file_name_for_id, file_list_url) {
+function contactsForm(file_name_for_id, file_list_url) {
     return {
         id: 'contactsFormId',
         borderless: true,
@@ -62,6 +63,7 @@ function normativeDocsForm(file_name_for_id, file_list_url) {
                 autoheight: true,
             },
             contactsDocs(file_name_for_id, file_list_url),
+            map(),
         ]
     }
 }
@@ -88,7 +90,7 @@ webix.ready(function() {
         }
     }, $$('content'));
 
-    $$('contactsHeaderId').setValue("О фонде");
+    $$('contactsHeaderId').setValue("Контакты");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {

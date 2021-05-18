@@ -2,8 +2,9 @@ import {mainTemplate} from "./mainTemplate.js";
 import {lft_wdth, rght_wdth, resizeSides} from "../general.js";
 import {resizeMenuOptions} from "../header/menu.js";
 import {newsForm} from "../news/news_form.js";
+import {collapsedSideBarWidth, main_body_width} from "../general.js";
 
-webix.ready(function() {
+function bigNewsView() {
     let layout = webix.ui(mainTemplate);
 
     var params = {
@@ -41,5 +42,39 @@ webix.ready(function() {
         // layout.resize();
 
     });
+}
 
+function smallNewsView() {
+    webix.ui(mainTemplate);
+    var params = {
+        'hash_id': HASH_ID
+    }
+    var xhr = webix.ajax().sync().get("/news_dto", params);
+    var data = JSON.parse(xhr.responseText);
+    webix.ui({
+        id: 'content',
+        css: 'fond_bg2',
+        // type:"space",
+        view: 'scrollview',
+        scroll: 'xy',
+        // scroll: false,
+        body: {
+            // margin: 10,
+            rows: [
+                newsForm('news_file', 'news_files/' + HASH_ID),
+            ]
+        }
+    }, $$('content'));
+
+    $$('newsHeaderId').setValue(data.heading);
+    $$('htmlText').setHTML(data.htmlText);
+    $$('imgCoverId').parse(data);
+}
+
+webix.ready(function() {
+    if (document.body.clientWidth < main_body_width) {
+        return smallNewsView();
+    } else {
+        return bigNewsView();
+    }
 })

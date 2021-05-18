@@ -1,7 +1,7 @@
 import {mainTemplate} from "./mainTemplate.js";
 import {lft_wdth, rght_wdth, resizeSides} from "../general.js";
 import {resizeMenuOptions} from "../header/menu.js";
-import {getImageClassByExtension} from "../general.js";
+import {getImageClassByExtension, main_body_width, collapsedSideBarWidth} from "../general.js";
 
 function aboutFondDocs(name_for_id, list_url) {
     return  {
@@ -66,16 +66,15 @@ function aboutFondForm(file_name_for_id, file_list_url) {
     }
 }
 
-webix.ready(function() {
+function bigAboutFond(width) {
     let layout = webix.ui(mainTemplate);
-
     var xhr = webix.ajax().sync().get("/about_fond_info");
-    // var data = JSON.parse(xhr.responseText);
     webix.ui({
         id: 'content',
         css: 'fond_bg2',
         type:"space",
         view: 'scrollview',
+        width: width,
         scroll: 'xy',
         // scroll: false,
         body: {
@@ -95,10 +94,35 @@ webix.ready(function() {
         resizeMenuOptions();
         resizeSides();
         layout.resize();
-        // layout.define("width",document.body.clientWidth);
-        // layout.define("height",window.innerHeight);
-        // layout.resize();
-
     });
+}
+
+function smallAboutFond(width) {
+    let layout = webix.ui(mainTemplate);
+    var xhr = webix.ajax().sync().get("/about_fond_info");
+    webix.ui({
+        id: 'content',
+        css: 'fond_bg2',
+        // type:"space",
+        view: 'scrollview',
+        width: width,
+        scroll: 'xy',
+        body: {
+            rows: [
+                aboutFondForm('tab_file', 'about_fond_files/'),
+            ]
+        }
+    }, $$('content'));
+
+    $$('aboutFondHeaderId').setValue("О фонде");
+    $$('htmlText').setHTML(xhr.responseText);
+}
+
+webix.ready(function() {
+    if (document.body.clientWidth < main_body_width) {
+        return smallAboutFond(document.body.clientWidth - collapsedSideBarWidth);
+    } else {
+        return bigAboutFond(main_body_width);
+    }
 
 })

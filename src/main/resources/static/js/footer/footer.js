@@ -3,6 +3,7 @@ import {main_body_width, getOtherWidth, collapsedSideBarWidth} from "../general.
 var footerElements = [
     {
         css: 'fond_footer',
+        height: 110,
         borderless: true,
         template: '<span style="font-family:Montserrat, serif; font-weight: bolder;">Микрокредитная компания</span><br>' +
             '<span style="font-family:Montserrat, serif; font-weight: bolder;">Фонд поддержки малого предпринимательства Республики Бурятия</span><br>' +
@@ -10,6 +11,7 @@ var footerElements = [
     },
     {
         css: 'fond_footer',
+        height:70,
         borderless: true,
         template:
             '<span style="font-size: smaller;font-family:Montserrat, serif; ">Понедельник - Пятница с 9:00 до 18:00</span><br>' +
@@ -18,6 +20,7 @@ var footerElements = [
     },
     {
         css: 'fond_footer',
+        height: 70,
         borderless: true,
         template:
             '<span style="font-size: smaller;font-family:Montserrat, serif; ">670000, Республика Бурятия, г. Улан-Удэ, ул. Партизанская 28</span><br>' +
@@ -33,6 +36,7 @@ function footerForm(isBigForm) {
         }
     } else {
         return {
+            height: 250,
             rows: footerElements
         }
     }
@@ -63,7 +67,7 @@ export function footer() {
    return  {
         view: 'toolbar',
             // id: 'footerId',
-        minHeight: 100,
+        // minHeight: 100,
         width: width,
         css: 'fond_bg',
         borderless: true,
