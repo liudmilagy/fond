@@ -25,7 +25,9 @@ const appointmentStep1 = {
                     },
                     {   header:"",
                         template:function(obj){
-                            return "<div class='webix_button webix_primary'><button class='btn_click'>Записаться</button></div>";
+                            return "<div class='webix_button'><button class='btn_click' " +
+                                "style='border: 1px solid #f8b195; border-radius: 10px; " +
+                                "color: #6c5b7b; background-color: #fff;'>Записаться</button></div>";
                         }
                     }
                 ],
