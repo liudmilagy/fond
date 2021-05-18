@@ -42,7 +42,7 @@ function bigMainPage() {
                         {
                             rows: [
             //                     // carousel,
-                                productLine(),
+                                productLine(true),
                                 {},
                                 calculator(),
                                 {},
@@ -85,7 +85,7 @@ function smallMainPage() {
                 margin: 10,
                 rows: [
                     image_header,
-                    productLine(),
+                    productLine(false),
                     {},
                     calculator(),
                     {},
