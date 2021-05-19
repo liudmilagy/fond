@@ -70,7 +70,7 @@ public class NewsController extends SuperController {
                         .heading(news.getHeading())
                         .hashId(news.getHashId())
                         .startTime(news.getStartTime().toString())
-                        .attachmentPath(imgCover.getAttachmentPath())
+                        .attachmentPath((imgCover!= null) ? imgCover.getAttachmentPath() : null)
                         .htmlText(news.getHtmlText())
                         .build();
         return  newsDto;
