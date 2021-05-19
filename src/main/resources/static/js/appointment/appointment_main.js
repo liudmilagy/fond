@@ -23,20 +23,16 @@ const appointmentStep1Main = {
     scroll: false,
     borderless: true,
     type: {
-        height: 60,
+        height: "auto",
         width:"auto"
     },
     columns: [
         {
-            template:"<div class='webix_strong'>#name#</div> #description# ",
+            id: 'appointmentNameId',
+            template:"<div class='btn_click' style='overflow-wrap: normal'>#name#</div> #description# ",
             fillspace: true,
             adjust: true,
         },
-        {   header:"",
-            template:function(obj){
-                return "<div class='webix_button webix_primary'><button class='btn_click'>Записаться</button></div>";
-            }
-        }
     ],
     onClick:{
         btn_click: function(ev, id, html){

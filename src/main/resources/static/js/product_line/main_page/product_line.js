@@ -6,11 +6,14 @@ export function productLine(isBigForm) {
     var xhr = webix.ajax().sync().get('product_list_for_calculator');
     var data = JSON.parse(xhr.responseText);
 
-    var isBigForm = true;
+    // var isBigForm = true;
+    // if (document.body.clientWidth < main_body_width) {
+    //     width = document.body.clientWidth - collapsedSideBarWidth;
+    //     isBigForm = false;
+    // }
     var width = main_body_width;
-    if (document.body.clientWidth < main_body_width) {
+    if (!isBigForm) {
         width = document.body.clientWidth - collapsedSideBarWidth;
-        isBigForm = false;
     }
 
     var productBtnLine = createProductBtnLine(data);

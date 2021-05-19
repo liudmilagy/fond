@@ -8,17 +8,11 @@ webix.i18n.locales["ru-RU"] = {
 webix.i18n.setLocale("ru-RU")
 
 import {productLine} from "/js/product_line/main_page/product_line.js";
-import {menu} from "./header/menu.js";
-import {header} from "./header/toolbar.js";
-import {view_header} from "./general.js";
 import {resizeMenuOptions} from "./header/menu.js";
-import {carousel} from "./header/carousel.js";
 import {calculator} from "./calculator/calculator.js";
 import {map} from "./map/map.js"
 import {footer} from "./footer/footer.js"
 import {news} from "./news/news_main.js";
-import {changeContentView} from "./general.js";
-import  {main_page} from "./main/main_page.js";
 import {image_header} from "./image_header/image_header.js";
 import {mainTemplate} from "./views/mainTemplate.js";
 import {lft_wdth, resizeSides, rght_wdth, main_body_width} from "./general.js";

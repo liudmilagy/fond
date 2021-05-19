@@ -21,9 +21,10 @@ const smallHeaderLabel = {
         {
             template: '<div class="header_item">' +
                 // '<span style="font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b;">Микрокредитная компания</span><br>' +
-                '<span style="font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b;">Фонд поддержки малого предпринимательства Республики Бурятия</span></div>',
+                '<span style="font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b; overflow-wrap: normal;">Фонд поддержки малого предпринимательства Республики Бурятия</span></div>',
             // '<span style="font-size: smaller; font-family:Montserrat, serif;">ОГРН 1020300978147, ИНН 0323072429, КПП 032301001</span><br>' +
             // '<span style="font-size: smaller; font-family:Montserrat, serif;">670000, Республика Бурятия, г. Улан-Удэ,ул. Партизанская 28</span>',
+            height: 70,
             onClick:{
                 "header_item": () => {window.location.href = "/";}
             }
@@ -57,6 +58,7 @@ function smallHeader(size) {
         rows: [
         {
             view: 'toolbar',
+            height: 70,
             elements: [
                 {
                     view: 'icon',
@@ -65,7 +67,17 @@ function smallHeader(size) {
                         $$('menuId').toggle()
                     }
                 },
-                smallHeaderLabel
+                smallHeaderLabel,
+                {
+                    borderless: true,
+                    width: 70,
+                    template: '<div class="index_item"><img align="right" width="50" height="50" src="../imgs/icon_fond.webp" style="object-fit:cover"></div>',
+                    onClick: {
+                        "index_item": () => {
+                            window.location.href = "/";
+                        }
+                    }
+                },
             ]
         }
             // cols: [
