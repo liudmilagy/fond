@@ -7,6 +7,11 @@
     --btn_color: #355c7d;
 }
 
+.fond .webix_sidebar {
+    background-color: #6c5b7b;
+    color: var(--main_color);
+}
+
 .fond_webix_bg {
     background-color: var(--main_color);
 }
