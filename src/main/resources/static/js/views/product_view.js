@@ -2,7 +2,7 @@ import {mainTemplate} from "./mainTemplate.js";
 import {getOtherWidth, main_body_width} from "../general.js";
 import {resizeMenuOptions} from "../header/menu.js";
 import {productDataForm} from "../product_line/menu_page/product_data_form.js";
-import {lft_wdth, resizeSides, rght_wdth} from "../general.js";
+import {lft_wdth, resizeSides, rght_wdth, collapsedSideBarWidth} from "../general.js";
 
 function bigProductView() {
     let layout = webix.ui(mainTemplate);
@@ -17,7 +17,7 @@ function bigProductView() {
         css: 'fond_bg2',
         type:"space",
         view: 'scrollview',
-        scroll: false,
+        scroll: true,
         borderless: true,
         body: {
             // padding: 20,
@@ -25,13 +25,13 @@ function bigProductView() {
             borderless: true,
             cols: [
                 lft_wdth,
-                productDataForm('productInfoTab', data.id, data.name),
+                productDataForm('productInfoTab', data.id, data.name, true),
                 rght_wdth,
             ]
         }
     }, $$('content'));
 
-    $$('labelId').setValue(data.name);
+    // $$('labelId').setValue(data.name);
     $$('textHtmlId').setHTML(data.htmlText);
 
     webix.event(window, "resize", function (event) {
@@ -65,12 +65,12 @@ function smallProductView() {
             margin: 10,
             borderless: true,
             cols: [
-                productDataForm('productInfoTab', data.id, data.name),
+                productDataForm('productInfoTab', data.id, data.name, false),
             ]
         }
     }, $$('content'));
 
-    $$('labelId').setValue(data.name);
+    // $$('labelId').setValue(data.name);
     $$('textHtmlId').setHTML(data.htmlText);
 
     webix.event(window, "resize", function (event) {

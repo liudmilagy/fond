@@ -1,15 +1,25 @@
 import {productDocs} from "./product_docs.js";
 import {productInfo} from "./product_info.js";
 
-export function productDataForm(segmentedValue, productId, productName) {
+function getDocSegmentedValue(isBigForm) {
+    if (isBigForm) {
+        return 'Необходимые документы';
+    } else {
+        return 'Документы';
+    }
+}
+
+export function productDataForm(segmentedValue, productId, productName, isBigForm) {
     return {
         view: 'form',
         rows: [
             {
-                view: 'label',
-                label: 'Продукт: ' + productName,
+                // view: 'label',
+                // label: 'Продукт: ' + productName,
+                template: '<div>Продукт: ' + productName +'</div>',
                 css: 'product_label_main_title',
                 borderless: true,
+                autoheight: true,
                 align: 'center',
             },
             {
@@ -18,7 +28,7 @@ export function productDataForm(segmentedValue, productId, productName) {
                 multiview: true,
                 borderless: true,
                 value: segmentedValue,
-                optionWidth: 300,
+                optionWidth: 200,
                 align: 'center',
                 options: [
                     {
@@ -27,17 +37,16 @@ export function productDataForm(segmentedValue, productId, productName) {
                     },
                     {
                         id: 'productDocsTab',
-                        value: 'Необходимые документы',
+                        value: getDocSegmentedValue(isBigForm),
                     },
                 ],
             },
             {
-                // id: 'tabview',
                 view: "multiview",
                 animate: true,
                 borderless: true,
                 cells: [
-                    productInfo,
+                    productInfo(isBigForm),
                     productDocs('product_file', 'product_files/' + productId)
                 ]
             },

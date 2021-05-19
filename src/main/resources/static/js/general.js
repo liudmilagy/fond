@@ -25,11 +25,13 @@ export function getOtherWidth() {
 
 export const lft_wdth = {
     id: 'leftId',
+    borderless: true,
     width: getOtherWidth(),
 }
 
 export const rght_wdth = {
     id: 'rightId',
+    borderless: true,
     width: getOtherWidth(),
 }
 

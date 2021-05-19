@@ -1,23 +1,38 @@
-const productHtml = {
-    view: 'template',
-    id: 'textHtmlId',
-    scroll: true,
-    borderless: true,
-    autoheight: true,
+import {collapsedSideBarWidth} from "../../general.js";
+
+function bigProductInfo() {
+    return {
+        view: 'scrollview',
+        id: 'productInfoTab',
+        scroll: false,
+        borderless: true,
+        body: {
+            view: 'template',
+            id: 'textHtmlId',
+            scroll: true,
+        }
+    }
 }
 
-export const productInfo = {
-    view: 'scrollview',
-    // autowidth: true,
-    // autoheight: true,
-    id: 'productInfoTab',
-    // scroll: 'xy',
-    scroll: false,
-    borderless: true,
-    body: {
-        rows: [
-            {view: 'label', id: 'labelId', hidden: true},
-            productHtml,
-        ]
+function smallProductInfo() {
+    return {
+        view: 'scrollview',
+        id: 'productInfoTab',
+        scroll: false,
+        borderless: true,
+        body: {
+            view: 'template',
+            id: 'textHtmlId',
+            scroll: "auto",
+            borderless: true,
+        }
     }
+}
+
+export function productInfo(isBigForm) {
+   if (isBigForm) {
+       return bigProductInfo();
+   } else {
+       return smallProductInfo();
+   }
 }

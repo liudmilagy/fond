@@ -1,5 +1,4 @@
-import {getOtherWidth, getImageClassByExtension} from "../../general.js";
-import {lft_wdth, rght_wdth} from "../../general.js";
+import {getImageClassByExtension} from "../../general.js";
 
 function getFileIcon(fileExtension) {
     let docImg;
@@ -32,16 +31,13 @@ function getFileIcon(fileExtension) {
 export function productDocs(name_for_id, list_url) {
     return {
         view: 'scrollview',
-        // autowidth: true,
-        // autoheight: true,
+
         id: 'productDocsTab',
         scroll: 'xy',
         // scroll: false,
         borderless: true,
         body: {
             cols: [
-                // {width: getOtherWidth() + 100},
-                // lft_wdth,
                 {
                     rows: [
                         {
@@ -82,8 +78,6 @@ export function productDocs(name_for_id, list_url) {
                         },
                     ]
                 },
-                // {width: getOtherWidth() + 100},
-                // rght_wdth,
             ]
         }
     }
