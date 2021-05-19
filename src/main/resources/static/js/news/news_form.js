@@ -1,4 +1,5 @@
 import {getImageClassByExtension} from "../general.js";
+import {main_body_width} from "../general.js";
 
 export function newsDocs(name_for_id, list_url) {
     return  {
@@ -26,7 +27,7 @@ export function newsDocs(name_for_id, list_url) {
         scheme: {},
         on: {
             onBeforeLoad: () => {
-                if (document.body.clientWidth < 980) {
+                if (document.body.clientWidth < main_body_width) {
                     $$(name_for_id + '_docs_grid').config.xCount = 1;
                 }
             },
@@ -39,40 +40,84 @@ export function newsDocs(name_for_id, list_url) {
     }
 }
 
-export function newsForm(file_name_for_id, file_list_url) {
+function bigNewsForm(file_name_for_id, file_list_url) {
     return {
         id: 'newsFormId',
         borderless: true,
         rows: [
-        {
-            view: 'label',
-            id: 'newsHeaderId',
-            css: 'product_label_main_title',
-            borderless: true,
-            align: 'center',
-        },
-        {
-            cols: [
-                {},
-                {
-                    id: 'imgCoverId',
-                    view: 'template',
-                    borderless: true,
-                    template: '<img src= #attachmentPath# style="background-repeat: no-repeat; background-position: center; background-size: cover"/>',
-                    width: 300,
-                    height: 225,
-                },
-                {}
-            ]
-        },
-        {
-            view: 'template',
-            id: 'htmlText',
-            scroll: false,
-            borderless: true,
-            autoheight: true,
-        },
-        newsDocs(file_name_for_id, file_list_url),
+            {
+                view: 'label',
+                id: 'newsHeaderId',
+                css: 'product_label_main_title',
+                borderless: true,
+                align: 'center',
+            },
+            {
+                cols: [
+                    // {},
+                    {
+                        id: 'imgCoverId',
+                        view: 'template',
+                        borderless: true,
+                        template: '<img width="300" src= #attachmentPath# style="background-repeat: no-repeat; background-position: center; background-size: cover"/>',
+                        width: 300,
+                        height: 225,
+                    },
+                    {
+                        rows: [
+                            {
+                                view: 'template',
+                                id: 'htmlText',
+                                scroll: false,
+                                borderless: true,
+                                autoheight: true,
+                            },
+                            newsDocs(file_name_for_id, file_list_url),
+                        ]
+                    }
+
+                ]
+            },
         ]
+    }
+}
+
+function smallNewsForm(file_name_for_id, file_list_url) {
+    return {
+        id: 'newsFormId',
+        borderless: true,
+        rows: [
+            {
+                view: 'label',
+                id: 'newsHeaderId',
+                css: 'product_label_main_title',
+                borderless: true,
+                align: 'center',
+            },
+            {
+                id: 'imgCoverId',
+                view: 'template',
+                borderless: true,
+                template: '<img width="300" src= #attachmentPath# style="background-repeat: no-repeat; background-position: center; background-size: cover"/>',
+                width: 300,
+                height: 225,
+            },
+            {
+                view: 'template',
+                id: 'htmlText',
+                scroll: false,
+                borderless: true,
+                autoheight: true,
+            },
+            newsDocs(file_name_for_id, file_list_url),
+        ]
+    }
+}
+
+export function newsForm(file_name_for_id, file_list_url, isBigForm) {
+    if (isBigForm) {
+        return bigNewsForm(file_name_for_id, file_list_url);
+    } else {
+        return smallNewsForm(file_name_for_id, file_list_url);
     }
 }

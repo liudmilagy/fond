@@ -2,6 +2,7 @@ import {mainTemplate} from "./mainTemplate.js";
 import {lft_wdth, rght_wdth, resizeSides} from "../general.js";
 import {resizeMenuOptions} from "../header/menu.js";
 import {getImageClassByExtension} from "../general.js";
+import {main_body_width} from "../general.js";
 
 function normativeDocsDocs(name_for_id, list_url) {
     return  {
@@ -29,7 +30,7 @@ function normativeDocsDocs(name_for_id, list_url) {
         scheme: {},
         on: {
             onBeforeLoad: () => {
-                if (document.body.clientWidth < 980) {
+                if (document.body.clientWidth < main_body_width) {
                     $$(name_for_id + '_docs_grid').config.xCount = 1;
                 }
             },

@@ -29,7 +29,7 @@ function aboutFondDocs(name_for_id, list_url) {
         scheme: {},
         on: {
             onBeforeLoad: () => {
-                if (document.body.clientWidth < 980) {
+                if (document.body.clientWidth < main_body_width) {
                     $$(name_for_id + '_docs_grid').config.xCount = 1;
                 }
             },

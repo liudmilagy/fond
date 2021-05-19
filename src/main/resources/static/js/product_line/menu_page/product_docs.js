@@ -1,5 +1,5 @@
-import {getOtherWidth, getImageClassByExtension} from "../../general.js";
-import {lft_wdth, rght_wdth} from "../../general.js";
+import {getImageClassByExtension} from "../../general.js";
+import {main_body_width} from "../../general.js";
 
 function getFileIcon(fileExtension) {
     let docImg;
@@ -69,7 +69,7 @@ export function productDocs(name_for_id, list_url) {
                             scheme: {},
                             on: {
                                 onBeforeLoad: () => {
-                                    if (document.body.clientWidth < 980) {
+                                    if (document.body.clientWidth < main_body_width) {
                                         $$(name_for_id + '_docs_grid').config.xCount = 1;
                                     }
                                 },
