@@ -102,6 +102,16 @@
     color: var(--text_color);
     /*font-family:Montserrat, sans-serif;*/
 }
+
+.product_label_main_title{
+    font-weight: 600;
+    font-size: x-large;
+    text-transform: uppercase;
+    color: var(--text_color);
+    text-align: center;
+    /*font-family:Montserrat, sans-serif;*/
+}
+
 .product_label_title .webix_el_box{
     /*font-weight: 800;*/
     font-size: larger;

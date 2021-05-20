@@ -2,7 +2,7 @@ import {mainTemplate} from "./mainTemplate.js";
 import {lft_wdth, rght_wdth, resizeSides} from "../general.js";
 import {resizeMenuOptions} from "../header/menu.js";
 import {getImageClassByExtension} from "../general.js";
-import {main_body_width} from "../general.js";
+import {main_body_width, collapsedSideBarWidth} from "../general.js";
 
 function normativeDocsDocs(name_for_id, list_url) {
     return  {
@@ -49,8 +49,10 @@ function normativeDocsForm(file_name_for_id, file_list_url) {
         borderless: true,
         rows: [
             {
-                view: 'label',
+                // view: 'label',
                 id: 'normativeDocsHeaderId',
+                template: 'Нормативные документы',
+                autoheight: true,
                 css: 'product_label_main_title',
                 borderless: true,
                 align: 'center',
@@ -67,7 +69,7 @@ function normativeDocsForm(file_name_for_id, file_list_url) {
     }
 }
 
-webix.ready(function() {
+function smallNormativeForm(width) {
     let layout = webix.ui(mainTemplate);
 
     var xhr = webix.ajax().sync().get("/normative_docs_info");
@@ -79,6 +81,31 @@ webix.ready(function() {
         view: 'scrollview',
         scroll: 'xy',
         // scroll: false,
+        width: width,
+        body: {
+            margin: 10,
+            cols: [
+                normativeDocsForm('tab_file', 'normative_docs_files/'),
+            ]
+        }
+    }, $$('content'));
+
+    $$('htmlText').setHTML(xhr.responseText);
+}
+
+function bigNormativeForm(width) {
+    let layout = webix.ui(mainTemplate);
+
+    var xhr = webix.ajax().sync().get("/normative_docs_info");
+    // var data = JSON.parse(xhr.responseText);
+    webix.ui({
+        id: 'content',
+        css: 'fond_bg2',
+        type:"space",
+        view: 'scrollview',
+        scroll: 'xy',
+        // scroll: false,
+        width: width,
         body: {
             margin: 10,
             cols: [
@@ -101,5 +128,13 @@ webix.ready(function() {
         // layout.resize();
 
     });
+}
+
+webix.ready(function() {
+    if (document.body.clientWidth < main_body_width) {
+        return smallNormativeForm(document.body.clientWidth - collapsedSideBarWidth);
+    } else {
+        return bigNormativeForm(main_body_width);
+    }
 
 })

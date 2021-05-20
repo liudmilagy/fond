@@ -22,11 +22,14 @@ export function productDataForm(segmentedValue, productId, productName, isBigFor
         view: 'form',
         rows: [
             {
-                view: 'label',
-                label: 'Продукт: ' + productName,
+                // view: 'label',
+                // label: 'Продукт: ' + productName,
+                id: 'productLabelId',
+                template: 'Продукт: ' + productName,
                 css: 'product_label_main_title',
                 borderless: true,
                 align: 'center',
+                autoheight: true,
             },
             {
                 view: 'segmented',

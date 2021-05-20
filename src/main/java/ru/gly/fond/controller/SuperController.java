@@ -56,4 +56,7 @@ public class SuperController {
     @Autowired
     protected EmailService emailService;
 
+    @Autowired
+    protected GeneralTableRepo generalTableRepo;
+
 }

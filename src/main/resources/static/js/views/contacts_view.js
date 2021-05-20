@@ -3,7 +3,7 @@ import {lft_wdth, rght_wdth, resizeSides} from "../general.js";
 import {resizeMenuOptions} from "../header/menu.js";
 import {getImageClassByExtension} from "../general.js";
 import {map} from "../map/map.js";
-import {main_body_width} from "../general.js";
+import {main_body_width, collapsedSideBarWidth} from "../general.js";
 
 function contactsDocs(name_for_id, list_url) {
     return  {
@@ -69,7 +69,7 @@ function contactsForm(file_name_for_id, file_list_url) {
     }
 }
 
-webix.ready(function() {
+function bigContactsForm() {
     let layout = webix.ui(mainTemplate);
 
     var xhr = webix.ajax().sync().get("/contacts_info");
@@ -103,5 +103,37 @@ webix.ready(function() {
         // layout.resize();
 
     });
+}
+
+function smallContactsForm() {
+    let layout = webix.ui(mainTemplate);
+
+    var xhr = webix.ajax().sync().get("/contacts_info");
+    // var data = JSON.parse(xhr.responseText);
+    webix.ui({
+        id: 'content',
+        css: 'fond_bg2',
+        type:"space",
+        view: 'scrollview',
+        scroll: 'xy',
+        // scroll: false,
+        body: {
+            margin: 10,
+            cols: [
+                contactsForm('tab_file', 'contacts_files/'),
+            ]
+        }
+    }, $$('content'));
+
+    $$('contactsHeaderId').setValue("Контакты");
+    $$('htmlText').setHTML(xhr.responseText);
+}
+
+webix.ready(function() {
+    if (document.body.clientWidth < main_body_width) {
+        return smallContactsForm();
+    } else {
+        return bigContactsForm();
+    }
 
 })

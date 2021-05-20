@@ -70,6 +70,7 @@ function smallProductView() {
         }
     }, $$('content'));
 
+    $$('productLabelId').resize();
     $$('labelId').setValue(data.name);
     $$('textHtmlId').setHTML(data.htmlText);
 
