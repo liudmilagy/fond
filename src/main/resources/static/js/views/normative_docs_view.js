@@ -1,7 +1,7 @@
 import {mainTemplate} from "./mainTemplate.js";
 import {lft_wdth, rght_wdth, resizeSides} from "../general.js";
 import {resizeMenuOptions} from "../header/menu.js";
-import {getImageClassByExtension} from "../general.js";
+import {getImageClassByExtension, getFileIcon} from "../general.js";
 import {main_body_width, collapsedSideBarWidth} from "../general.js";
 
 function normativeDocsDocs(name_for_id, list_url) {
@@ -15,10 +15,23 @@ function normativeDocsDocs(name_for_id, list_url) {
         align: 'center',
         scroll: false,
         select: 1,
+        minWidth: 320,
+        minHeight: 200,
         template: function (obj) {
-            let imageClass = getImageClassByExtension(obj.fileExtension);
-            return '<div class="'+ imageClass + '" style="font-size: xx-large;"></div>' +
-                '<a style="text-decoration: none; color: #1ca1c1; vertical-align: central" href=' + obj.attachmentPath  + ' download>' + obj.originalFileName + '</a>';
+            // let imageClass = getImageClassByExtension(obj.fileExtension);
+            let docImg = "../" + getFileIcon(obj.fileExtension);
+            let downloadTime = obj.timeCreate.substr(0, 10)
+            let result = "<div class='overall'>" +
+                "<div>" +
+                "<img style='position: absolute' src = " + docImg + "> " +
+                "<div class='doc_title'>" + obj.originalFileName.slice(0, -4) + "</div>";
+            result += "<div class='doc_time_create'>" + downloadTime + "</div>" +
+                "<div class='download_docs'>" +
+                "<a style='text-decoration: none; color: #1ca1c1' href=" + obj.attachmentPath + " download>Скачать файл</a>" +
+                "</div>" +
+                "</div>" +
+                "</div>"
+            return result;
         },
         url: list_url,
         xCount: 2,
