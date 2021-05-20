@@ -5137,7 +5137,8 @@ div.webix_modal_cover {
 .webix_tree_item.webix_selected span {
   padding: 4px 10px 4px 4px;
   margin-left: -4px;
-  color: #6c5b7b;
+  /*color: #6c5b7b;*/
+  color: #f8b195;
   background: #f67280;
 }
 .webix_tree_item.webix_selected span:focus {
@@ -13249,7 +13250,8 @@ div.webix_inp_static,
 }
 .webix_sidebar .webix_tree_item,
 .webix_sidebar .webix_tree_branch_1 > .webix_tree_item {
-  color: #6c5b7b;
+  /*color: #6c5b7b;*/
+  color: #f8b195;
   cursor: pointer;
 }
 .webix_sidebar .webix_tree_item.webix_selected,
