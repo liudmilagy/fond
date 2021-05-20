@@ -13257,7 +13257,8 @@ div.webix_inp_static,
 .webix_sidebar .webix_tree_item.webix_selected,
 .webix_sidebar .webix_tree_item.webix_sidebar_selected {
   color: #f8b195;
-  background-color: #f67280;
+  /*background-color: #f67280;*/
+  background-color: rgba(246, 114, 128, 0.27);
   font-weight: 500;
 }
 .webix_sidebar .webix_tree_item.webix_selected .webix_sidebar_icon,
@@ -13315,7 +13316,9 @@ div.webix_inp_static,
   box-shadow: none;
 }
 .webix_sidebar_popup .webix_sidebar_popup_title {
-  background-color: #f67280;
+  /*background-color: #f67280;*/
+  background-color: #6c5b7b;
+  color: #ffffff;
 }
 .webix_sidebar_popup .webix_sidebar_popup_title .webix_template {
   border: none;
