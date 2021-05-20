@@ -276,5 +276,5 @@ export function setCalculatorValues(product) {
     $$('timeSliderId').config.max = product.limitation;
     $$('timeSliderId').setValue(product.limitation);
 
-    $$('rateLabelId').setValue(getRate(product.interestRateWithoutDeposit, product.hasKeyRateWithoutDeposit, product.coefKeyRateWithoutDeposit, 4.5))
+    // $$('rateLabelId').setValue(getRate(product.interestRateWithoutDeposit, product.hasKeyRateWithoutDeposit, product.coefKeyRateWithoutDeposit, 4.5))
 }
