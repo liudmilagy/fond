@@ -17,15 +17,17 @@ public interface ClsNewsRepo extends JpaRepository<ClsNews, Long> {
     @Query( nativeQuery = true,
             value = "SELECT *\n" +
                     "FROM cls_news\n" +
-                    "WHERE start_time <= :start_time\n" +
+                    "WHERE start_time <= :start_time and is_deleted = false\n" +
                     "ORDER BY start_time DESC\n" +
                     "LIMIT 4;"
     )
     List<ClsNews> find4LastNews(@Param(value = "start_time") Date startTime);
 
     @Query(nativeQuery = true,
-            value = "SELECT * FROM cls_news WHERE start_time <= :start_time ORDER BY start_time DESC")
+            value = "SELECT * FROM cls_news WHERE start_time <= :start_time and is_deleted = false ORDER BY start_time DESC")
     List<ClsNews> findNews(@Param(value = "start_time") Date startTime);
 
     Optional<ClsNews> findByHashId(String hashId);
+
+    List<ClsNews> findAllByIsDeleted(Boolean isDeleted);
 }

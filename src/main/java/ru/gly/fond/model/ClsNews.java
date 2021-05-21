@@ -27,6 +27,8 @@ public class ClsNews {
     private String hashId;
     private String htmlText;
     private Long idImgCover;
+    private Boolean isDeleted;
+
 
     public Long getId() {
         return id;
@@ -108,6 +110,16 @@ public class ClsNews {
         this.idImgCover = idImgCover;
     }
 
+    @Basic
+    @Column(name = "is_deleted")
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -117,7 +129,7 @@ public class ClsNews {
                 Objects.equals(heading, that.heading) &&
                 Objects.equals(message, that.message) &&
                 Objects.equals(startTime, that.startTime) &&
-//                Objects.equals(endTime, that.endTime) &&
+                Objects.equals(isDeleted, that.isDeleted) &&
                 Objects.equals(htmlText, that.htmlText) &&
                 Objects.equals(hashId, that.hashId);
     }
@@ -125,7 +137,7 @@ public class ClsNews {
     @Override
     public int hashCode() {
         return Objects.hash(id, heading, message, startTime,
-//                endTime,
+                isDeleted,
                 htmlText,
                 hashId);
     }
