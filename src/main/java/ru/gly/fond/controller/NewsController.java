@@ -62,17 +62,22 @@ public class NewsController extends SuperController {
     )
     public @ResponseBody
     NewsDto getNews(@RequestParam("hash_id") String hashId) {
-        Map<String, Object> map = new HashMap<>();
         ClsNews news = clsNewsRepo.findByHashId(hashId).orElse(null);
-        RegNewsFile imgCover = regNewsFileRepo.findById(news.getIdImgCover()).orElse(null);
-        NewsDto newsDto = NewsDto.builder()
-                        .id(news.getId())
-                        .heading(news.getHeading())
-                        .hashId(news.getHashId())
-                        .startTime(news.getStartTime().toString())
-                        .attachmentPath((imgCover!= null) ? imgCover.getAttachmentPath() : null)
-                        .htmlText(news.getHtmlText())
-                        .build();
+        NewsDto newsDto = null;
+        if (news != null) {
+            RegNewsFile imgCover = null;
+            if (news.getIdImgCover() != null) {
+                imgCover = regNewsFileRepo.findById(news.getIdImgCover()).orElse(null);
+            }
+            newsDto = NewsDto.builder()
+                    .id(news.getId())
+                    .heading(news.getHeading())
+                    .hashId(news.getHashId())
+                    .startTime(news.getStartTime().toString())
+                    .attachmentPath((imgCover != null) ? imgCover.getAttachmentPath() : null)
+                    .htmlText(news.getHtmlText())
+                    .build();
+        }
         return  newsDto;
     }
 

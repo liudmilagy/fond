@@ -29,7 +29,8 @@ function bigNewsView() {
         }
     }, $$('content'));
 
-    $$('newsHeaderId').setValue(data.heading);
+    // $$('newsHeaderId').setValue(data.heading);
+    $$('newsHeaderId').parse(data);
     $$('htmlText').setHTML(data.htmlText);
     $$('imgCoverId').parse(data);
 
@@ -66,7 +67,8 @@ function smallNewsView() {
         }
     }, $$('content'));
 
-    $$('newsHeaderId').setValue(data.heading);
+    // $$('newsHeaderId').setValue(data.heading);
+    $$('newsHeaderId').parse(data);
     $$('htmlText').setHTML(data.htmlText);
     $$('imgCoverId').parse(data);
 }

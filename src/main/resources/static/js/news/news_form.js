@@ -59,11 +59,13 @@ function bigNewsForm(file_name_for_id, file_list_url) {
         borderless: true,
         rows: [
             {
-                view: 'label',
+                view: 'template',
                 id: 'newsHeaderId',
+                template: "#heading#",
                 css: 'product_label_main_title',
                 borderless: true,
                 align: 'center',
+                autoheight: true,
             },
             {
                 cols: [
@@ -101,11 +103,14 @@ function smallNewsForm(file_name_for_id, file_list_url) {
         borderless: true,
         rows: [
             {
-                view: 'label',
+                // view: 'label',
+                view: 'template',
+                template: "#heading#",
                 id: 'newsHeaderId',
                 css: 'product_label_main_title',
                 borderless: true,
                 align: 'center',
+                autoheight: true,
             },
             {
                 id: 'imgCoverId',
