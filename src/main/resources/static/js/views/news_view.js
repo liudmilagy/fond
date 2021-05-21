@@ -71,6 +71,11 @@ function smallNewsView() {
     $$('newsHeaderId').parse(data);
     $$('htmlText').setHTML(data.htmlText);
     $$('imgCoverId').parse(data);
+
+    webix.event(window, "resize", function (event) {
+        layout.resize();
+
+    });
 }
 
 webix.ready(function() {

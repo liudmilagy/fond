@@ -141,6 +141,11 @@ function smallContactsForm() {
 
     $$('contactsHeaderId').setValue("Контакты");
     $$('htmlText').setHTML(xhr.responseText);
+
+    webix.event(window, "resize", function (event) {
+        layout.resize();
+
+    });
 }
 
 webix.ready(function() {

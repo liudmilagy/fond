@@ -50,6 +50,11 @@ function smallProductListPage() {
             ]
         }
     }, $$('content'));
+
+    webix.event(window, "resize", function (event) {
+        layout.resize();
+
+    });
 }
 
 webix.ready(function() {

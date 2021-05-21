@@ -92,6 +92,16 @@ function smallMainPage() {
                 ]
             }
         }, $$('content'));
+
+    webix.event(window, "resize", function (event) {
+        layout.resize();
+
+    });
+
+    if (webix.env.touch){
+        webix.Touch.limit(true);
+        layout.resize();
+    };
 }
 
 webix.ready(function() {

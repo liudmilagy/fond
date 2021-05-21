@@ -104,6 +104,11 @@ function smallNormativeForm(width) {
     }, $$('content'));
 
     $$('htmlText').setHTML(xhr.responseText);
+
+    webix.event(window, "resize", function (event) {
+        layout.resize();
+
+    });
 }
 
 function bigNormativeForm(width) {

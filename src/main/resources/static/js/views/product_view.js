@@ -75,8 +75,6 @@ function smallProductView() {
     $$('textHtmlId').setHTML(data.htmlText);
 
     webix.event(window, "resize", function (event) {
-        resizeMenuOptions();
-        resizeSides();
         layout.resize();
         // layout.define("width",document.body.clientWidth);
         // layout.define("height",window.innerHeight);
