@@ -86,7 +86,7 @@ const bigNewsList = {
             type: {
                 // Если height поставить auto,
                 // то скроллинг с динамической загрузкой новостей не будет работать
-                height: 300,
+                height: 320,
                 width: "auto",
                 float: "right"
             },
@@ -120,7 +120,7 @@ const smallNewsList = {
             view: "dataview",
             id: "newsListDataview",
             margin: 20, paddingX: 10,
-            // scroll: 'y',
+            scroll: 'y',
             borderless: true,
             template: "<div class='news_item'>" +
                 "<img src='#attachmentPath#' height='187.5' width='250' style='object-fit: cover'>" +
@@ -136,7 +136,6 @@ const smallNewsList = {
                 float: "right"
             },
             datafetch: 10,
-            scroll: false,
             url: 'idata->' + news_url,
             onClick:{
                 "news_item":function(ev, id){

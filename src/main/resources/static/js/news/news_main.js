@@ -25,7 +25,7 @@ function newsDataview() {
                 "#startTime#<br>"+
                 "#heading#</div>",
         },
-        scroll: false,
+        scroll: true,
         url: 'news_main',
         onClick:{
             "news_item":function(ev, id){
