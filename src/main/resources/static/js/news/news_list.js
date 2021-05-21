@@ -86,7 +86,7 @@ const bigNewsList = {
             type: {
                 // Если height поставить auto,
                 // то скроллинг с динамической загрузкой новостей не будет работать
-                height: 320,
+                height: 350,
                 width: "auto",
                 float: "right"
             },
