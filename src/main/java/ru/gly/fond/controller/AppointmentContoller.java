@@ -11,8 +11,13 @@ import ru.gly.fond.model.RegClientAppointment;
 import ru.gly.fond.model.RegTimeTypeAppointment;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -38,19 +43,42 @@ public class AppointmentContoller extends SuperController{
 
     @GetMapping("/free_times")
     public @ResponseBody
-    List<String> getFreeTimes(@RequestParam(value = "id_type_appointment") Long idTypeAppointment, @RequestParam(value = "date_string") String dateString) throws ParseException {
+    List<String> getFreeTimes(@RequestParam(value = "id_type_appointment") Long idTypeAppointment,
+                              @RequestParam(value = "date_string") String dateString) throws ParseException {
+
+        LocalDate currentLocalDate = LocalDate.now(ZoneId.of("Asia/Irkutsk"));
+        LocalTime currentLocalTime = LocalTime.now(ZoneId.of("Asia/Irkutsk"));
+        Integer currentMinutes = currentLocalTime.getHour() * 60 + currentLocalTime.getMinute();
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         Date parsed = formatter.parse(dateString);
-        java.sql.Date date = new java.sql.Date(parsed.getTime());
-        List<RegTimeTypeAppointment> freeRttas = regTimeTypeAppointmentRepo.findFreeTimes(idTypeAppointment, date);
+        LocalDate parsedInLD = parsed.toInstant().atZone(ZoneId.of("Asia/Irkutsk")).toLocalDate();
+        Boolean isToday = false;
+        if (parsedInLD.compareTo(currentLocalDate) == 0) {
+            isToday = true;
+        }
 
-        DateFormat df = new SimpleDateFormat("HH:mm");
-        List<String> times = freeRttas.stream()
-                            .map(ctr -> df.format(ctr.getTime()))
-                            .sorted()
+        if (parsedInLD.compareTo(currentLocalDate) < 0) {
+            return null;
+        } else {
+            java.sql.Date date = new java.sql.Date(parsed.getTime());
+            List<RegTimeTypeAppointment> freeRttas = regTimeTypeAppointmentRepo.findFreeTimes(idTypeAppointment, date);
+
+            DateFormat df = new SimpleDateFormat("HH:mm");
+
+            if (isToday) {
+                freeRttas = freeRttas.stream()
+                            .filter(ctr -> ((ctr.getTime().toLocalTime().getHour()*60  + ctr.getTime().toLocalTime().getMinute()) > (currentMinutes + 2*60)))
                             .collect(Collectors.toList());
-        return times;
+            }
+
+            List<String> times = freeRttas.stream()
+                    .map(ctr -> df.format(ctr.getTime()))
+                    .sorted()
+                    .collect(Collectors.toList());
+
+            return times;
+        }
     }
 
     @PostMapping("/save_client_appointment")

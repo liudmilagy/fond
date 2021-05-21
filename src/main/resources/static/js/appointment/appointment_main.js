@@ -38,14 +38,10 @@ const appointmentStep1Main = {
         btn_click: function(ev, id, html){
             // webix.alert("Clicked row "+id);
             let row = $$('appointment_datatable').getItem(id);
-            let data = {
-                'idTypeAppointment': row.id,
-                // 'nameTypeAppointment': row.name,
-            };
-
             // webix.ui(appointment_form, $$('appointmentMainId'));
             $$("appointmentMultiviewId").getChildViews()[1].show();
             $$('idTypeAppointment').setValue(row.id);
+            $$('nameTypeAppointment').setValue(row.name)
         }
     },
     url: 'type_appointments',
@@ -70,17 +66,25 @@ var calendarView = {
     view: "calendar",
     on: {
         onChange: function (value) {
+            $$('timeListId').clearAll();
+            $$('timeListId').hide();
+            $$('noTimeId').hide();
+
             let idTypeAppointment = $$('idTypeAppointment').getValue();
             let params = {
                 'id_type_appointment': idTypeAppointment,
                 'date_string': dateFormat(value)
             };
             $$('chosenDateId').setValue(dateFormat(value));
-            let xhr = webix.ajax().sync().get("free_times", params);
-            let data = JSON.parse(xhr.responseText);
-            $$('timeListId').parse(data);
-            $$('timeListId').show();
-            $$('timeListId').select(false);
+            let xhr = webix.ajax().sync().get("free_times", params); //TODO изменить выбор времени
+            if (xhr.responseText != "") {
+                let data = JSON.parse(xhr.responseText);
+                $$('timeListId').parse(data);
+                $$('timeListId').show();
+                $$('timeListId').select(false);
+            } else  {
+                $$('noTimeId').show();
+            }
             $$('gotoStep3').hide();
         }
     }
@@ -94,8 +98,9 @@ const appointmentStep2 = {
             rows: [
                 calendarView,
                 {
-                    view: 'template',
-                    template: 'Нет записи',
+                    id: 'noTimeId',
+                    view: 'label',
+                    label: 'Нет записи',
                     hidden: true,
                 },
                 {
@@ -138,6 +143,13 @@ const appointmentStep3Main = {
             view:'label',
             id: 'idTypeAppointment',
             hidden: true,
+        },
+        {
+            view: 'text',
+            id: 'nameTypeAppointment',
+            label: '',
+            labelPosition: 'top',
+            disabled: true,
         },
         {
             cols: [
@@ -190,6 +202,7 @@ const appointmentStep3Main = {
                     css: 'webix_primary',
                     maxWidth: 200,
                     click: () => {
+                        $$('appointmentMultiviewId').disable();
                         var params = {
                             'idTypeAppointment': $$('idTypeAppointment').getValue(),
                             'date': $$('chosenDateId').getValue(),
