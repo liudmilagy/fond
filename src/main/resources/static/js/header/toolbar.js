@@ -53,6 +53,9 @@ const icon_contacts = {
 }
 
 function smallHeader(size) {
+    var xhr = webix.ajax().sync().get('fond_icon');
+    var fondLogoPath = xhr.responseText;
+
     return {
         borderless: true,
         rows: [
@@ -71,7 +74,7 @@ function smallHeader(size) {
                 {
                     borderless: true,
                     width: 70,
-                    template: '<div class="index_item"><img align="right" width="50" height="50" src="../imgs/icon_fond.webp" style="object-fit:cover"></div>',
+                    template: '<div class="index_item"><img align="right" width="50" height="50" src=' + fondLogoPath + ' style="object-fit:cover"></div>',
                     onClick: {
                         "index_item": () => {
                             window.location.href = "/";
@@ -95,6 +98,11 @@ function smallHeader(size) {
 }
 
 function bigHeader(size) {
+    var xhr = webix.ajax().sync().get('fond_icon');
+    var fondLogoPath = xhr.responseText;
+
+    var xhr = webix.ajax().sync().get('business_icon');
+    var businessLogoPath = xhr.responseText;
 
     return {
         borderless: true,
@@ -109,7 +117,7 @@ function bigHeader(size) {
                     {
                         width: size,
                         borderless: true,
-                        template: '<div class="index_item"><img src="../imgs/icon_fond.webp" style="object-fit:cover"></div>',
+                        template: '<div class="index_item"><img src='+ fondLogoPath + ' style="object-fit:cover"></div>',
                         onClick: {
                             "index_item": () => {
                                 window.location.href = "/";
@@ -119,7 +127,7 @@ function bigHeader(size) {
                     {
                         width: size,
                         borderless: true,
-                        template: '<div class="business_item"><img src="../imgs/icon_my_business.webp" style="object-fit:cover"></div>',
+                        template: '<div class="business_item"><img src=' + businessLogoPath +' style="object-fit:cover"></div>',
                         onClick: {
                             "business_item": () => {
                                 window.open("https://fpmp03.ru/");

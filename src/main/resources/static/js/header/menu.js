@@ -95,7 +95,7 @@ const bigMenu = {
 const smallMenu = {
     view: 'sidebar',
     id: 'menuId',
-    css: 'webix_dark',
+    // css: 'fond',
     data: sideBarData,
     collapsed:true,
     on: {

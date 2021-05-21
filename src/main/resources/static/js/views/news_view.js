@@ -23,7 +23,7 @@ function bigNewsView() {
             margin: 10,
             cols: [
                 lft_wdth,
-                newsForm('news_file', 'news_files/' + HASH_ID),
+                newsForm('news_file', 'news_files/' + HASH_ID, true),
                 rght_wdth,
             ]
         }
@@ -54,14 +54,14 @@ function smallNewsView() {
     webix.ui({
         id: 'content',
         css: 'fond_bg2',
-        // type:"space",
+        type:"space",
         view: 'scrollview',
         scroll: 'xy',
         // scroll: false,
         body: {
-            // margin: 10,
+            margin: 10,
             rows: [
-                newsForm('news_file', 'news_files/' + HASH_ID),
+                newsForm('news_file', 'news_files/' + HASH_ID, false),
             ]
         }
     }, $$('content'));

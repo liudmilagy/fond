@@ -25,7 +25,7 @@ function bigProductView() {
             borderless: true,
             cols: [
                 lft_wdth,
-                productDataForm('productInfoTab', data.id, data.name),
+                productDataForm('productInfoTab', data.id, data.name, true),
                 rght_wdth,
             ]
         }
@@ -65,11 +65,12 @@ function smallProductView() {
             margin: 10,
             borderless: true,
             cols: [
-                productDataForm('productInfoTab', data.id, data.name),
+                productDataForm('productInfoTab', data.id, data.name, false),
             ]
         }
     }, $$('content'));
 
+    $$('productLabelId').resize();
     $$('labelId').setValue(data.name);
     $$('textHtmlId').setHTML(data.htmlText);
 

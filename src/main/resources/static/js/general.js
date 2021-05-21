@@ -107,6 +107,34 @@ export function getImageClassByExtension(extensionName) {
     return imgClass;
 }
 
+export function getFileIcon(fileExtension) {
+    let docImg;
+    switch (fileExtension) {
+        case '.zip':
+            docImg = 'zip.png';
+            break;
+        case '.pdf':
+            docImg = 'pdf.png';
+            break;
+        case '.jpeg':
+            docImg = 'jpg.png';
+            break;
+        case '.jpg':
+            docImg = 'jpg.png';
+            break;
+        case '.doc':
+            docImg = 'doc.png';
+            break;
+        case '.docx':
+            docImg = 'doc.png';
+            break;
+        default:
+            docImg = 'file.png';
+            break;
+    }
+    return docImg;
+}
+
 export function changeContentView(newView) {
     webix.ui({
         id: 'content',

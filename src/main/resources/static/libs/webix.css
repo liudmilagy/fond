@@ -5137,7 +5137,8 @@ div.webix_modal_cover {
 .webix_tree_item.webix_selected span {
   padding: 4px 10px 4px 4px;
   margin-left: -4px;
-  color: #6c5b7b;
+  /*color: #6c5b7b;*/
+  color: #f8b195;
   background: #f67280;
 }
 .webix_tree_item.webix_selected span:focus {
@@ -10919,13 +10920,13 @@ legend.webix_forminput_label_top {
 }
 /* SideBar*/
 .webix_sidebar {
-  background: #ECEFF1;
+  background: #6c5b7b;
 }
 .webix_sidebar .webix_tree_item.webix_selected:focus span {
   background: transparent;
 }
 .webix_sidebar .webix_tree_item {
-  color: #454545;
+  color: #e39d82;
   height: 44px;
   line-height: 43px;
 }
@@ -13201,7 +13202,7 @@ div.webix_inp_static,
 }
 .webix_switch_box {
   color: #6c5b7b;
-  background-color: #f8b195;
+  background-color: #ffffff;
 }
 .webix_switch_box.webix_switch_on {
   background-color: #f8b195;
@@ -13210,7 +13211,7 @@ div.webix_inp_static,
   padding-top: 2px;
 }
 .webix_sidebar {
-  background-color: #ffffff;
+  background-color: #6c5b7b;
 }
 .webix_sidebar .webix_tree_item:hover {
   background-color: #f56877;
@@ -13244,18 +13245,20 @@ div.webix_inp_static,
 }
 .webix_sidebar .webix_sidebar_icon,
 .webix_sidebar .webix_sidebar_dir_icon {
-  color: #94a1b3;
+  color: #f8b195;
   font-size: 20px;
 }
 .webix_sidebar .webix_tree_item,
 .webix_sidebar .webix_tree_branch_1 > .webix_tree_item {
-  color: #6c5b7b;
+  /*color: #6c5b7b;*/
+  color: #f8b195;
   cursor: pointer;
 }
 .webix_sidebar .webix_tree_item.webix_selected,
 .webix_sidebar .webix_tree_item.webix_sidebar_selected {
   color: #f8b195;
-  background-color: #f67280;
+  /*background-color: #f67280;*/
+  background-color: rgba(246, 114, 128, 0.27);
   font-weight: 500;
 }
 .webix_sidebar .webix_tree_item.webix_selected .webix_sidebar_icon,
@@ -13313,7 +13316,9 @@ div.webix_inp_static,
   box-shadow: none;
 }
 .webix_sidebar_popup .webix_sidebar_popup_title {
-  background-color: #f67280;
+  /*background-color: #f67280;*/
+  background-color: #6c5b7b;
+  color: #ffffff;
 }
 .webix_sidebar_popup .webix_sidebar_popup_title .webix_template {
   border: none;

@@ -161,7 +161,7 @@ function createProductDetails(product, isBigForm) {
             // type: 'clean',
             // autoheight:true,
             // height: '100%',
-            height: 500,
+            height: 560,
             autowidth: true,
             rows: [
                 time,

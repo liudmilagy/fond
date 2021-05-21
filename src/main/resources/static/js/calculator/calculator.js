@@ -74,17 +74,23 @@ export function calculator() {
         name: 'rate',
         cols: [
             {
-                view: 'label',
-                label: 'Процентная ставка годовых (%)',
+                // view: 'label',
+                // label: 'Процентная ставка годовых (%)',
+                template: 'Процентная ставка годовых (%)',
+                autoheight: true,
+                borderless: true,
                 align: 'left',
                 css: 'calculator_result',
             },
-            {   gravity: 0.5},
+            {   gravity: 0.1},
             {
-                view: 'label',
+                // view: 'label',
                 id: 'rateLabelId',
-                label: getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
-                                data[0].coefKeyRateWithDeposit, key_rate),
+                // label: getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
+                //                 data[0].coefKeyRateWithDeposit, key_rate),
+                template: 'N %',
+                autoheight: true,
+                borderless: true,
                 align: 'right',
                 css: 'calculator_result',
 
@@ -95,18 +101,24 @@ export function calculator() {
     var monthlyPayment = {
         cols: [
             {
-                view: 'label',
-                label: 'Ежемесячный платёж, руб.',
+                // view: 'label',
+                // label: 'Ежемесячный платёж, руб.',
+                template: 'Ежемесячный платёж, руб.',
+                autoheight: true,
+                borderless: true,
                 align: 'left',
                 css: 'calculator_result',
             },
-            {   gravity: 0.5},
+            {   gravity: 0.1},
             {
-                view: 'label',
-                // label: getMonthlyPayment(getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
-                //                                 data[0].coefKeyRateWithDeposit, key_rate),
-                //                         data[0].minAmountWithDeposit, data[0].limitation),
-                label: 0,
+                // view: 'label',
+                // // label: getMonthlyPayment(getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
+                // //                                 data[0].coefKeyRateWithDeposit, key_rate),
+                // //                         data[0].minAmountWithDeposit, data[0].limitation),
+                // label: 0,
+                template: '0 руб.',
+                autoheight: true,
+                borderless: true,
                 align: 'right',
                 css: 'calculator_result',
             },
@@ -116,18 +128,24 @@ export function calculator() {
     var overpayment = {
         cols: [
             {
-                view: 'label',
-                label: 'Переплата',
+                // view: 'label',
+                // label: 'Переплата',
+                template: 'Переплата',
+                autoheight: true,
+                borderless: true,
                 align: 'left',
                 css: 'calculator_result',
             },
-            {   gravity: 0.5},
+            {   gravity: 0.1},
             {
-                view: 'label',
-                // label: getOverPayment(getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
-                //                             data[0].coefKeyRateWithDeposit, key_rate),
-                //                      data[0].minAmountWithDeposit, data[0].limitation),
-                label: 0,
+                // view: 'label',
+                // // label: getOverPayment(getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
+                // //                             data[0].coefKeyRateWithDeposit, key_rate),
+                // //                      data[0].minAmountWithDeposit, data[0].limitation),
+                // label: 0,
+                template: '0 руб.',
+                autoheight: true,
+                borderless: true,
                 align: 'right',
                 css: 'calculator_result',
             },
@@ -137,15 +155,21 @@ export function calculator() {
     var fullPayment = {
         cols: [
             {
-                view: 'label',
-                label: 'Общая выплата',
+                // view: 'label',
+                // label: 'Общая выплата',
+                template: 'Общая выплата',
+                autoheight: true,
+                borderless: true,
                 align: 'left',
                 css: 'calculator_result',
             },
-            {   gravity: 0.5},
+            {   gravity: 0.1},
             {
-                view: 'label',
-                label: '610 000 руб.',
+                // view: 'label',
+                // label: '610 000 руб.',
+                template: '610 000 руб.',
+                autoheight: true,
+                borderless: true,
                 align: 'right',
                 css: 'calculator_result',
             },
@@ -252,5 +276,5 @@ export function setCalculatorValues(product) {
     $$('timeSliderId').config.max = product.limitation;
     $$('timeSliderId').setValue(product.limitation);
 
-    $$('rateLabelId').setValue(getRate(product.interestRateWithoutDeposit, product.hasKeyRateWithoutDeposit, product.coefKeyRateWithoutDeposit, 4.5))
+    // $$('rateLabelId').setValue(getRate(product.interestRateWithoutDeposit, product.hasKeyRateWithoutDeposit, product.coefKeyRateWithoutDeposit, 4.5))
 }
