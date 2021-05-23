@@ -24,7 +24,7 @@ const smallHeaderLabel = {
                 '<span style="font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b; overflow-wrap: normal;">Фонд поддержки малого предпринимательства Республики Бурятия</span></div>',
             // '<span style="font-size: smaller; font-family:Montserrat, serif;">ОГРН 1020300978147, ИНН 0323072429, КПП 032301001</span><br>' +
             // '<span style="font-size: smaller; font-family:Montserrat, serif;">670000, Республика Бурятия, г. Улан-Удэ,ул. Партизанская 28</span>',
-            height: 70,
+            autoheight: true,
             onClick:{
                 "header_item": () => {window.location.href = "/";}
             }
@@ -61,7 +61,7 @@ function smallHeader(size) {
         rows: [
         {
             view: 'toolbar',
-            height: 70,
+            autoheight: true,
             elements: [
                 {
                     view: 'icon',

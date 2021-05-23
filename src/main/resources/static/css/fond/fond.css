@@ -63,7 +63,7 @@
     /*background-color: var(--main_color);*/
     background-color: #ffffff;
     color: #6c5b7b;
-    font-weight: bolder;
+    /*font-weight: bolder;*/
     font-size: larger;
     text-align: center;
     /*text-transform: uppercase;*/
@@ -78,7 +78,7 @@
     font-weight: bolder;
     font-size: x-large;
     /*text-transform: uppercase;*/
-    white-space:nowrap;
+    /*white-space:nowrap;*/
     color: var(--text_color);
     /*font-family:Montserrat, serif;*/
 }
@@ -104,7 +104,7 @@
 }
 
 .product_label_main_title{
-    font-weight: 600;
+    /*font-weight: 600;*/
     font-size: x-large;
     text-transform: uppercase;
     color: var(--text_color);
@@ -186,7 +186,7 @@
 }
 
 .calculator_result{
-    font-weight: bolder;
+    /*font-weight: bolder;*/
     font-size: larger;
     /*text-transform: uppercase;*/
     /*color: var(--text_color);*/

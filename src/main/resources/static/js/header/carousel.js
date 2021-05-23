@@ -22,7 +22,7 @@ var some_view = {
 
 export const carousel = {
     view: "carousel",
-    css: "webix_dark",
+    // css: "webix_dark",
     // css: {
     //     "content" : {
     //         "max-width": "100%",
@@ -31,27 +31,47 @@ export const carousel = {
     // },
     id: "carouselId",
     // height: document.body.clientHeight * 0.3,
-    width: 600,
-    height: 400,
+    autoheight: true,
+    autowidth: true,
     cols: [
-        // {
-        //     css: "image",
-        //     template: img,
-        //     data: {src: "../imgs/carousel_bg1.jpg", title: "Image 1"}
-        // },
         {
-            css: "image",
-            template: img,
-            data: {src: "../imgs/carousel_bg.webp", title: "Image 2"}
+            height: 350,
+            template: '<div class="container">' +
+                '<img src="../imgs/baikal.gif" style="width:100%; height:350px; object-fit:cover">' +
+                '<div class="heading">' +
+                'ПОДДЕРЖКА' +
+                '</div>'+
+                '<div class="heading2">'+
+                'субъектов малого и среднего предпринимательства<br>' +
+                'Республики Бурятия\n' +
+                '</div>'+
+                '</div>'
         },
         {
-            css: "image",
-            template: img,
-            data: {src: "../imgs/carousel_bg.webp", title: "Image 2"}
+            height: 350,
+            template: '<div class="container">' +
+                '<img src="../imgs/carousel_bg.webp" style="width:100%; height:350px; object-fit:cover">' +
+                '<div class="heading">' +
+                'ПОДДЕРЖКА' +
+                '</div>'+
+                '<div class="heading2">'+
+                'субъектов малого и среднего предпринимательства<br>' +
+                'Республики Бурятия\n' +
+                '</div>'+
+                '</div>'
         },
-        // some_view,
+        {
+            height: 350,
+            template: '<div class="container">' +
+                '<img src="../imgs/baikal.gif" style="width:100%; height:350px; object-fit:cover">' +
+                '<div class="heading">' +
+                'ПОДДЕРЖКА' +
+                '</div>'+
+                '<div class="heading2">'+
+                'субъектов малого и среднего предпринимательства<br>' +
+                'Республики Бурятия\n' +
+                '</div>'+
+                '</div>'
+        },
     ],
-    // navigation: {
-    //     type: "side"
-    // }
 }

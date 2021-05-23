@@ -1,3 +1,5 @@
+import {carousel} from "./header/carousel.js";
+
 webix.i18n.locales["ru-RU"] = {
     groupSize:3,        // the number of digits in a group
     groupDelimiter:" ", // a mark that divides numbers with many digits into groups
@@ -19,41 +21,46 @@ import {lft_wdth, resizeSides, rght_wdth, main_body_width} from "./general.js";
 
 function bigMainPage() {
     let layout = webix.ui(mainTemplate);
-    webix.ui({
-        id: 'content',
-        css: 'fond_bg2',
-        type:"space",
-        view: 'scrollview',
-        scroll: 'xy',
-        body: {
-            padding: 20,
-            margin: 10,
-            rows: [
-                image_header,
-                {
-                    cols: [
-                        lft_wdth,
-                        {
-                            rows: [
-            //                     // carousel,
-                                productLine(true),
-                                {},
-                                calculator(),
-                                {},
-                                {},
-                                news(),
-                                {},
-                                map(),
-                                {},
-                            ]
-                        },
-                        rght_wdth,
-                    ],
-                },
-                footer()
-            ]
-        }
-    }, $$('content'));
+    webix.ajax().get('product_list_for_calculator').then(function (xhr) {
+        var calculatorData = xhr.json();
+        // var xhr = webix.ajax().sync().get(
+
+        webix.ui({
+            id: 'content',
+            css: 'fond_bg2',
+            type: "space",
+            view: 'scrollview',
+            scroll: 'xy',
+            body: {
+                padding: 20,
+                margin: 10,
+                rows: [
+                    // image_header,
+                    carousel,
+                    {
+                        cols: [
+                            lft_wdth,
+                            {
+                                rows: [
+                                    productLine(calculatorData, true),
+                                    {},
+                                    calculator(calculatorData),
+                                    {},
+                                    {},
+                                    news(),
+                                    {},
+                                    map(),
+                                    {},
+                                ]
+                            },
+                            rght_wdth,
+                        ],
+                    },
+                    footer()
+                ]
+            }
+        }, $$('content'));
+    });
 
     webix.event(window, "resize", function (event) {
         resizeMenuOptions();
@@ -68,20 +75,23 @@ function bigMainPage() {
 
 function smallMainPage() {
     let layout = webix.ui(mainTemplate);
-    webix.ui({
+    webix.ajax().get('product_list_for_calculator').then(function (xhr) {
+        var calculatorData = xhr.json();
+        webix.ui({
             id: 'content',
             css: 'fond_bg2',
-            type:"space",
+            type: "space",
             view: 'scrollview',
             scroll: 'xy',
             body: {
                 // padding: 20,
                 margin: 10,
                 rows: [
-                    image_header,
-                    productLine(false),
+                    // image_header,
+                    carousel,
+                    productLine(calculatorData, false),
                     {},
-                    calculator(),
+                    calculator(calculatorData),
                     {},
                     {},
                     news(),
@@ -92,6 +102,7 @@ function smallMainPage() {
                 ]
             }
         }, $$('content'));
+    });
 
     webix.event(window, "resize", function (event) {
         layout.resize();

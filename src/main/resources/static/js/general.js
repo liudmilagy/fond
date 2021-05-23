@@ -1,7 +1,7 @@
 export function view_header(title) {
     return {
         view: 'template',
-        type: 'header',
+        // type: 'header',
         css: 'fond_label',
         template: title,
         autoheight: true,
