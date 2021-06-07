@@ -135,7 +135,7 @@ function bigHeader(size) {
                         }
                     },
                     bigHeaderLabel,
-                    icon_contacts,
+                    // icon_contacts,
                 ]
             },
         ]

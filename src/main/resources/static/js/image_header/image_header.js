@@ -1,7 +1,7 @@
 export const image_header= {
-    height: 350,
+    height: 400,
     template: '<div class="container">' +
-    '<img src="../imgs/baikal.gif" style="width:100%; height:350px; object-fit:cover">' +
+    '<img src="../imgs/baikal.gif" style="width:100%; height:400px; object-fit:cover">' +
     '<div class="heading">' +
     'ПОДДЕРЖКА' +
     '</div>'+

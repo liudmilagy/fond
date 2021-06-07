@@ -21,6 +21,7 @@ function bigNewsView() {
         // scroll: false,
         body: {
             margin: 10,
+            css: 'fond_bg2',
             cols: [
                 lft_wdth,
                 newsForm('news_file', 'news_files/' + HASH_ID, true),

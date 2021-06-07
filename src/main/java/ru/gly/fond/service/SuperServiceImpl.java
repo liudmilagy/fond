@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import ru.gly.fond.model.RegPartnerFile;
 import ru.gly.fond.repository.*;
 
 import java.text.DecimalFormat;
@@ -37,6 +38,12 @@ public class SuperServiceImpl implements SuperService{
 
     @Autowired
     ClsTypeAppointmentRepo clsTypeAppointmentRepo;
+
+    @Autowired
+    ClsPartnerRepo clsPartnerRepo;
+
+    @Autowired
+    RegPartnerFileRepo regPartnerFileRepo;
 
     @Autowired
     EmailService emailService;

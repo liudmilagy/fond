@@ -33,6 +33,14 @@ export const rght_wdth = {
     width: getOtherWidth(),
 }
 
+export const padding_for_big_form = {
+    top: 20,
+    bottom: 20,
+    left: getOtherWidth(),
+    right: getOtherWidth(),
+
+}
+
 export function resizeSides() {
     const lftMain = $$('leftMainTemplateId');
     if (lftMain) {

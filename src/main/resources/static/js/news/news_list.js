@@ -75,6 +75,7 @@ const bigNewsList = {
             view: "dataview",
             id: "newsListDataview",
             margin: 20, paddingX: 10,
+            css: 'fond_bg2',
             // scroll: 'y',
             borderless: true,
             template: "<div class='news_item'>" +

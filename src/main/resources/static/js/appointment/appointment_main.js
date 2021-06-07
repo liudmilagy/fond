@@ -1,5 +1,7 @@
 import {view_header, changeContentView, main_body_width, main_padding} from "../general.js";
 webix.Date.startOnMonday = true;
+webix.i18n.setLocale("ru-RU")
+
 
 function appointmentHeader() {
     if (document.body.clientWidth < main_body_width) {

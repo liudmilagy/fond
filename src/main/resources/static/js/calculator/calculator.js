@@ -204,16 +204,20 @@ export function calculator(data) {
     if (document.body.clientWidth < main_body_width) {
         width = document.body.clientWidth - collapsedSideBarWidth;
         return {
-            view: 'form',
+            // view: 'form',
             // resize: true,
             borderless: true,
             margin: 3,
             gravity:0,
             padding: main_padding,
             width: width,
+            // type: 'space',
             rows: [
                 view_header('Калькулятор'),
                 {
+                    borderless: true,
+                    // type: 'space',
+                    // css: 'fond_bg2',
                     margin: 30,
                     rows: [
                         leftSideCalculator,
@@ -223,16 +227,20 @@ export function calculator(data) {
         }
     } else {
         return {
-            view: 'form',
+            // view: 'form',
             // resize: true,
             borderless: true,
             margin: 3,
             gravity:0,
             padding: main_padding,
             width: width,
+            // type: 'space',
             rows: [
                 view_header('Калькулятор'),
                 {
+                    borderless: true,
+                    // type: 'space',
+                    // css: 'fond_bg2',
                     margin: 30,
                     cols: [
                         leftSideCalculator,

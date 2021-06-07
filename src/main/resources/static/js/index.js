@@ -17,7 +17,10 @@ import {footer} from "./footer/footer.js"
 import {news} from "./news/news_main.js";
 import {image_header} from "./image_header/image_header.js";
 import {mainTemplate} from "./views/mainTemplate.js";
-import {lft_wdth, resizeSides, rght_wdth, main_body_width} from "./general.js";
+import {lft_wdth, getOtherWidth, resizeSides, rght_wdth, main_body_width, padding_for_big_form} from "./general.js";
+import {checkYourself} from "./check_yourself/check_yourself.js";
+import {footer_contacts} from "./footer_contacts/footer_contacts.js";
+import {partners} from "./partners/partners.js";
 
 function bigMainPage() {
     let layout = webix.ui(mainTemplate);
@@ -27,36 +30,49 @@ function bigMainPage() {
 
         webix.ui({
             id: 'content',
-            css: 'fond_bg2',
-            type: "space",
+            // css: 'fond_bg2',
+            // type: "space",
             view: 'scrollview',
             scroll: 'xy',
             body: {
-                padding: 20,
-                margin: 10,
+                // margin: 10,
+                borderless: true,
                 rows: [
-                    // image_header,
-                    carousel,
+                    image_header,
+                    // carousel,
                     {
-                        cols: [
-                            lft_wdth,
-                            {
-                                rows: [
-                                    productLine(calculatorData, true),
-                                    {},
-                                    calculator(calculatorData),
-                                    {},
-                                    {},
-                                    news(),
-                                    {},
-                                    map(),
-                                    {},
-                                ]
-                            },
-                            rght_wdth,
-                        ],
+                        padding: padding_for_big_form,
+                        borderless: true,
+                        rows: [
+                            productLine(calculatorData, true),
+                        ]
                     },
-                    footer()
+                    {
+                        padding: padding_for_big_form,
+                        // type: 'space',
+                        // css: 'fond_bg2',
+                        borderless: true,
+                        rows: [
+                            calculator(calculatorData),
+                        ]
+                    },
+                    {
+                        padding: padding_for_big_form,
+                        // type: "space",
+                        borderless: true,
+                        rows: [
+                            checkYourself(true),
+                            {},
+                            partners(),
+                            {},
+                            news(),
+                            {},
+                            map(),
+                            {},
+                            footer_contacts
+                        ]
+                    },
+                    // footer()
                 ]
             }
         }, $$('content'));
@@ -85,20 +101,30 @@ function smallMainPage() {
             scroll: 'xy',
             body: {
                 // padding: 20,
-                margin: 10,
+                // margin: 10,
+                borderless: true,
                 rows: [
-                    // image_header,
-                    carousel,
-                    productLine(calculatorData, false),
+                    image_header,
+                    // carousel,
+                    {
+                        rows: [
+                            productLine(calculatorData, false),
+                            {},
+                            calculator(calculatorData),
+                            {},
+                        ]
+                    },
                     {},
-                    calculator(calculatorData),
+                    checkYourself(false),
                     {},
+                    partners(),
                     {},
                     news(),
                     {},
                     map(),
                     // {},
-                    footer()
+                    // footer()
+                    footer_contacts,
                 ]
             }
         }, $$('content'));

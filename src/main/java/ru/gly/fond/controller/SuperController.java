@@ -59,4 +59,7 @@ public class SuperController {
     @Autowired
     protected GeneralTableRepo generalTableRepo;
 
+    @Autowired
+    protected PartnerService partnerService;
+
 }
