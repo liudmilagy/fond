@@ -7,6 +7,7 @@ export function calculator(data) {
     // var data = JSON.parse(xhr.responseText);
 
     var key_rate = 4.5; // webix.ajax().sync().get();
+    var rate = key_rate;
 
     var programRichselect = {
         view: 'richselect',
@@ -16,14 +17,19 @@ export function calculator(data) {
         name: 'programRichselect',
         options: data,
         value: data[0],
-        css: 'fond'
+        css: 'fond',
+        on: {
+            onChange: () => {
+                setCalculatorResultValues(data);
+            }
+        }
     }
 
     var depositRadio = {
         view: "switch", name: 'deposit', id: 'depositId', onLabel: "С залогом", offLabel:"Без залога", value: 0,
         on: {
             onChange: () => {
-                // webix.message("Раздел в разработке.")
+                setCalculatorResultValues(data);
             }
         }
     }
@@ -44,14 +50,17 @@ export function calculator(data) {
             },
         css: 'calculator_result',
         on:{
-            // onChange:function(){
-            //     this.define("title", "Final value " + this.getValue());
-            //     this.refresh();
-            // },
-            // onSliderDrag:function(){
-            //     this.define("title", "Dragging... Currently "+this.getValue());
-            //     this.refresh();
-            // }
+            onChange:function(){
+                setCalculatorResultValues(data);
+                // this.define("title", "Final value " + this.getValue());
+                // this.refresh();
+
+            },
+            onSliderDrag:function(){
+                setCalculatorResultValues(data);
+                // this.define("title", "Dragging... Currently "+this.getValue());
+                // this.refresh();
+            }
         }
     }
 
@@ -68,6 +77,19 @@ export function calculator(data) {
         name: 'slider2',
         title: webix.template("#value# мес."),
         css: 'calculator_result',
+        on:{
+            onChange:function(){
+                setCalculatorResultValues(data);
+                // this.define("title", "Final value " + this.getValue());
+                // this.refresh();
+
+            },
+            onSliderDrag:function(){
+                setCalculatorResultValues(data);
+                // this.define("title", "Dragging... Currently "+this.getValue());
+                // this.refresh();
+            }
+        }
     }
 
     var rate = {
@@ -75,8 +97,8 @@ export function calculator(data) {
         cols: [
             {
                 // view: 'label',
-                // label: 'Процентная ставка годовых (%)',
-                template: 'Процентная ставка годовых (%)',
+                // label: 'Процентная ставка (%)',
+                template: 'Процентная ставка, %',
                 autoheight: true,
                 borderless: true,
                 align: 'left',
@@ -84,11 +106,12 @@ export function calculator(data) {
             },
             {   gravity: 0.1},
             {
-                // view: 'label',
+                view: 'label',
                 id: 'rateLabelId',
                 // label: getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
                 //                 data[0].coefKeyRateWithDeposit, key_rate),
-                template: 'N %',
+                label: getRate(data, data[0].id, true),
+                // template: 'N %',
                 autoheight: true,
                 borderless: true,
                 align: 'right',
@@ -111,12 +134,12 @@ export function calculator(data) {
             },
             {   gravity: 0.1},
             {
-                // view: 'label',
-                // // label: getMonthlyPayment(getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
-                // //                                 data[0].coefKeyRateWithDeposit, key_rate),
-                // //                         data[0].minAmountWithDeposit, data[0].limitation),
+                view: 'label',
+                id: 'monthlyPaymentId',
+                label: getMonthlyPayment(getRate(data, data[0].id, true),
+                                        data[0].minAmountWithDeposit, data[0].limitation),
                 // label: 0,
-                template: '0 руб.',
+                // template: '0 руб.',
                 autoheight: true,
                 borderless: true,
                 align: 'right',
@@ -138,12 +161,11 @@ export function calculator(data) {
             },
             {   gravity: 0.1},
             {
-                // view: 'label',
-                // // label: getOverPayment(getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
-                // //                             data[0].coefKeyRateWithDeposit, key_rate),
-                // //                      data[0].minAmountWithDeposit, data[0].limitation),
-                // label: 0,
-                template: '0 руб.',
+                id: 'overPaymentId',
+                view: 'label',
+                label: getOverPayment(getRate(data, data[0].id, true),
+                                     data[0].minAmountWithDeposit, data[0].limitation),
+                // template: '0 руб.',
                 autoheight: true,
                 borderless: true,
                 align: 'right',
@@ -152,29 +174,29 @@ export function calculator(data) {
         ]
     }
 
-    var fullPayment = {
-        cols: [
-            {
-                // view: 'label',
-                // label: 'Общая выплата',
-                template: 'Общая выплата',
-                autoheight: true,
-                borderless: true,
-                align: 'left',
-                css: 'calculator_result',
-            },
-            {   gravity: 0.1},
-            {
-                // view: 'label',
-                // label: '610 000 руб.',
-                template: '610 000 руб.',
-                autoheight: true,
-                borderless: true,
-                align: 'right',
-                css: 'calculator_result',
-            },
-        ]
-    }
+    // var fullPayment = {
+    //     cols: [
+    //         {
+    //             // view: 'label',
+    //             // label: 'Общая выплата',
+    //             template: 'Общая выплата',
+    //             autoheight: true,
+    //             borderless: true,
+    //             align: 'left',
+    //             css: 'calculator_result',
+    //         },
+    //         {   gravity: 0.1},
+    //         {
+    //             // view: 'label',
+    //             // label: '610 000 руб.',
+    //             template: '610 000 руб.',
+    //             autoheight: true,
+    //             borderless: true,
+    //             align: 'right',
+    //             css: 'calculator_result',
+    //         },
+    //     ]
+    // }
 
     var leftSideCalculator =  {
         margin: 10,
@@ -196,7 +218,7 @@ export function calculator(data) {
             {},
             overpayment,
             {},
-            fullPayment
+            // fullPayment
         ]
     }
 
@@ -251,7 +273,32 @@ export function calculator(data) {
     }
     }
 
-function getRate(interestRate, hasKeyRate, coefKeyRate, keyRate) {
+function getRate(data, productId, withDeposit) {
+    var rate;
+
+    data.forEach(product => {
+        if (product.id == productId) {
+            if (withDeposit) {
+                if (product.interestRateWithDeposit) {
+                    rate = product.interestRateWithDeposit;
+                } else {
+                    rate = product.coefKeyRateWithDeposit * 5;
+                }
+            } else {
+                if (product.interestRateWithoutDeposit) {
+                    rate = product.interestRateWithoutDeposit;
+                } else {
+                    rate = product.coefKeyRateWithoutDeposit * 5;
+                }
+
+            }
+        }
+    })
+
+    return rate;
+}
+
+function getRate0(interestRate, hasKeyRate, coefKeyRate, keyRate) {
     var rate = 0;
     if (hasKeyRate) {
         if (coefKeyRate != null) {
@@ -267,11 +314,26 @@ function getRate(interestRate, hasKeyRate, coefKeyRate, keyRate) {
 }
 
 function getMonthlyPayment(rate, amount, limitation) {
-    return rate + amount + limitation; //поменять формулу
+    var r = rate*0.01/12;
+    var monthlyPayment = (r + r/(Math.pow(1+r, limitation) - 1)) * amount;
+    return webix.Number.format(monthlyPayment, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "});
 }
 
 function getOverPayment(rate, amount, limitation) {
-    return (rate + amount + limitation) / 100; //поменять формулу
+    var r = rate*0.01/12;
+    var monthlyPayment = (r + r/(Math.pow(1+r, limitation) - 1)) * amount;
+    var overPayment = monthlyPayment* limitation - amount;
+    return webix.Number.format(overPayment, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "});
+
+}
+
+function setCalculatorResultValues(data) {
+    var rate = getRate(data, $$('programRichselectId').getValue(), $$('depositId').getValue());
+
+    $$('rateLabelId').setValue(rate);
+
+    $$('monthlyPaymentId').setValue(getMonthlyPayment(rate, $$('amountSliderId').getValue(), $$('timeSliderId').getValue()));
+    $$('overPaymentId').setValue(getOverPayment(rate, $$('amountSliderId').getValue(), $$('timeSliderId').getValue() ))
 }
 
 export function setCalculatorValues(product) {
