@@ -46,6 +46,9 @@ public class SuperServiceImpl implements SuperService{
     RegPartnerFileRepo regPartnerFileRepo;
 
     @Autowired
+    RegProductFileRepo regProductFileRepo;
+
+    @Autowired
     EmailService emailService;
 
     @Value("${upload.path:/uploads}")

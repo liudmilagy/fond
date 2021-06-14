@@ -17,5 +17,4 @@ public class ProductLineDto {
     private String          time;
     private String          amount;
     private String          htmlText;
-
 }

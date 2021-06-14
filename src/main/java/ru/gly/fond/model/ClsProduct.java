@@ -25,6 +25,8 @@ public class ClsProduct {
     private String          htmlText;
     private Boolean         notActive;
     private String          iconName;
+    private Long            idImgCover;
+
 
     public Long getId() {
         return id;
@@ -94,6 +96,16 @@ public class ClsProduct {
         this.iconName = iconName;
     }
 
+    @Basic
+    @Column(name = "id_img_cover")
+    public Long getIdImgCover() {
+        return idImgCover;
+    }
+
+    public void setIdImgCover(Long idImgCover) {
+        this.idImgCover = idImgCover;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -105,11 +117,12 @@ public class ClsProduct {
                 Objects.equals(isHidden, that.isHidden) &&
                 Objects.equals(htmlText, that.htmlText) &&
                 Objects.equals(notActive, that.notActive) &&
+                Objects.equals(idImgCover, that.idImgCover) &&
                 Objects.equals(iconName, that.iconName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, limitation, isHidden, htmlText, notActive, iconName);
+        return Objects.hash(id, name, limitation, isHidden, htmlText, notActive, idImgCover, iconName);
     }
 }

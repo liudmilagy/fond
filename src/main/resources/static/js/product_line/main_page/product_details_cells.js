@@ -124,11 +124,23 @@ function createIconAndLabel(product) {
     }
 }
 
+function createImgCover(product) {
+    return {
+        borderless: true,
+        template: "<div class='product_item'>" +
+            "<img src='" + product.attachmentPath + "' height='300' width='400' style='object-fit: cover'>" +
+            product.name +" <br>" +
+            // "Дата публикации: #startTime#"+
+            "</div>",
+    }
+}
+
 function createProductDetails(product, isBigForm) {
     var time = createProductTime(product);
     var buttonsInDetails = createButtonInDetails(product, isBigForm);
     var amountRows = createAmountRows(product, isBigForm);
-    var iconAndLabel = createIconAndLabel(product);
+    // var iconAndLabel = createIconAndLabel(product);
+    var imgCover = createImgCover(product);
 
     if (isBigForm) {
         return {
@@ -150,7 +162,8 @@ function createProductDetails(product, isBigForm) {
                 {
                     gravity: 0.3,
                     rows: [
-                        iconAndLabel
+                        // iconAndLabel
+                        imgCover
                     ]
                 }
             ]

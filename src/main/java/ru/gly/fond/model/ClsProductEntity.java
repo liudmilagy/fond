@@ -14,6 +14,7 @@ import javax.persistence.*;
                 "SELECT cls_product.id as id, cls_product.name as name, cls_product.name as value,\n" +
                         "       cls_product.limitation as limitation, cls_product.is_hidden as is_hidden, cls_product.html_text as html_text, \n" +
                         "       cls_product.not_active as not_active, cls_product.icon_name as icon_name,\n" +
+                        "       COALESCE(rpf.attachment_path, '') as attachment_path,\n" +
                         "       rpp_w.id as id_with_deposit,\n" +
                         "       rpp_w.min_amount as min_amount_with_deposit,\n" +
                         "       rpp_w.max_amount as max_amount_with_deposit,\n" +
@@ -35,7 +36,9 @@ import javax.persistence.*;
                         "LEFT JOIN reg_product_provision rpp_wo\n" +
                         "    ON cls_product.id = rpp_wo.id_product\n" +
                         "        AND rpp_wo.id_provision = :id_provision_without_deposit\n" +
-                        "WHERE is_hidden = false",
+                        "LEFT JOIN reg_product_file rpf\n" +
+                        "    ON cls_product.id_img_cover = rpf.id\n" +
+                        "WHERE cls_product.is_hidden = false",
         resultSetMapping = "product_entity_result"
 )
 @SqlResultSetMapping(
@@ -51,6 +54,8 @@ import javax.persistence.*;
                         @FieldResult(name = "htmlText", column = "html_text"),
                         @FieldResult(name = "notActive", column = "not_active"),
                         @FieldResult(name = "iconName", column = "icon_name"),
+                        @FieldResult(name = "attachmentPath", column = "attachment_path"),
+
 
                         @FieldResult(name = "idWithDeposit", column = "id_with_deposit"),
                         @FieldResult(name = "minAmountWithDeposit", column = "min_amount_with_deposit"),
@@ -84,6 +89,8 @@ public class ClsProductEntity {
     private String          htmlText;
     private Boolean         notActive;
     private String          iconName;
+    private String          attachmentPath;
+
 
     private Long            idWithDeposit;
     private Integer         minAmountWithDeposit;
@@ -276,6 +283,14 @@ public class ClsProductEntity {
 
     public void setIconName(String iconName) {
         this.iconName = iconName;
+    }
+
+    public String getAttachmentPath() {
+        return attachmentPath;
+    }
+
+    public void setAttachmentPath(String attachmentPath) {
+        this.attachmentPath = attachmentPath;
     }
 }
 
