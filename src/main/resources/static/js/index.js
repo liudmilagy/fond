@@ -30,7 +30,15 @@ function bigMainPage() {
 
         webix.ui({
             id: 'content',
-            // css: 'fond_bg2',
+            // css: 'fond_bg2',                    // {
+                    //     padding: padding_for_big_form,
+                    //     // type: 'space',
+                    //     // css: 'fond_bg2',
+                    //     borderless: true,
+                    //     rows: [
+                    //         calculator(calculatorData),
+                    //     ]
+                    // },
             // type: "space",
             view: 'scrollview',
             scroll: 'xy',

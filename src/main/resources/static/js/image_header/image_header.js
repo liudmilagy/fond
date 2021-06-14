@@ -1,7 +1,8 @@
 export const image_header= {
-    height: 400,
+    height: 800,
+    // autoheight: true,
     template: '<div class="container">' +
-    '<img src="../imgs/baikal.gif" style="width:100%; height:400px; object-fit:cover">' +
+    '<img src="https://testfond.hb.bizmrg.com/fond_bg/bg_uu.webp" style="width:100%; height: 100%; object-fit: contain">' +
     '<div class="heading">' +
     'ПОДДЕРЖКА' +
     '</div>'+

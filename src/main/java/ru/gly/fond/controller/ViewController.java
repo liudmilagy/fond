@@ -35,7 +35,7 @@ public class ViewController extends SuperController {
         return tabFiles;
     }
 
-    @GetMapping("/documents")
+    @GetMapping("/normative_documents")
     public String viewNormativeDocs(Model model, HttpSession session) {
         model.addAttribute("application_name", applicationConstants.getApplicationName());
 
@@ -77,5 +77,12 @@ public class ViewController extends SuperController {
         ClsTab tab = clsTabRepo.findByCode(TabCodes.CONTACTS.getValue());
         List<RegTabFile> tabFiles = regTabFileRepo.findRegTabFileByTab_IdAndIsDeleted(tab.getId(), false);
         return tabFiles;
+    }
+
+    @GetMapping("/calculator")
+    public String viewCalculator(Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+
+        return "calculator_view";
     }
 }

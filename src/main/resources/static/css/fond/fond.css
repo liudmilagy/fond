@@ -6,6 +6,11 @@
     --text_color: #6c5b7b;
     --btn_color: #355c7d;
     --light_gray_color: #d5d5d5;
+
+    --color1: #f9525c;
+    --color2: #d83e48;
+    --color3: #385a64;
+    --color4: #1a2e35;
 }
 
 .fond .webix_sidebar {
@@ -204,10 +209,29 @@
     /*-o-transform: skew(15deg);*/
 }
 
+/*.heading {*/
+/*    position: absolute;*/
+/*    top: 40%;*/
+/*    right: 5%;*/
+/*    color: white;*/
+/*    font-size: 3em;*/
+/*    font-weight: bolder;*/
+/*}*/
+
+/*.heading2 {*/
+/*    position: absolute;*/
+/*    top: 60%;*/
+/*    right: 5%;*/
+/*    color: white;*/
+/*    font-size: 1.5em;*/
+/*    font-weight: normal;*/
+/*    text-align: right;*/
+/*}*/
+
 .heading {
     position: absolute;
-    top: 40%;
-    right: 5%;
+    top: 10%;
+    left: 2%;
     color: white;
     font-size: 3em;
     font-weight: bolder;
@@ -215,12 +239,12 @@
 
 .heading2 {
     position: absolute;
-    top: 60%;
-    right: 5%;
+    top: 25%;
+    left: 2%;
     color: white;
     font-size: 1.5em;
     font-weight: normal;
-    text-align: right;
+    text-align: left;
 }
 
 .container {

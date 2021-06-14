@@ -35,7 +35,7 @@ const bigMainTemplate = {
                 {
                     rows:[
                         header,
-                        menu,
+                        // menu,
                     ]
                 },
                 {
@@ -44,6 +44,7 @@ const bigMainTemplate = {
                 },
             ]
         },
+        menu,
         {
             id: 'content',
         },

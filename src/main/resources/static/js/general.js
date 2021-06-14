@@ -11,7 +11,7 @@ export function view_header(title) {
 
 export const main_padding = 20;
 
-export const main_body_width = 1200;
+export const main_body_width = 1300;
 
 export const collapsedSideBarWidth = 41;
 
