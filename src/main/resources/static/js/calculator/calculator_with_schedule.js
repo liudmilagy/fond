@@ -3,14 +3,13 @@ import {collapsedSideBarWidth} from "../general.js";
 
 export function calculator_with_schedule() {
     return {
-        view: 'form',
-        id: 'calculatorParamFormId',
         cols: [
             {
                 width: getOtherWidth(),
             },
             {
                 rows: [
+                    view_header('Калькулятор'),
                     {
                         cols: [
                             {
@@ -21,6 +20,7 @@ export function calculator_with_schedule() {
                                         label: 'Размер займа, руб.',
                                         labelPosition: 'top',
                                         required: true,
+                                        format:"1 111",
                                     },
                                     {
                                         view: 'text',
@@ -28,6 +28,9 @@ export function calculator_with_schedule() {
                                         label: 'Срок, мес.',
                                         labelPosition: 'top',
                                         required: true,
+                                        validate:function(val){
+                                            return !isNaN(val*1);
+                                        }, attributes:{ type:"number" }
                                     },
                                     {
                                         view: 'text',
@@ -35,6 +38,9 @@ export function calculator_with_schedule() {
                                         label: 'Процентная ставка, %',
                                         labelPosition: 'top',
                                         required: true,
+                                        validate:function(val){
+                                            return !isNaN(val*1);
+                                        }, attributes:{ type:"number" }
                                     },
                                     {
                                         cols: [
@@ -45,15 +51,19 @@ export function calculator_with_schedule() {
                                                 maxWidth: 250,
                                                 click: () => {
                                                     $$('calculatorDatatableId').clearAll();
-                                                    $$('monthlyPaymentId').getValue("");
-                                                    $$('overPaymentId').getValue("");
+                                                    $$('monthlyPaymentId').setValue("");
+                                                    $$('overPaymentId').setValue("");
 
-                                                    if ($$('calculatorParamFormId').validate()) {
+                                                    if (($$('amountId').getValue() != "")
+                                                        && ($$('limitationId').getValue() != "") && ($$('limitationId').getValue() > 0)
+                                                        && ($$('rateId').getValue() != "") && ($$('rateId').getValue() > 0)) {
                                                         var i = 1;
                                                         var rate = $$('rateId').getValue();
                                                         var r = rate*0.01/12;
                                                         var months = $$('limitationId').getValue();
-                                                        var amount = $$('amountId').getValue();
+                                                        var amountStr = $$('amountId').getValue().toString();
+                                                        amountStr = amountStr.replace(" ", "");
+                                                        var amount = parseInt(amountStr);
 
                                                         var monthlyPayment = getMonthlyPayment(rate, amount, months);
                                                         var overPayment = getOverPayment(rate, amount, months);
