@@ -85,4 +85,116 @@ public class ViewController extends SuperController {
 
         return "calculator_view";
     }
+
+    @GetMapping("/about_anti_corruption")
+    public String viewAboutAntiCorruption(Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+
+        return "anti_corruption_view";
+    }
+
+    @GetMapping("/about_anti_corruption_info")
+    public @ResponseBody
+    String getAboutAntiCorruptionHTML() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.ANTI_CORRUPTION.getValue());
+        return tab.getHtmlText();
+    }
+
+    @GetMapping("/about_anti_corruption_files")
+    public @ResponseBody
+    List<RegTabFile> getAboutAntiCorruptionFiles() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.ANTI_CORRUPTION.getValue());
+        List<RegTabFile> tabFiles = regTabFileRepo.findRegTabFileByTab_IdAndIsDeleted(tab.getId(), false);
+        return tabFiles;
+    }
+
+    @GetMapping("/information_disclosure")
+    public String viewInformationDisclosure(Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+
+        return "information_disclosure_view";
+    }
+
+    @GetMapping("/information_disclosure_info")
+    public @ResponseBody
+    String getInformationDisclosurenHTML() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.INFO_DISCLOSURE.getValue());
+        return tab.getHtmlText();
+    }
+
+    @GetMapping("/information_disclosure_files")
+    public @ResponseBody
+    List<RegTabFile> getInformationDisclosureFiles() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.INFO_DISCLOSURE.getValue());
+        List<RegTabFile> tabFiles = regTabFileRepo.findRegTabFileByTab_IdAndIsDeleted(tab.getId(), false);
+        return tabFiles;
+    }
+
+    @GetMapping("/terms_of_providing_microloans")
+    public String viewTermsOfProvidingMicroloans(Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+
+        return "terms_of_providing_microloans_view";
+    }
+
+    @GetMapping("/terms_of_providing_microloans_info")
+    public @ResponseBody
+    String getTermsOfProvidingMicroloansHTML() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.TERMS_OF_PROVIDING_MICROLOANS.getValue());
+        return tab.getHtmlText();
+    }
+
+    @GetMapping("/terms_of_providing_microloans_files")
+    public @ResponseBody
+    List<RegTabFile> getTermsOfProvidingMicroloansFiles() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.TERMS_OF_PROVIDING_MICROLOANS.getValue());
+        List<RegTabFile> tabFiles = regTabFileRepo.findRegTabFileByTab_IdAndIsDeleted(tab.getId(), false);
+        return tabFiles;
+    }
+
+
+    @GetMapping("/documents")
+    public String viewDocuments(Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+
+        return "documents_view";
+    }
+
+    @GetMapping("/documents_info")
+    public @ResponseBody
+    String getDocumentsHTML() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.DOCUMENTS.getValue());
+        return tab.getHtmlText();
+    }
+
+    @GetMapping("/documents_files")
+    public @ResponseBody
+    List<RegTabFile> getDocumentsFiles() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.DOCUMENTS.getValue());
+        List<RegTabFile> tabFiles = regTabFileRepo.findRegTabFileByTab_IdAndIsDeleted(tab.getId(), false);
+        return tabFiles;
+    }
+
+
+    @GetMapping("/requisites")
+    public String viewRequisites(Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+
+        return "requisites_view";
+    }
+
+    @GetMapping("/requisites_info")
+    public @ResponseBody
+    String getRequisitesHTML() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.REQUISITES.getValue());
+        return tab.getHtmlText();
+    }
+
+    @GetMapping("/requisites_files")
+    public @ResponseBody
+    List<RegTabFile> getRequisitesFiles() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.REQUISITES.getValue());
+        List<RegTabFile> tabFiles = regTabFileRepo.findRegTabFileByTab_IdAndIsDeleted(tab.getId(), false);
+        return tabFiles;
+    }
 }
