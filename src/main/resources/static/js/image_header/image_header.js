@@ -1,5 +1,5 @@
 export const image_header= {
-    height: 800,
+    height: 600,
     // autoheight: true,
     template: '<div class="container">' +
     '<img src="https://testfond.hb.bizmrg.com/fond_bg/bg_uu.webp" style="width:100%; height: 100%; object-fit: contain">' +
