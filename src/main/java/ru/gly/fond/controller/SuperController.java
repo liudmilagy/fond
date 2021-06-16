@@ -62,4 +62,7 @@ public class SuperController {
     @Autowired
     protected PartnerService partnerService;
 
+    @Autowired
+    protected SmsService smsService;
+
 }
