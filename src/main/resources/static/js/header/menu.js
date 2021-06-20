@@ -85,51 +85,51 @@ function onMenuClick(id) {
             break;
         }
         case ('aboutFond'): {
-            window.location.href = "about_fond";
+            window.location.href = "/about_fond";
             break;
         }
         case ('antiCorruption'): {
-            window.location.href = "about_anti_corruption";
+            window.location.href = "/about_anti_corruption";
             break;
         }
         case ('normDocs'): {
-            window.location.href = "normative_documents";
+            window.location.href = "/normative_documents";
             break;
         }
         case ('infoDisclosure'): {
-            window.location.href = "information_disclosure";
+            window.location.href = "/information_disclosure";
             break;
         }
         case ('ProductList'): {
-            window.location.href = "product_list";
+            window.location.href = "/product_list";
             break;
         }
         case ('termsOfProvidingMicroloans'): {
-            window.location.href = "terms_of_providing_microloans";
+            window.location.href = "/terms_of_providing_microloans";
             break;
         }
         case ('documents'): {
-            window.location.href = "documents";
+            window.location.href = "/documents";
             break;
         }
         case ('Calculator'): {
-            window.location.href = "calculator";
+            window.location.href = "/calculator";
             break;
         }
         case ('Appointment'): {
-            window.location.href = "appointment";
+            window.location.href = "/appointment";
             break;
         }
         case ('News'): {
-            window.location.href = "news_list";
+            window.location.href = "/news_list";
             break;
         }
         case ('Requisites'): {
-            window.location.href = "requisites";
+            window.location.href = "/requisites";
             break;
         }
         case ('Contacts'): {
-            window.location.href = "contacts";
+            window.location.href = "/contacts";
             break;
         }
     }
