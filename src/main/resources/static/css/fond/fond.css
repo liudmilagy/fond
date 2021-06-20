@@ -1,10 +1,16 @@
 :root{
-    --main_color: #f8b195;
-    --hover_color: #e39d82;
-    --focus_color: #f67280;
+    /*--main_color: #f8b195;*/
+    /*--hover_color: #e39d82;*/
+    /*--focus_color: #f67280;*/
+    /*--light_focus_color: rgba(246, 114, 128, 0.27);*/
+    /*--text_color: #6c5b7b;*/
+    /*--btn_color: #355c7d;*/
+    --main_color: #f9525c;
+    --hover_color: #d83e48;
+    --focus_color: #d83e48;
     --light_focus_color: rgba(246, 114, 128, 0.27);
-    --text_color: #6c5b7b;
-    --btn_color: #355c7d;
+    --text_color: #385a64;
+    --btn_color: #1a2e35;
     --light_gray_color: #d5d5d5;
 
     --color1: #f9525c;
@@ -72,7 +78,7 @@
 }
 
 .check_yourself_form {
-    background-color: #c1000c !important;
+    background-color: var(--hover_color) !important;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -408,4 +414,17 @@ body {margin: 0}
     .webix_dataview_item {
         float: inherit !important;
     }
+}
+
+.calculator_template_link {
+    background: transparent;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.calculator_template_link :hover{
+    background: transparent;
+    /*font-size: larger;*/
+    color: var(--hover_color);
+    cursor: pointer;
 }

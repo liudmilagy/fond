@@ -1,5 +1,6 @@
-import {view_header, main_padding, main_body_width, numberFormatWithoutDecimal} from "../general.js";
+import {view_header, main_padding, main_body_width, numberFormatWithoutDecimal, changeContentView} from "../general.js";
 import {collapsedSideBarWidth} from "../general.js";
+import {calculator_with_schedule, calculate} from "./calculator_with_schedule.js";
 
 export function calculator(data) {
 
@@ -18,15 +19,17 @@ export function calculator(data) {
         options: data,
         value: data[0],
         css: 'fond',
+        bottomPadding: 10,
         on: {
             onChange: () => {
                 setCalculatorResultValues(data);
             }
-        }
+        },
     }
 
     var depositRadio = {
         view: "switch", name: 'deposit', id: 'depositId', onLabel: "С залогом", offLabel:"Без залога", value: 0,
+        bottomPadding: 10,
         on: {
             onChange: () => {
                 setCalculatorResultValues(data);
@@ -44,6 +47,7 @@ export function calculator(data) {
         step: 10000,
         min: data[0].minAmountWithDeposit,
         max: data[0].maxAmountWithDeposit,
+        bottomPadding: 10,
         title:
             (obj) => {
             return webix.i18n.numberFormat(obj.value)
@@ -77,6 +81,7 @@ export function calculator(data) {
         name: 'slider2',
         title: webix.template("#value# мес."),
         css: 'calculator_result',
+        bottomPadding: 10,
         on:{
             onChange:function(){
                 setCalculatorResultValues(data);
@@ -117,6 +122,12 @@ export function calculator(data) {
                 align: 'right',
                 css: 'calculator_result',
 
+            },
+            {
+                view: 'text',
+                id: 'rateValueId',
+                value: getRate(data, data[0].id, true),
+                hidden: true,
             }
         ]
     }
@@ -174,6 +185,33 @@ export function calculator(data) {
         ]
     }
 
+    var link_to_schedule = {
+        template: '<div class="schedule_link">Перейти к графику платежей</div>',
+        borderless: true,
+        align: 'left',
+        css: 'calculator_template_link',
+        onClick: {
+            "schedule_link": () =>
+                {
+                    var rate = $$('rateValueId').getValue();
+                    var limitation = $$('timeSliderId').getValue();
+                    var amount = $$('amountSliderId').getValue();
+                    // changeContentView(calculator_with_schedule());
+                    var layout = webix.ui({
+                        id: 'content',
+                        rows: [
+                            webix.copy(calculator_with_schedule())
+                        ]
+                    }, $$('content'));
+                    $$('amountId').setValue(amount);
+                    $$('limitationId').setValue(limitation);
+                    $$('rateId').setValue(rate);
+                    calculate();
+                    $$('calculatorResultId').resize();
+                }
+        }
+    }
+
     // var fullPayment = {
     //     cols: [
     //         {
@@ -199,18 +237,16 @@ export function calculator(data) {
     // }
 
     var leftSideCalculator =  {
-        margin: 10,
         rows: [
             programRichselect,
             depositRadio,
             amountSlider,
             // amountAxis,
-            timeSlider
+            timeSlider,
         ]
     }
 
     var rightSideCalculator = {
-        margin: 10,
         rows: [
             rate,
             {},
@@ -218,6 +254,7 @@ export function calculator(data) {
             {},
             overpayment,
             {},
+            link_to_schedule
             // fullPayment
         ]
     }
@@ -331,6 +368,7 @@ function setCalculatorResultValues(data) {
     var rate = getRate(data, $$('programRichselectId').getValue(), $$('depositId').getValue());
 
     $$('rateLabelId').setValue(rate);
+    $$('rateValueId').setValue(rate);
 
     $$('monthlyPaymentId').setValue(getMonthlyPayment(rate, $$('amountSliderId').getValue(), $$('timeSliderId').getValue()));
     $$('overPaymentId').setValue(getOverPayment(rate, $$('amountSliderId').getValue(), $$('timeSliderId').getValue() ))

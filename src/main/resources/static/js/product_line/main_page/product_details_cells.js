@@ -128,7 +128,7 @@ function createImgCover(product) {
     return {
         borderless: true,
         template: "<div class='product_item'>" +
-            "<img src='" + product.attachmentPath + "' height='300' width='400' style='object-fit: cover'>" +
+            "<img src='" + product.attachmentPath + "' height='360' width='480' style='object-fit: cover'>" +
             product.name +" <br>" +
             // "Дата публикации: #startTime#"+
             "</div>",
@@ -148,7 +148,7 @@ function createProductDetails(product, isBigForm) {
             // type: 'clean',
             // autoheight:true,
             // height: '100%',
-            height: 260,
+            // height: 260,
             cols: [
                 {
                     autowidth: true,
@@ -160,10 +160,10 @@ function createProductDetails(product, isBigForm) {
                     ]
                 },
                 {
-                    gravity: 0.3,
+                    gravity: 0.4,
                     rows: [
                         // iconAndLabel
-                        imgCover
+                        imgCover,
                     ]
                 }
             ]

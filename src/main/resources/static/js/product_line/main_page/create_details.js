@@ -27,6 +27,9 @@ export function createProductIcon(product) {
 
 export function createProductTime(product) {
     return {
+        padding: {
+            bottom: 10,
+        },
         rows: [
             {
                 cols: [
@@ -50,6 +53,9 @@ export function createProductTime(product) {
 
 export function createProductAmountWithDeposit(product) {
     return {
+        padding: {
+            bottom: 10,
+        },
         rows: [
             {
                 cols: [
@@ -72,6 +78,9 @@ export function createProductAmountWithDeposit(product) {
 
 export function createProductAmountWithoutDeposit(product) {
     return {
+        padding: {
+            bottom: 10,
+        },
         rows: [
             {
                 cols: [
@@ -97,6 +106,9 @@ export function createProductAmountWithoutDeposit(product) {
 
 export function createProductTextRateWithDeposit(product) {
     return {
+        padding: {
+            bottom: 10,
+        },
         rows: [
             {
                 cols: [
