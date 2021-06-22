@@ -102,6 +102,18 @@ public class RegProductProvision {
                 this.textRate = textRate;
         }
 
+        @Basic
+        @Column(name = "is_hidden")
+        private Boolean isHidden;
+
+        public Boolean getHidden() {
+                return isHidden;
+        }
+
+        public void setHidden(Boolean hidden) {
+                isHidden = hidden;
+        }
+
         @Override
         public boolean equals(Object o) {
                 if (this == o) return true;
@@ -115,10 +127,12 @@ public class RegProductProvision {
                         Objects.equals(interestRate, that.interestRate) &&
                         Objects.equals(hasKeyRate, that.hasKeyRate) &&
                         Objects.equals(coefKeyRate, that.coefKeyRate) &&
-                        Objects.equals(textRate, that.textRate);        }
+                        Objects.equals(textRate, that.textRate) &&
+                        Objects.equals(isHidden, that.isHidden);
+        }
 
         @Override
         public int hashCode() {
-                return Objects.hash(id, product, provision, minAmount, maxAmount, interestRate, hasKeyRate, coefKeyRate, textRate);
+                return Objects.hash(id, product, provision, minAmount, maxAmount, interestRate, hasKeyRate, coefKeyRate, textRate, isHidden);
         }
 }

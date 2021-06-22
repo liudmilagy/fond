@@ -22,13 +22,15 @@ import javax.persistence.*;
                         "       rpp_w.has_key_rate as has_key_rate_with_deposit,\n" +
                         "       rpp_w.coef_key_rate as coef_key_rate_with_deposit,\n" +
                         "       rpp_w.text_rate as text_rate_with_deposit,\n" +
+                        "       rpp_w.is_hidden as is_hidden_with_deposit,\n" +
                         "       rpp_wo.id as id_without_deposit,\n" +
                         "       rpp_wo.min_amount as min_amount_without_deposit,\n" +
                         "       rpp_wo.max_amount as max_amount_without_deposit,\n" +
                         "       rpp_wo.interest_rate as interest_rate_without_deposit,\n" +
                         "       rpp_wo.has_key_rate as has_key_rate_without_deposit,\n" +
                         "       rpp_wo.coef_key_rate as coef_key_rate_without_deposit,\n" +
-                        "       rpp_wo.text_rate as text_rate_without_deposit\n" +
+                        "       rpp_wo.text_rate as text_rate_without_deposit,\n" +
+                        "       rpp_wo.is_hidden as is_hidden_without_deposit\n" +
                         "FROM cls_product\n" +
                         "LEFT JOIN reg_product_provision rpp_w\n" +
                         "    ON cls_product.id = rpp_w.id_product\n" +
@@ -64,6 +66,8 @@ import javax.persistence.*;
                         @FieldResult(name = "hasKeyRateWithDeposit", column = "has_key_rate_with_deposit"),
                         @FieldResult(name = "coefKeyRateWithDeposit", column = "coef_key_rate_with_deposit"),
                         @FieldResult(name = "textRateWithDeposit", column = "text_rate_with_deposit"),
+                        @FieldResult(name = "isHiddenWithDeposit", column = "is_hidden_with_deposit"),
+
 
 
                         @FieldResult(name = "idWithoutDeposit", column = "id_without_deposit"),
@@ -73,6 +77,7 @@ import javax.persistence.*;
                         @FieldResult(name = "hasKeyRateWithoutDeposit", column = "has_key_rate_without_deposit"),
                         @FieldResult(name = "coefKeyRateWithoutDeposit", column = "coef_key_rate_without_deposit"),
                         @FieldResult(name = "textRateWithoutDeposit", column = "text_rate_without_deposit"),
+                        @FieldResult(name = "isHiddenWithoutDeposit", column = "is_hidden_without_deposit"),
 
                 }
         )
@@ -99,6 +104,7 @@ public class ClsProductEntity {
     private Boolean         hasKeyRateWithDeposit;
     private Float           coefKeyRateWithDeposit;
     private String          textRateWithDeposit;
+    private Boolean         isHiddenWithDeposit;
 
 
     private Long            idWithoutDeposit;
@@ -108,6 +114,8 @@ public class ClsProductEntity {
     private Boolean         hasKeyRateWithoutDeposit;
     private Float           coefKeyRateWithoutDeposit;
     private String          textRateWithoutDeposit;
+    private Boolean         isHiddenWithoutDeposit;
+
 
     public Long getId() {
         return id;
@@ -291,6 +299,22 @@ public class ClsProductEntity {
 
     public void setAttachmentPath(String attachmentPath) {
         this.attachmentPath = attachmentPath;
+    }
+
+    public Boolean getHiddenWithDeposit() {
+        return isHiddenWithDeposit;
+    }
+
+    public void setHiddenWithDeposit(Boolean hiddenWithDeposit) {
+        isHiddenWithDeposit = hiddenWithDeposit;
+    }
+
+    public Boolean getHiddenWithoutDeposit() {
+        return isHiddenWithoutDeposit;
+    }
+
+    public void setHiddenWithoutDeposit(Boolean hiddenWithoutDeposit) {
+        isHiddenWithoutDeposit = hiddenWithoutDeposit;
     }
 }
 

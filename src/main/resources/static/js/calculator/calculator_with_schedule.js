@@ -107,6 +107,7 @@ export function calculator_with_schedule() {
                                     id: 'calculateBtnId',
                                     value: 'Рассчитать',
                                     maxWidth: 250,
+                                    css: 'fond',
                                     click: () => calculate()
                                 },
                                 {},

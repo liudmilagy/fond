@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.gly.fond.model.ClsProduct;
 import ru.gly.fond.model.ClsProductEntity;
 import ru.gly.fond.dto.ProductLineDto;
+import ru.gly.fond.model.GeneralTable;
 import ru.gly.fond.model.RegProductFile;
 
 import javax.servlet.http.HttpSession;
@@ -64,5 +65,16 @@ public class ClsProductController extends SuperController {
     @GetMapping("/product_list/product/cls_product")
     public @ResponseBody ClsProduct getProduct(@RequestParam("productId") Long productId) {
         return clsProductRepo.findById(productId).orElse(null);
+    }
+
+    @GetMapping("/get_key_rate")
+    public @ResponseBody Float getKeyRate() {
+        GeneralTable generalTable = generalTableRepo.findByCode("KEY_RATE");
+        if (generalTable != null) {
+            return generalTable.getFloatValue();
+        }
+        else {
+            return Float.valueOf("0");
+        }
     }
 }

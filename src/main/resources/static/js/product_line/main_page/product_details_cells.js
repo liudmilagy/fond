@@ -68,6 +68,7 @@ function createAmountRows(product, isBigForm) {
         return  {
             cols: [
                 {
+                    hidden: product.hiddenWithoutDeposit,
                     gravity: 0.5,
                     rows: [
                         amountWithoutDeposit,
@@ -75,6 +76,7 @@ function createAmountRows(product, isBigForm) {
                     ]
                 },
                 {
+                    hidden: product.hiddenWithDeposit,
                     gravity: 0.5,
                     rows: [
                         amountWithDeposit,
@@ -88,14 +90,16 @@ function createAmountRows(product, isBigForm) {
             type:"line",
             rows: [
                 {
+                    hidden: product.hiddenWithoutDeposit,
                     gravity: 0.5,
                     rows: [
                         amountWithoutDeposit,
                         textRateWithoutDeposit
                     ]
                 },
-                { template:"", borderless:true, height: 13},
+                { template:"", borderless:true, height: 13, hidden: product.hiddenWithDeposit & product.hiddenWithoutDeposit},
                 {
+                    hidden: product.hiddenWithDeposit,
                     gravity: 0.5,
                     rows: [
                         amountWithDeposit,

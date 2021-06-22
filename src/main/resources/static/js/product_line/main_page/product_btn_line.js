@@ -1,4 +1,4 @@
-import {setCalculatorValues} from "../../calculator/calculator.js";
+import {setDefaultCalculatorValues} from "../../calculator/calculator.js";
 import {main_body_width, collapsedSideBarWidth} from "../../general.js";
 
 function createProductBtn(product) {
@@ -10,7 +10,7 @@ function createProductBtn(product) {
         value: product.name,
         click: () => {
             $$('productCell' + product.id).show();
-            setCalculatorValues(product);
+            setDefaultCalculatorValues(product);
         }
     }
 }
