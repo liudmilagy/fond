@@ -14,10 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -60,7 +58,10 @@ public class AppointmentContoller extends SuperController{
 
         if (parsedInLD.compareTo(currentLocalDate) < 0) {
             return null;
-        } else {
+        } else if (ChronoUnit.DAYS.between(currentLocalDate, parsedInLD) > 14 ) {
+            return null;
+        }
+        else {
             java.sql.Date date = new java.sql.Date(parsed.getTime());
             List<RegTimeTypeAppointment> freeRttas = regTimeTypeAppointmentRepo.findFreeTimes(idTypeAppointment, date);
 
