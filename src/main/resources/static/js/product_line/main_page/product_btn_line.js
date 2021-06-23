@@ -2,17 +2,30 @@ import {setCalculatorValues} from "../../calculator/calculator.js";
 import {main_body_width, collapsedSideBarWidth} from "../../general.js";
 
 function createProductBtn(product) {
-    return {
-        id: 'productBtn' + product.id,
-        view: 'button',
-        autowidth: true,
-        css: 'fond',
-        value: product.name,
-        click: () => {
-            $$('productCell' + product.id).show();
-            setCalculatorValues(product);
+    if (product.notActive) {
+        return {
+            id: 'productBtn' + product.id,
+            view: 'button',
+            autowidth: true,
+            css: 'gray_fond',
+            value: product.name,
+            click: () => {
+                $$('productCell' + product.id).show();
+                setCalculatorValues(product);
+            }
         }
-    }
+    } else
+        return {
+            id: 'productBtn' + product.id,
+            view: 'button',
+            autowidth: true,
+            css: 'fond',
+            value: product.name,
+            click: () => {
+                $$('productCell' + product.id).show();
+                setCalculatorValues(product);
+            }
+        }
 }
 
 export function createProductBtnLine(data) {

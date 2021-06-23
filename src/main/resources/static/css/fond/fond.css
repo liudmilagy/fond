@@ -12,6 +12,8 @@
     --text_color: #385a64;
     --btn_color: #1a2e35;
     --light_gray_color: #d5d5d5;
+    --gray1: #727272;
+    --gray2: #c7c7c7;
 
     --color1: #f9525c;
     --color2: #d83e48;
@@ -44,6 +46,20 @@
 
 .fond .webix_button:focus{
     background-color: var(--focus_color);
+    color: #ffffff;
+}
+
+.gray_fond .webix_button{
+    border: 1px solid var(--gray1);
+    border-radius: 10px;
+    background-color: #fff;
+    color: var(--text_color);
+    /*font-family:Montserrat, serif;*/
+    /*font-family: 'PT Sans', Tahoma;*/
+}
+
+.gray_fond .webix_button:focus{
+    background-color: var(--gray2);
     color: #ffffff;
 }
 
