@@ -67,26 +67,41 @@ const address = {
     borderless: true,
 }
 
-const appointment_button = {
-    view: 'button',
-    autowidth: true,
-    css: 'contact_button',
-    value: 'Записаться',
-    click: () =>  window.location.href = "/appointment"
+function appointment_button(isBigForm) {
+    return {
+        view: 'button',
+        autowidth: true,
+        css: 'contact_button',
+        align: (isBigForm) ? 'left' : 'center',
+        value: 'Записаться',
+        click: () => window.location.href = "/appointment"
+    }
 }
 
-export const footer_contacts = {
-    css: 'contact_form',
-    padding: 20,
-    // rows: [
-    //     {
+export function footer_contacts(isBigForm) {
+    if (isBigForm) {
+        return {
+            css: 'contact_form',
+            padding: 20,
             cols: [
                 phone,
                 mail,
                 address,
-                appointment_button,
-                { gravity: 0.1},
+                appointment_button(isBigForm),
+                {gravity: 0.1},
             ]
-    //     },
-    // ]
+        }
+    } else {
+        return {
+            css: 'contact_form',
+            margin: 20,
+            rows: [
+                phone,
+                mail,
+                address,
+                appointment_button(isBigForm),
+                {gravity: 0.1},
+            ]
+        }
+    }
 }

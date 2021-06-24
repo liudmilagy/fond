@@ -71,13 +71,13 @@ function bigMainPage() {
                         rows: [
                             checkYourself(true),
                             {},
-                            partners(),
+                            partners(true),
                             {},
-                            news(),
+                            news(true),
                             {},
                             map(),
                             {},
-                            footer_contacts
+                            footer_contacts(true)
                         ]
                     },
                     // footer()
@@ -125,14 +125,14 @@ function smallMainPage() {
                     {},
                     checkYourself(false),
                     {},
-                    partners(),
+                    partners(false),
                     {},
-                    news(),
+                    news(false),
                     {},
                     map(),
                     // {},
                     // footer()
-                    footer_contacts,
+                    footer_contacts(false),
                 ]
             }
         }, $$('content'));

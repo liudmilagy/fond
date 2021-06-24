@@ -97,7 +97,7 @@ function createAmountRows(product, isBigForm) {
                         textRateWithoutDeposit
                     ]
                 },
-                { template:"", borderless:true, height: 13},
+                { hidden: product.hiddenWithDeposit, template:"", borderless:true, height: 13},
                 {
                     hidden: product.hiddenWithDeposit,
                     gravity: 0.5,

@@ -176,6 +176,7 @@ export function calculator(data) {
     }
 
     var link_to_schedule = {
+        autoheight: true,
         template: '<div class="schedule_link">Перейти к графику платежей</div>',
         borderless: true,
         align: 'left',
@@ -213,6 +214,8 @@ export function calculator(data) {
     }
 
     var rightSideCalculator = {
+        autoheight: true,
+        margin: 20,
         rows: [
             rate,
             {},
@@ -242,7 +245,7 @@ export function calculator(data) {
                     borderless: true,
                     // type: 'space',
                     // css: 'fond_bg2',
-                    margin: 30,
+                    // margin: 30,
                     rows: [
                         leftSideCalculator,
                         rightSideCalculator
