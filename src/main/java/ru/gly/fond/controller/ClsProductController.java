@@ -41,7 +41,7 @@ public class ClsProductController extends SuperController {
     public @ResponseBody List<RegProductFile> getRegProductFiles(@PathVariable("id_product") Long productId) {
         if (productId != -1) {
             ClsProduct product = clsProductRepo.findById(productId).orElse(null);
-            List<RegProductFile> list = regProductFileRepo.findRegProductFilesByProductAndIsDeleted(product, false).orElse(null);
+            List<RegProductFile> list = regProductFileRepo.findRegProductFilesByProductAndIsDeletedAndIsHidden(product, false, false).orElse(null);
             return list;
         } else
             return null;

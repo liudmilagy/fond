@@ -16,6 +16,8 @@ import java.util.Set;
 @Repository
 public interface RegProductFileRepo extends JpaRepository<RegProductFile, Long> {
     Optional<List<RegProductFile>> findRegProductFilesByProductAndIsDeleted(ClsProduct product, Boolean deleted);
+    Optional<List<RegProductFile>> findRegProductFilesByProductAndIsDeletedAndIsHidden(ClsProduct product, Boolean deleted, Boolean hidden);
+
 
     @Modifying
     @Transactional

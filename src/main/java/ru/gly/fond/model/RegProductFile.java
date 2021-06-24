@@ -29,6 +29,7 @@ public class RegProductFile {
     private String fileExtension;
     private String hash;
     private Long fileSize;
+    private Boolean isHidden;
 
 
     public Long getId() {return id;}
@@ -127,25 +128,24 @@ public class RegProductFile {
         this.fileSize = fileSize;
     }
 
+    public Boolean getHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(Boolean hidden) {
+        isHidden = hidden;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RegProductFile that = (RegProductFile) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(isDeleted, that.isDeleted) &&
-                Objects.equals(timeCreate, that.timeCreate) &&
-                Objects.equals(attachmentPath, that.attachmentPath) &&
-                Objects.equals(fileName, that.fileName) &&
-                Objects.equals(originalFileName, that.originalFileName) &&
-                Objects.equals(fileExtension, that.fileExtension) &&
-                Objects.equals(hash, that.hash) &&
-                Objects.equals(fileSize, that.fileSize) &&
-                Objects.equals(product, that.product);
+        return Objects.equals(id, that.id) && Objects.equals(isDeleted, that.isDeleted) && Objects.equals(timeCreate, that.timeCreate) && Objects.equals(attachmentPath, that.attachmentPath) && Objects.equals(fileName, that.fileName) && Objects.equals(originalFileName, that.originalFileName) && Objects.equals(fileExtension, that.fileExtension) && Objects.equals(hash, that.hash) && Objects.equals(fileSize, that.fileSize) && Objects.equals(isHidden, that.isHidden) && Objects.equals(product, that.product);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, isDeleted, timeCreate, attachmentPath, fileName, originalFileName, fileExtension, hash, fileSize, product);
+        return Objects.hash(id, isDeleted, timeCreate, attachmentPath, fileName, originalFileName, fileExtension, hash, fileSize, isHidden, product);
     }
 }
