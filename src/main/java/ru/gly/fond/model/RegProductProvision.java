@@ -102,23 +102,29 @@ public class RegProductProvision {
                 this.textRate = textRate;
         }
 
+        @Basic
+        @Column(name = "is_hidden")
+        private String isHidden;
+
+        public String getIsHidden() {
+                return isHidden;
+        }
+
+        public void setIsHidden(String isHidden) {
+                this.isHidden = isHidden;
+        }
+
+
         @Override
         public boolean equals(Object o) {
                 if (this == o) return true;
                 if (o == null || getClass() != o.getClass()) return false;
                 RegProductProvision that = (RegProductProvision) o;
-                return Objects.equals(id, that.id) &&
-                        Objects.equals(product, that.product) &&
-                        Objects.equals(provision, that.provision) &&
-                        Objects.equals(minAmount, that.minAmount) &&
-                        Objects.equals(maxAmount, that.maxAmount) &&
-                        Objects.equals(interestRate, that.interestRate) &&
-                        Objects.equals(hasKeyRate, that.hasKeyRate) &&
-                        Objects.equals(coefKeyRate, that.coefKeyRate) &&
-                        Objects.equals(textRate, that.textRate);        }
+                return Objects.equals(id, that.id) && Objects.equals(product, that.product) && Objects.equals(provision, that.provision) && Objects.equals(minAmount, that.minAmount) && Objects.equals(maxAmount, that.maxAmount) && Objects.equals(interestRate, that.interestRate) && Objects.equals(hasKeyRate, that.hasKeyRate) && Objects.equals(coefKeyRate, that.coefKeyRate) && Objects.equals(textRate, that.textRate) && Objects.equals(isHidden, that.isHidden);
+        }
 
         @Override
         public int hashCode() {
-                return Objects.hash(id, product, provision, minAmount, maxAmount, interestRate, hasKeyRate, coefKeyRate, textRate);
+                return Objects.hash(id, product, provision, minAmount, maxAmount, interestRate, hasKeyRate, coefKeyRate, textRate, isHidden);
         }
 }

@@ -3,12 +3,18 @@ import {collapsedSideBarWidth} from "../general.js";
 import {calculator_with_schedule, calculate} from "./calculator_with_schedule.js";
 
 export function calculator(data) {
+    var productMap = data.reduce((hashMap, obj) => {hashMap[obj.id] = obj; return hashMap}, {});
 
-    // var xhr = webix.ajax().sync().get('product_list_for_calculator');
-    // var data = JSON.parse(xhr.responseText);
+    var xhr = webix.ajax().sync().get('get_key_rate');
+    var keyRate = JSON.parse(xhr.responseText);
+    var defaultProgram = data[0];
+    var defaultWithDeposit = !data[0].hiddenWithDeposit
+    var disabledWithDeposit = data[0].hiddenWithDeposit || data[0].hiddenWithoutDeposit
+    var defaultMinAmount = (defaultWithDeposit) ? data[0].minAmountWithDeposit :data[0].minAmountWithoutDeposit
+    var defaultMaxAmount = (defaultWithDeposit) ? data[0].maxAmountWithDeposit :data[0].maxAmountWithoutDeposit
+    var defaultLimitation = data[0].limitation;
+    var defaultRate = getRate(defaultProgram, defaultWithDeposit, keyRate);
 
-    var key_rate = 4.5; // webix.ajax().sync().get();
-    var rate = key_rate;
 
     var programRichselect = {
         view: 'richselect',
@@ -17,22 +23,26 @@ export function calculator(data) {
         labelPosition: 'top',
         name: 'programRichselect',
         options: data,
-        value: data[0],
+        value: defaultProgram,
         css: 'fond',
         bottomPadding: 10,
         on: {
             onChange: () => {
-                setCalculatorResultValues(data);
+                var product = productMap[$$('programRichselectId').getValue()];
+                setCalculatorValues(product);
             }
         },
     }
 
     var depositRadio = {
-        view: "switch", name: 'deposit', id: 'depositId', onLabel: "С залогом", offLabel:"Без залога", value: 0,
+        view: "switch", name: 'deposit', id: 'depositId', onLabel: "С залогом", offLabel:"Без залога",
+        value: defaultWithDeposit,
+        disabled: disabledWithDeposit,
         bottomPadding: 10,
         on: {
             onChange: () => {
-                setCalculatorResultValues(data);
+                var product = productMap[$$('programRichselectId').getValue()];
+                setCalculatorValues(product);
             }
         }
     }
@@ -43,10 +53,10 @@ export function calculator(data) {
         id: 'amountSliderId',
         label: 'Размер займа',
         labelPosition: 'top',
-        value: data[0].minAmountWithDeposit,
+        value: defaultMinAmount,
         step: 10000,
-        min: data[0].minAmountWithDeposit,
-        max: data[0].maxAmountWithDeposit,
+        min: defaultMinAmount,
+        max: defaultMaxAmount,
         bottomPadding: 10,
         title:
             (obj) => {
@@ -55,15 +65,12 @@ export function calculator(data) {
         css: 'calculator_result',
         on:{
             onChange:function(){
-                setCalculatorResultValues(data);
-                // this.define("title", "Final value " + this.getValue());
-                // this.refresh();
-
+                var product = productMap[$$('programRichselectId').getValue()];
+                setCalculatorResultValues(product, keyRate);
             },
             onSliderDrag:function(){
-                setCalculatorResultValues(data);
-                // this.define("title", "Dragging... Currently "+this.getValue());
-                // this.refresh();
+                var product = productMap[$$('programRichselectId').getValue()];
+                setCalculatorResultValues(product, keyRate);
             }
         }
     }
@@ -74,25 +81,22 @@ export function calculator(data) {
         id: 'timeSliderId',
         label: 'Срок займа',
         labelPosition: 'top',
-        value: '12',
+        value: '6',
         step: 1,
         min: 6,
-        max: data[0].limitation,
+        max: defaultLimitation,
         name: 'slider2',
         title: webix.template("#value# мес."),
         css: 'calculator_result',
         bottomPadding: 10,
         on:{
             onChange:function(){
-                setCalculatorResultValues(data);
-                // this.define("title", "Final value " + this.getValue());
-                // this.refresh();
-
+                var product = productMap[$$('programRichselectId').getValue()];
+                setCalculatorResultValues(product, keyRate);
             },
             onSliderDrag:function(){
-                setCalculatorResultValues(data);
-                // this.define("title", "Dragging... Currently "+this.getValue());
-                // this.refresh();
+                var product = productMap[$$('programRichselectId').getValue()];
+                setCalculatorResultValues(product, keyRate);
             }
         }
     }
@@ -101,8 +105,6 @@ export function calculator(data) {
         name: 'rate',
         cols: [
             {
-                // view: 'label',
-                // label: 'Процентная ставка (%)',
                 template: 'Процентная ставка, %',
                 autoheight: true,
                 borderless: true,
@@ -113,10 +115,7 @@ export function calculator(data) {
             {
                 view: 'label',
                 id: 'rateLabelId',
-                // label: getRate(data[0].interestRateWithDeposit, data[0].hasKeyRateWithDeposit,
-                //                 data[0].coefKeyRateWithDeposit, key_rate),
-                label: getRate(data, data[0].id, true),
-                // template: 'N %',
+                label: defaultRate,
                 autoheight: true,
                 borderless: true,
                 align: 'right',
@@ -126,7 +125,7 @@ export function calculator(data) {
             {
                 view: 'text',
                 id: 'rateValueId',
-                value: getRate(data, data[0].id, true),
+                value: defaultRate,
                 hidden: true,
             }
         ]
@@ -135,8 +134,6 @@ export function calculator(data) {
     var monthlyPayment = {
         cols: [
             {
-                // view: 'label',
-                // label: 'Ежемесячный платёж, руб.',
                 template: 'Ежемесячный платёж, руб.',
                 autoheight: true,
                 borderless: true,
@@ -147,10 +144,7 @@ export function calculator(data) {
             {
                 view: 'label',
                 id: 'monthlyPaymentId',
-                label: getMonthlyPayment(getRate(data, data[0].id, true),
-                                        data[0].minAmountWithDeposit, data[0].limitation),
-                // label: 0,
-                // template: '0 руб.',
+                label: getMonthlyPayment(defaultRate, defaultMinAmount, defaultLimitation),
                 autoheight: true,
                 borderless: true,
                 align: 'right',
@@ -162,8 +156,6 @@ export function calculator(data) {
     var overpayment = {
         cols: [
             {
-                // view: 'label',
-                // label: 'Переплата',
                 template: 'Переплата',
                 autoheight: true,
                 borderless: true,
@@ -174,9 +166,7 @@ export function calculator(data) {
             {
                 id: 'overPaymentId',
                 view: 'label',
-                label: getOverPayment(getRate(data, data[0].id, true),
-                                     data[0].minAmountWithDeposit, data[0].limitation),
-                // template: '0 руб.',
+                label: getOverPayment(defaultRate, defaultMinAmount, defaultLimitation),
                 autoheight: true,
                 borderless: true,
                 align: 'right',
@@ -212,36 +202,12 @@ export function calculator(data) {
         }
     }
 
-    // var fullPayment = {
-    //     cols: [
-    //         {
-    //             // view: 'label',
-    //             // label: 'Общая выплата',
-    //             template: 'Общая выплата',
-    //             autoheight: true,
-    //             borderless: true,
-    //             align: 'left',
-    //             css: 'calculator_result',
-    //         },
-    //         {   gravity: 0.1},
-    //         {
-    //             // view: 'label',
-    //             // label: '610 000 руб.',
-    //             template: '610 000 руб.',
-    //             autoheight: true,
-    //             borderless: true,
-    //             align: 'right',
-    //             css: 'calculator_result',
-    //         },
-    //     ]
-    // }
 
     var leftSideCalculator =  {
         rows: [
             programRichselect,
             depositRadio,
             amountSlider,
-            // amountAxis,
             timeSlider,
         ]
     }
@@ -255,7 +221,6 @@ export function calculator(data) {
             overpayment,
             {},
             link_to_schedule
-            // fullPayment
         ]
     }
 
@@ -310,45 +275,27 @@ export function calculator(data) {
     }
     }
 
-function getRate(data, productId, withDeposit) {
+function getRate(product, withDeposit, keyRate) {
     var rate;
 
-    data.forEach(product => {
-        if (product.id == productId) {
-            if (withDeposit) {
-                if (product.interestRateWithDeposit) {
-                    rate = product.interestRateWithDeposit;
-                } else {
-                    rate = product.coefKeyRateWithDeposit * 5;
-                }
-            } else {
-                if (product.interestRateWithoutDeposit) {
-                    rate = product.interestRateWithoutDeposit;
-                } else {
-                    rate = product.coefKeyRateWithoutDeposit * 5;
-                }
-
-            }
-        }
-    })
-
-    return rate;
-}
-
-function getRate0(interestRate, hasKeyRate, coefKeyRate, keyRate) {
-    var rate = 0;
-    if (hasKeyRate) {
-        if (coefKeyRate != null) {
-            rate = coefKeyRate*keyRate;
+    if (withDeposit) {
+        if (product.hasKeyRateWithDeposit) {
+            rate = product.coefKeyRateWithDeposit * keyRate;
         } else {
-            rate = keyRate;
+            rate = product.interestRateWithDeposit;
         }
     } else {
-        rate = interestRate;
+        if (product.hasKeyRateWithoutDeposit) {
+            rate = product.coefKeyRateWithoutDeposit * keyRate;
+        } else {
+            rate = product.interestRateWithoutDeposit;
+        }
+
     }
 
     return rate;
 }
+
 
 function getMonthlyPayment(rate, amount, limitation) {
     var r = rate*0.01/12;
@@ -364,8 +311,8 @@ function getOverPayment(rate, amount, limitation) {
 
 }
 
-function setCalculatorResultValues(data) {
-    var rate = getRate(data, $$('programRichselectId').getValue(), $$('depositId').getValue());
+function setCalculatorResultValues(product, keyRate) {
+    var rate = getRate(product, $$('depositId').getValue(), keyRate);
 
     $$('rateLabelId').setValue(rate);
     $$('rateValueId').setValue(rate);
@@ -374,15 +321,64 @@ function setCalculatorResultValues(data) {
     $$('overPaymentId').setValue(getOverPayment(rate, $$('amountSliderId').getValue(), $$('timeSliderId').getValue() ))
 }
 
-export function setCalculatorValues(product) {
+export function clickOnProductButton(product){
     $$('programRichselectId').setValue(product);
-    $$('depositId').setValue(product);
-    $$('amountSliderId').config.min = product.minAmountWithDeposit;
-    $$('amountSliderId').config.max = product.maxAmountWithDeposit;
-    $$('amountSliderId').setValue(product.minAmountWithDeposit);
+    setCalculatorValues(product);
+}
 
+function setCalculatorValues(product) {
+    var newDepositValue = getNewDepositValue(product);
+    $$('depositId').setValue(newDepositValue);
+    if (product.hiddenWithDeposit || product.hiddenWithoutDeposit) {
+        $$('depositId').disable();
+    } else {
+        $$('depositId').enable();
+    }
+    setMinMaxAmountValues(product, newDepositValue);
+    setLimitation(product);
+
+    var xhr = webix.ajax().sync().get('get_key_rate');
+    var keyRate = JSON.parse(xhr.responseText);
+    setCalculatorResultValues(product, keyRate);
+}
+
+function setMinMaxAmountValues(product, depositValue) {
+    var currentValue = $$('amountSliderId').getValue();
+    var minAmount = (depositValue) ? product.minAmountWithDeposit : product.minAmountWithoutDeposit;
+    var maxAmount = (depositValue) ? product.maxAmountWithDeposit : product.maxAmountWithoutDeposit;
+
+    $$('amountSliderId').config.min = minAmount;
+    $$('amountSliderId').config.max = maxAmount;
+    if (currentValue > maxAmount) {
+        $$('amountSliderId').setValue(maxAmount);
+    } else if (currentValue < minAmount)  {
+        $$('amountSliderId').setValue(minAmount);
+    }
+    $$('amountSliderId').refresh();
+}
+
+function setLimitation(product) {
     $$('timeSliderId').config.max = product.limitation;
-    $$('timeSliderId').setValue(product.limitation);
+    var currentValue = $$('timeSliderId').getValue();
+    if (currentValue > product.limitation) {
+        $$('timeSliderId').setValue(product.limitation);
+    }
+    $$('timeSliderId').refresh();
+}
 
-    // $$('rateLabelId').setValue(getRate(product.interestRateWithoutDeposit, product.hasKeyRateWithoutDeposit, product.coefKeyRateWithoutDeposit, 4.5))
+
+function getNewDepositValue(product) {
+    if ($$('depositId').getValue() == 0 || $$('depositId').getValue() == false) {
+        if (product.hiddenWithoutDeposit) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        if (product.hiddenWithDeposit) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

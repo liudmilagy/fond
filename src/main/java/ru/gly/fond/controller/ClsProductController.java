@@ -65,4 +65,9 @@ public class ClsProductController extends SuperController {
     public @ResponseBody ClsProduct getProduct(@RequestParam("productId") Long productId) {
         return clsProductRepo.findById(productId).orElse(null);
     }
+
+    @GetMapping("/get_key_rate")
+    public @ResponseBody Float getKeyRate() {
+        return generalTableRepo.findByCode("KEY_RATE").getFloatValue();
+    }
 }
