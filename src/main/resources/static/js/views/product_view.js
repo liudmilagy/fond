@@ -14,8 +14,8 @@ function bigProductView() {
     var data = JSON.parse(xhr.responseText);
     webix.ui({
         id: 'content',
-        css: 'fond_bg2',
-        type:"space",
+        // css: 'fond_bg2',
+        // type:"space",
         view: 'scrollview',
         scroll: false,
         borderless: true,
@@ -55,8 +55,8 @@ function smallProductView() {
     var data = JSON.parse(xhr.responseText);
     webix.ui({
         id: 'content',
-        css: 'fond_bg2',
-        type:"space",
+        // css: 'fond_bg2',
+        // type:"space",
         view: 'scrollview',
         scroll: false,
         borderless: true,

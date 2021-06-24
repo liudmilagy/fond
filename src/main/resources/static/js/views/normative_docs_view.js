@@ -89,8 +89,8 @@ function smallNormativeForm(width) {
     // var data = JSON.parse(xhr.responseText);
     webix.ui({
         id: 'content',
-        css: 'fond_bg2',
-        type:"space",
+        // css: 'fond_bg2',
+        // type:"space",
         view: 'scrollview',
         scroll: 'xy',
         // scroll: false,
@@ -118,8 +118,8 @@ function bigNormativeForm(width) {
     // var data = JSON.parse(xhr.responseText);
     webix.ui({
         id: 'content',
-        css: 'fond_bg2',
-        type:"space",
+        // css: 'fond_bg2',
+        // type:"space",
         view: 'scrollview',
         scroll: 'xy',
         // scroll: false,

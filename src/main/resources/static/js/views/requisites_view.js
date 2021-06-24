@@ -85,8 +85,8 @@ function bigForm(width) {
     var xhr = webix.ajax().sync().get("/requisites_info");
     webix.ui({
         id: 'content',
-        css: 'fond_bg2',
-        type:"space",
+        // css: 'fond_bg2',
+        // type:"space",
         view: 'scrollview',
         width: width,
         scroll: 'xy',
@@ -116,7 +116,7 @@ function smallForm(width) {
     var xhr = webix.ajax().sync().get("/requisites_info");
     webix.ui({
         id: 'content',
-        css: 'fond_bg2',
+        // css: 'fond_bg2',
         // type:"space",
         view: 'scrollview',
         width: width,
