@@ -50,7 +50,7 @@ function partnersDataviewWithPager(isBigForm) {
             ]
         }
     } else {
-        var pagerCnt = document.body.clientWidth/300;
+        var pagerCnt = Math.round(document.body.clientWidth/300);
         return {
             rows: [
                 {
@@ -59,7 +59,7 @@ function partnersDataviewWithPager(isBigForm) {
                         {
                             view: 'pager',
                             id: 'partnerPager',
-                            size: pagerCnt,
+                            size: pagerCnt*2,
                             width: 80,
                             align: 'right',
                             animate:{
@@ -86,7 +86,7 @@ function partnersDataviewWithPager(isBigForm) {
                         template: "<div class = 'partner_item'><img src='#logoPath#' height='300' width='300' style='object-fit: cover'></div>"
                     },
                     scroll: false,
-                    url: 'partners_main',
+                    url: 'partners_main_mobile/'+pagerCnt*2,
                     onClick: {
                         "partner_item": function (ev, id) {
                             var item = $$('partnerDataviewId').getItem(id);
@@ -110,7 +110,6 @@ function partnersDataview(isBigForm) {
 
 export function partners(isBigForm) {
     return {
-
         padding: {
             top: 20,
             bottom: 20
