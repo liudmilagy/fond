@@ -32,6 +32,10 @@ function newsDataview(isBigForm) {
            }
        }
    } else  {
+       var pagerCnt = Math.floor((document.body.clientWidth - collapsedSideBarWidth)/306);
+       if (pagerCnt == 0) {
+           pagerCnt = 1;
+       }
        return {
            view: 'dataview',
            id: 'newsDataviewId',
@@ -41,7 +45,7 @@ function newsDataview(isBigForm) {
            css: {
                'border': 'transparent'
            },
-           xCount: (document.body.clientWidth)/300,
+           xCount: pagerCnt,
            borderless: true,
            // margin: 3,
            // gravity:0,

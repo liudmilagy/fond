@@ -1,8 +1,11 @@
+import {collapsedSideBarWidth} from "../general.js";
+
 export function map() {
     const ya_map = {
         view: 'form',
         id: 'mapId',
         height: 400,
+        width: document.body.clientWidth - collapsedSideBarWidth,
         borderless: true,
         rows: [
             {

@@ -113,7 +113,6 @@ function smallMainPage() {
                 borderless: true,
                 rows: [
                     image_header,
-                    // carousel,
                     {
                         rows: [
                             productLine(calculatorData, false),
@@ -131,7 +130,6 @@ function smallMainPage() {
                     {},
                     map(),
                     // {},
-                    // footer()
                     footer_contacts(false),
                 ]
             }

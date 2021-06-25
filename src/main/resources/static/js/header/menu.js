@@ -21,7 +21,7 @@ var menuData = [
         submenu: [
             {id: 'termsOfProvidingMicroloans',value: "Правила предоставления микрозаймов"},
             {id: 'documents',value: "Документы"},
-            {id: "ProductList", value: "Продуктовая линейка"},
+            {id: "ProductList_", value: "Продуктовая линейка"},
             {id: "Calculator", value: "Калькулятор"},
         ]
     },
@@ -41,26 +41,26 @@ var menuData = [
 
 var sideBarData = [
     {
-        id: 'Main', value: 'Главная',
+        id: 'Main', icon: 'fas fa-home', value: 'Главная',
     },
     {
-        id: "2", icon: 'fas fa-info-circle', value: "О Фонде",
+        id: 'About', icon: 'fas fa-info-circle', value: "О Фонде",
         data: [
-            {id: 'aboutFond', icon: 'fas fa-book-open', value: "Информация о фонде"},
+            {id: 'aboutFond', value: "Информация о фонде"},
             {id: 'antiCorruption', value: 'О противодействии коррупции'},
-            {id: 'normDocs',  icon: 'fas fa-file-contract', value: 'Нормативные документы'},
+            {id: 'normDocs',  value: 'Нормативные документы'},
             {id: 'infoDisclosure', value: 'Раскрытие информации'}
         ]
     },
     {
-        id: "ProductList", icon: 'fas fa-wallet', value: "Продуктовая линейка",
+        id: "ProductList", icon: 'fas fa-briefcase', value: 'Продуктовая линейка',
     },
     {
-        id: "4", value: "Предпринимателям",
+        id: "4", icon: 'fas fa-user-tie', value: "Предпринимателям",
         data: [
             {id: 'termsOfProvidingMicroloans',value: "Правила предоставления микрозаймов"},
             {id: 'documents',value: "Документы"},
-            {id: "ProductList", value: "Продуктовая линейка"},
+            {id: "ProductList_", value: "Продуктовая линейка"},
             {id: "Calculator", value: "Калькулятор"},
         ]
     },
@@ -71,7 +71,7 @@ var sideBarData = [
         id: "News", icon:'fas fa-newspaper', value: "Новости",
     },
     {
-        id: "Requisites", value: "Реквизиты",
+        id: "Requisites", icon:'fas fa-file-alt', value: "Реквизиты",
     },
     {
         id: "Contacts", icon: 'fas fa-address-card', value: "Контакты",
@@ -101,6 +101,10 @@ function onMenuClick(id) {
             break;
         }
         case ('ProductList'): {
+            window.location.href = "/product_list";
+            break;
+        }
+        case ('ProductList_'): {
             window.location.href = "/product_list";
             break;
         }

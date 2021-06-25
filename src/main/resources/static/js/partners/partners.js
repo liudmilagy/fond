@@ -50,7 +50,10 @@ function partnersDataviewWithPager(isBigForm) {
             ]
         }
     } else {
-        var pagerCnt = Math.round(document.body.clientWidth/300);
+        var pagerCnt = Math.floor((document.body.clientWidth - collapsedSideBarWidth)/306);
+        if (pagerCnt == 0) {
+            pagerCnt = 1;
+        }
         return {
             rows: [
                 {
@@ -72,7 +75,7 @@ function partnersDataviewWithPager(isBigForm) {
                 {
                     view: 'dataview',
                     id: 'partnerDataviewId',
-                    width: document.body.clientWidth - collapsedSideBarWidth,
+                    // width: document.body.clientWidth - collapsedSideBarWidth,
                     // resize: true,
                     borderless: true,
                     margin: 3,
