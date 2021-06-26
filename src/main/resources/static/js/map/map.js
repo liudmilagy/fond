@@ -5,7 +5,7 @@ export function map() {
         view: 'form',
         id: 'mapId',
         height: 400,
-        width: document.body.clientWidth - collapsedSideBarWidth,
+        // width: document.body.clientWidth - collapsedSideBarWidth,
         borderless: true,
         rows: [
             {
