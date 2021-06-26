@@ -19,7 +19,7 @@ function createButtonInDetails(product, isBigForm) {
                     id: 'productDocBtn' + product.id,
                     view: 'button',
                     autowidth: true,
-                    css: 'fond_round_2',
+                    css: 'fond_round_1',
                     value: 'Необходимые документы',
                     //click: () => changeContentView(appointment),
                     click: () => {
@@ -45,7 +45,7 @@ function createButtonInDetails(product, isBigForm) {
                     id: 'productDocBtn' + product.id,
                     view: 'button',
                     autowidth: true,
-                    css: 'fond_round_2',
+                    css: 'fond_round_1',
                     value: 'Необходимые документы',
                     //click: () => changeContentView(appointment),
                     click: () => {

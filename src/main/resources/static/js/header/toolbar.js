@@ -4,8 +4,8 @@ const bigHeaderLabel = {
     borderless: true,
     rows: [
         {
-            template: '<div class="header_item"><span style="font-size: x-large; font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b;">Микрокредитная компания</span><br>' +
-                '<span style="font-size: x-large; font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b;">Фонд поддержки малого предпринимательства Республики Бурятия</span></div>',
+            template: '<div class="header_item"><span style="font-size: xx-large; color: #623B2A;">Микрокредитная компания</span><br>' +
+                '<span style="font-size: x-large; color: #623B2A;">Фонд поддержки малого предпринимательства Республики Бурятия</span></div>',
                 // '<span style="font-size: smaller; font-family:Montserrat, serif;">ОГРН 1020300978147, ИНН 0323072429, КПП 032301001</span><br>' +
                 // '<span style="font-size: smaller; font-family:Montserrat, serif;">670000, Республика Бурятия, г. Улан-Удэ,ул. Партизанская 28</span>',
             onClick:{
@@ -21,7 +21,7 @@ const smallHeaderLabel = {
         {
             template: '<div class="header_item">' +
                 // '<span style="font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b;">Микрокредитная компания</span><br>' +
-                '<span style="font-family:Montserrat, serif; font-weight: bolder; color: #6c5b7b; overflow-wrap: normal;">Фонд поддержки малого предпринимательства Республики Бурятия</span></div>',
+                '<span style="font-weight: bolder; color: #623B2A; overflow-wrap: normal;">Фонд поддержки малого предпринимательства Республики Бурятия</span></div>',
             // '<span style="font-size: smaller; font-family:Montserrat, serif;">ОГРН 1020300978147, ИНН 0323072429, КПП 032301001</span><br>' +
             // '<span style="font-size: smaller; font-family:Montserrat, serif;">670000, Республика Бурятия, г. Улан-Удэ,ул. Партизанская 28</span>',
             autoheight: true,

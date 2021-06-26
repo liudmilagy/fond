@@ -5,12 +5,12 @@
     /*--light_focus_color: rgba(246, 114, 128, 0.27);*/
     /*--text_color: #6c5b7b;*/
     /*--btn_color: #355c7d;*/
-    --main_color: #f9525c;
-    --hover_color: #d83e48;
-    --focus_color: #d83e48;
-    --light_focus_color: rgba(246, 114, 128, 0.27);
-    --text_color: #385a64;
-    --btn_color: #1a2e35;
+    --main_color: #c39367;
+    --hover_color: #e04e39;
+    --focus_color: #e04e39;
+    --light_focus_color: #c39367;
+    --text_color: #2C2A29;
+    --btn_color: #623B2A;
     --light_gray_color: #d5d5d5;
     --gray1: #727272;
     --gray2: #c7c7c7;
@@ -22,7 +22,7 @@
 }
 
 .fond .webix_sidebar {
-    background-color: #6c5b7b;
+    background-color: #623B2A;
     color: var(--main_color);
 }
 
@@ -64,10 +64,20 @@
 }
 
 .fond_round_1 .webix_button{
-    border: #6c5b7b;
-    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+    border: var(--main_color);
+    /*box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);*/
     border-radius: 10px;
-    background-color: #6c5b7b;
+    background-color: var(--main_color);
+    color: #ffffff;
+    /*font-family:Montserrat, serif;*/
+    /*font-family: 'PT Sans', Tahoma;*/
+}
+
+.fond_round_1 .webix_button:hover{
+    border: var(--hover_color);
+    /*box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);*/
+    border-radius: 10px;
+    background-color: var(--hover_color);
     color: #ffffff;
     /*font-family:Montserrat, serif;*/
     /*font-family: 'PT Sans', Tahoma;*/
@@ -94,7 +104,7 @@
 }
 
 .check_yourself_form {
-    background-color: var(--hover_color) !important;
+    background-color: var(--main_color) !important;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -108,7 +118,7 @@
     background-color: #ffffff;
     color: var(--text_color);
     font-size: large;
-    font-family:Montserrat, serif;
+    /*font-family:Montserrat, serif;*/
     /*font-family: 'PT Sans', Tahoma;*/
 }
 
@@ -122,17 +132,20 @@
 
 .contact_button .webix_button{
     border-radius: 10px;
-    background-color: #c1000c;
+    background-color: var(--btn_color);
     color: #ffffff;
     font-size: large;
-    font-family:Montserrat, serif;
+    /*font-family:Montserrat, serif;*/
     /*font-family: 'PT Sans', Tahoma;*/
+}
+.contact_button .webix_button:hover{
+    background-color: var(--hover_color);
 }
 
 .webix_menu-x.fond .webix_list_item{
     /*background-color: var(--main_color);*/
     background-color: #ffffff;
-    color: #6c5b7b;
+    color: var(--text_color);
     /*font-weight: bolder;*/
     font-size: larger;
     text-align: center;

@@ -6,14 +6,14 @@ const phone = {
     template:"<div style='display: flex; width: 250px; height: 50px; flex-wrap: wrap;' >" +
         "  <div style='flex: 1; display: flex; flex-direction: column'>" +
         "    <div style='flex: 2; display: flex; justify-content: center; align-items: center;'>" +
-        "       <span class ='left product_icon webix_icon fas fa-phone-alt' style='color: #6c5b7b; font-size: x-large'></span>" +
+        "       <span class ='left product_icon webix_icon fas fa-phone-alt' style='color: #623B2A; font-size: x-large'></span>" +
         "    </div>" +
         "  </div>" +
         "  <div style='flex: 3; display: flex; flex-direction: column'>" +
-        "    <div style='flex: 1; font-weight: bolder; font-size: large; font-family:Montserrat, serif;'>" +
+        "    <div style='flex: 1; font-weight: bolder; font-size: large;'>" +
         "      Телефон:" +
         "    </div>" +
-        "    <div style='flex: 1; font-size: large; font-family:Montserrat, serif;'>" +
+        "    <div style='flex: 1; font-size: large; '>" +
         "      8 (3012) 48-08-08" +
         "    </div>" +
         "  </div>" +
@@ -29,14 +29,14 @@ const mail = {
     template:"<div style='display: flex; width: 250px; height: 50px; flex-wrap: wrap;' >" +
         "  <div style='flex: 1; display: flex; flex-direction: column'>" +
         "    <div style='flex: 2; display: flex; justify-content: center; align-items: center;'>" +
-        "       <span class ='left product_icon webix_icon fas fa-envelope' style='color: #6c5b7b; font-size: x-large'></span>" +
+        "       <span class ='left product_icon webix_icon fas fa-envelope' style='color: #623B2A; font-size: x-large'></span>" +
         "    </div>" +
         "  </div>" +
         "  <div style='flex: 3; display: flex; flex-direction: column'>" +
-        "    <div style='flex: 1; font-weight: bolder; font-size: large; font-family:Montserrat, serif;'>" +
+        "    <div style='flex: 1; font-weight: bolder; font-size: large; '>" +
         "      E-mail:" +
         "    </div>" +
-        "    <div style='flex: 1; font-size: large; font-family:Montserrat, serif;'>" +
+        "    <div style='flex: 1; font-size: large;'>" +
         "      fond03@mail.ru" +
         "    </div>" +
         "  </div>" +
@@ -52,14 +52,14 @@ const address = {
     template:"<div style='display: flex; width: 250px; height: 50px; flex-wrap: wrap;' >" +
         "  <div style='flex: 1; display: flex; flex-direction: column'>" +
         "    <div style='flex: 2; display: flex; justify-content: center; align-items: center;'>" +
-        "       <span class ='left product_icon webix_icon fas fa-map-marker-alt' style='color: #6c5b7b; font-size: x-large'></span>" +
+        "       <span class ='left product_icon webix_icon fas fa-map-marker-alt' style='color: #623B2A; font-size: x-large'></span>" +
         "    </div>" +
         "  </div>" +
         "  <div style='flex: 3; display: flex; flex-direction: column'>" +
-        "    <div style='flex: 1; font-weight: bolder; font-size: large; font-family:Montserrat, serif;'>" +
+        "    <div style='flex: 1; font-weight: bolder; font-size: large;'>" +
         "      Адрес:" +
         "    </div>" +
-        "    <div style='flex: 1; font-size: large; font-family:Montserrat, serif;'>" +
+        "    <div style='flex: 1; font-size: large;'>" +
         "      ул. Партизанская 28" +
         "    </div>" +
         "  </div>" +
