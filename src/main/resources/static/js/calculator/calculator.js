@@ -187,11 +187,15 @@ export function calculator(data) {
                     var rate = $$('rateValueId').getValue();
                     var limitation = $$('timeSliderId').getValue();
                     var amount = $$('amountSliderId').getValue();
+                    var isBigForm = true
+                    if (document.body.clientWidth < main_body_width) {
+                        isBigForm = false;
+                    }
                     // changeContentView(calculator_with_schedule());
-                    var layout = webix.ui({
+                    webix.ui({
                         id: 'content',
                         rows: [
-                            webix.copy(calculator_with_schedule())
+                            webix.copy(calculator_with_schedule(isBigForm))
                         ]
                     }, $$('content'));
                     $$('amountId').setValue(amount);

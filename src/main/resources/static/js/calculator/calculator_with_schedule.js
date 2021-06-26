@@ -42,158 +42,187 @@ export function calculate() {
     }
 }
 
-export function calculator_with_schedule() {
+function calculator_form(label_position) {
     return {
-        view: 'scrollview',
-        scroll: 'xy',
-        body: {
-            cols: [
-                {
-                    width: getOtherWidth(),
-                },
-                {
-                    margin: 20,
-                    padding: 10,
-                    borderless: true,
-                    rows: [
-                        view_header('Калькулятор'),
-                        {
-                            cols: [
-                                {
-                                    rows: [
-                                        {
-                                            view: 'text',
-                                            id: 'amountId',
-                                            maxWidth: 750,
-                                            label: 'Размер займа, руб.',
-                                            labelPosition: 'left',
-                                            labelWidth: 250,
-                                            required: true,
-                                            format: "1 111",
+        rows: [
+            view_header('Калькулятор'),
+            {
+                cols: [
+                    {
+                        rows: [
+                            {
+                                view: 'text',
+                                id: 'amountId',
+                                maxWidth: 750,
+                                label: 'Размер займа, руб.',
+                                labelPosition: label_position,
+                                labelWidth: 250,
+                                required: true,
+                                format: "1 111",
+                            },
+                            {
+                                view: 'text',
+                                id: 'limitationId',
+                                maxWidth: 750,
+                                label: 'Срок, мес.',
+                                labelPosition: label_position,
+                                labelWidth: 250,
+                                required: true,
+                                validate: function (val) {
+                                    return !isNaN(val * 1);
+                                }, attributes: {type: "number"}
+                            },
+                            {
+                                view: 'text',
+                                id: 'rateId',
+                                maxWidth: 750,
+                                label: 'Процентная ставка, %',
+                                labelPosition: label_position,
+                                labelWidth: 250,
+                                required: true,
+                                validate: function (val) {
+                                    return !isNaN(val * 1);
+                                }, attributes: {type: "number"}
+                            },
+                        ]
+                    },
+                    {}
+                ]
+            },
+            {
+                cols: [
+                    {
+                        view: 'button',
+                        id: 'calculateBtnId',
+                        value: 'Рассчитать',
+                        css: 'fond',
+                        maxWidth: 250,
+                        click: () => calculate()
+                    },
+                    {},
+                ]
+            },
+            {
+                view: 'form',
+                id: 'calculatorResultId',
+                hidden: true,
+                padding: 0,
+                rows: [
+                    {
+                        cols: [
+                            {
+                                rows: [
+                                    {
+                                        view: 'text',
+                                        id: 'monthlyPaymentId',
+                                        css: {
+                                            'background-color': 'transparent',
                                         },
-                                        {
-                                            view: 'text',
-                                            id: 'limitationId',
-                                            maxWidth: 750,
-                                            label: 'Срок, мес.',
-                                            labelPosition: 'left',
-                                            labelWidth: 250,
-                                            required: true,
-                                            validate: function (val) {
-                                                return !isNaN(val * 1);
-                                            }, attributes: {type: "number"}
-                                        },
-                                        {
-                                            view: 'text',
-                                            id: 'rateId',
-                                            maxWidth: 750,
-                                            label: 'Процентная ставка, %',
-                                            labelPosition: 'left',
-                                            labelWidth: 250,
-                                            required: true,
-                                            validate: function (val) {
-                                                return !isNaN(val * 1);
-                                            }, attributes: {type: "number"}
-                                        },
-                                    ]
-                                },
-                                {}
-                            ]
-                        },
-                        {
-                            cols: [
-                                {
-                                    view: 'button',
-                                    id: 'calculateBtnId',
-                                    value: 'Рассчитать',
-                                    maxWidth: 250,
-                                    click: () => calculate()
-                                },
-                                {},
-                            ]
-                        },
-                        {
-                            view: 'form',
-                            id: 'calculatorResultId',
-                            hidden: true,
-                            rows: [
-                                {
-                                    cols: [
-                                        {
-                                            rows: [
-                                                {
-                                                    view: 'text',
-                                                    id: 'monthlyPaymentId',
-                                                    css: {
-                                                        'background-color': 'transparent',
-                                                    },
-                                                    label: 'Ежемесячный платеж, руб.',
-                                                    labelPosition: 'top',
-                                                    readonly: true,
-                                                },
-                                                {
-                                                    view: 'text',
-                                                    id: 'overPaymentId',
-                                                    label: 'Переплата по процентам, руб.',
-                                                    labelPosition: 'top',
-                                                    readonly: true,
-                                                },
-                                            ]
-                                        },
-                                        {}
-                                    ]
-                                },
-                                {
-                                    view: 'label',
-                                    label: 'График платежей'
-                                },
-                                {
-                                    view: 'datatable',
-                                    id: 'calculatorDatatableId',
-                                    autoheight: true,
-                                    select: 'row',
-                                    multiselect: false,
-                                    columns: [
-                                        {
-                                            id: 'index',
-                                            header: '№ месяца',
-                                            fillspace: 1,
-                                            adjust: true,
-                                        },
-                                        {
-                                            id: 'monthlyPayment',
-                                            header: 'Сумма платежа, руб',
-                                            fillspace: 3,
-                                            adjust: true,
-                                        },
-                                        {
-                                            id: 'mainDebt',
-                                            header: 'Выплата основного долга, руб',
-                                            fillspace: 3,
-                                            adjust: true,
-                                        },
-                                        {
-                                            id: 'percentDebt',
-                                            header: 'Выплата процентов, руб',
-                                            fillspace: 3,
-                                            adjust: true,
-                                        },
-                                        {
-                                            id: 'balanceOwed',
-                                            header: 'Остаток долга, руб',
-                                            fillspace: 4,
-                                            adjust: true,
-                                        },
-                                    ]
-                                }
-                            ]
-                        },
-                    ]
-                },
-                {
-                    width: getOtherWidth(),
-                },
-            ]
+                                        label: 'Ежемесячный платеж, руб.',
+                                        labelPosition: 'top',
+                                        readonly: true,
+                                    },
+                                    {
+                                        view: 'text',
+                                        id: 'overPaymentId',
+                                        label: 'Переплата по процентам, руб.',
+                                        labelPosition: 'top',
+                                        readonly: true,
+                                    },
+                                ]
+                            },
+                            {}
+                        ]
+                    },
+                    {
+                        view: 'label',
+                        label: 'График платежей'
+                    },
+                    {
+                        view: 'datatable',
+                        id: 'calculatorDatatableId',
+                        autoheight: true,
+                        select: 'row',
+                        multiselect: false,
+                        columns: [
+                            {
+                                id: 'index',
+                                header: '№ месяца',
+                                fillspace: 1,
+                                adjust: true,
+                            },
+                            {
+                                id: 'monthlyPayment',
+                                header: 'Сумма платежа, руб',
+                                fillspace: 3,
+                                adjust: true,
+                            },
+                            {
+                                id: 'mainDebt',
+                                header: 'Выплата основного долга, руб',
+                                fillspace: 3,
+                                adjust: true,
+                            },
+                            {
+                                id: 'percentDebt',
+                                header: 'Выплата процентов, руб',
+                                fillspace: 3,
+                                adjust: true,
+                            },
+                            {
+                                id: 'balanceOwed',
+                                header: 'Остаток долга, руб',
+                                fillspace: 4,
+                                adjust: true,
+                            },
+                        ]
+                    }
+                ]
+            },
+        ]
+    }
+}
+
+export function calculator_with_schedule(isBigForm) {
+    if (isBigForm) {
+        return {
+            view: 'scrollview',
+            scroll: 'xy',
+            body: {
+                cols: [
+                    {
+                        width: getOtherWidth(),
+                    },
+                    {
+                        margin: 20,
+                        padding: 10,
+                        borderless: true,
+                        rows: [
+                            calculator_form('left'),
+                        ]
+                    },
+                    {
+                        width: getOtherWidth(),
+                    },
+                ]
+            }
+        }
+    } else {
+        return {
+            view: 'scrollview',
+            scroll: 'xy',
+            body: {
+                rows: [
+                    {
+                        // margin: 20,
+                        // padding: 10,
+                        borderless: true,
+                        rows: [
+                            calculator_form('top'),
+                        ]
+                    },
+                ]
+            }
         }
     }
 }
