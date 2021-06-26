@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gly.fond.dto.NewsDto;
+import ru.gly.fond.dto.PartnerDto;
 import ru.gly.fond.model.ClsNews;
 import ru.gly.fond.model.ClsProduct;
 import ru.gly.fond.model.RegNewsFile;
@@ -29,7 +30,7 @@ public class NewsController extends SuperController {
     }
 
     @GetMapping("/news_list/news")
-    public String viewNews(@RequestParam(value = "hash_id") String hashId, Model model, HttpSession session) {
+    public String viewNews(@RequestParam(value = "id") String hashId, Model model, HttpSession session) {
         model.addAttribute("application_name", applicationConstants.getApplicationName());
         model.addAttribute("hash_id", hashId);
         return "news_view";
@@ -39,6 +40,23 @@ public class NewsController extends SuperController {
     public @ResponseBody List<NewsDto> get4LastNews() {
         List<NewsDto> list = newsService.get4LastNews();
         return list;
+    }
+
+    @GetMapping("/news_main_mobile/{pager_cnt}")
+    public @ResponseBody Map<String, Object> getMobileNews(@PathVariable(value = "pager_cnt", required = false) Integer pagerCnt,
+                                                            @RequestParam(value = "start", required = false) Integer start,
+                                                            @RequestParam(value = "count", required = false) Integer count) {
+        int page = start == null ? 0 : start / pagerCnt;
+        int size = count == null ? pagerCnt : pagerCnt;
+
+        Page<NewsDto> templates = newsService.findNews(page, size);
+
+        Map<String, Object> result = new HashMap<>();
+
+        result.put("data", templates.getContent());
+        result.put("pos", (long) page * size);
+        result.put("total_count", templates.getTotalElements());
+        return result;
     }
 
     @GetMapping("/news_list_pager")

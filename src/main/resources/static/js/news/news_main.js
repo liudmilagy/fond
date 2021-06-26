@@ -1,6 +1,6 @@
 import {main_body_width, main_padding, view_header,collapsedSideBarWidth} from "../general.js";
 
-function newsDataview(isBigForm) {
+function newsDataview(isBigForm, pagerCnt) {
    if (isBigForm) {
        return {
            view: 'dataview',
@@ -23,7 +23,8 @@ function newsDataview(isBigForm) {
                    "#heading#</div>",
            },
            scroll: false,
-           url: 'news_main',
+           pager: 'newsPager',
+           url: 'news_main_mobile/'+pagerCnt,
            onClick:{
                "news_item":function(ev, id){
                    var item = $$('newsDataviewId').getItem(id);
@@ -32,10 +33,7 @@ function newsDataview(isBigForm) {
            }
        }
    } else  {
-       var pagerCnt = Math.floor((document.body.clientWidth - collapsedSideBarWidth)/306);
-       if (pagerCnt == 0) {
-           pagerCnt = 1;
-       }
+
        return {
            view: 'dataview',
            id: 'newsDataviewId',
@@ -58,7 +56,8 @@ function newsDataview(isBigForm) {
                    "#heading#</div>",
            },
            scroll: false,
-           url: 'news_main',
+           pager: 'newsPager',
+           url: 'news_main_mobile/'+pagerCnt,
            onClick:{
                "news_item":function(ev, id){
                    var item = $$('newsDataviewId').getItem(id);
@@ -71,6 +70,13 @@ function newsDataview(isBigForm) {
 }
 
 export function news(isBigForm) {
+    var pagerCnt = 4;
+    if (!isBigForm) {
+        pagerCnt = Math.floor((document.body.clientWidth - collapsedSideBarWidth)/300);
+        if (pagerCnt == 0) {
+            pagerCnt = 1;
+        }
+    }
     return {
         // view: 'form',
         // width: main_body_width,
@@ -81,7 +87,23 @@ export function news(isBigForm) {
         },
         rows: [
             view_header('Новости'),
-            newsDataview(isBigForm),
+            {
+                cols: [
+                    {},
+                    {
+                        view: 'pager',
+                        id: 'newsPager',
+                        size: pagerCnt,
+                        width: 80,
+                        align: 'right',
+                        animate:{
+                            type:"slide"
+                        },
+                        template: '{common.prev()}{common.next()}'
+                    },
+                ]
+            },
+            newsDataview(isBigForm, pagerCnt),
             { gravity:0.001 },
         ]
     }
