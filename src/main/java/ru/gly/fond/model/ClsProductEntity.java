@@ -14,6 +14,7 @@ import javax.persistence.*;
                 "SELECT cls_product.id as id, cls_product.name as name, cls_product.name as value,\n" +
                         "       cls_product.limitation as limitation, cls_product.is_hidden as is_hidden, cls_product.html_text as html_text, \n" +
                         "       cls_product.not_active as not_active, cls_product.icon_name as icon_name,\n" +
+                        "       cls_product.weight as weight,\n" +
                         "       COALESCE(rpf.attachment_path, '') as attachment_path,\n" +
                         "       rpp_w.id as id_with_deposit,\n" +
                         "       rpp_w.min_amount as min_amount_with_deposit,\n" +
@@ -57,6 +58,7 @@ import javax.persistence.*;
                         @FieldResult(name = "notActive", column = "not_active"),
                         @FieldResult(name = "iconName", column = "icon_name"),
                         @FieldResult(name = "attachmentPath", column = "attachment_path"),
+                        @FieldResult(name = "weight", column = "weight"),
 
 
                         @FieldResult(name = "idWithDeposit", column = "id_with_deposit"),
@@ -94,6 +96,7 @@ public class ClsProductEntity {
     private Boolean         notActive;
     private String          iconName;
     private String          attachmentPath;
+    private Integer         weight;
 
 
     private Long            idWithDeposit;
@@ -314,6 +317,14 @@ public class ClsProductEntity {
 
     public void setHiddenWithoutDeposit(Boolean hiddenWithoutDeposit) {
         this.hiddenWithoutDeposit = hiddenWithoutDeposit;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 }
 

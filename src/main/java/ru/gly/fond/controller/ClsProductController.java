@@ -10,6 +10,7 @@ import ru.gly.fond.dto.ProductLineDto;
 import ru.gly.fond.model.RegProductFile;
 
 import javax.servlet.http.HttpSession;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,7 @@ public class ClsProductController extends SuperController {
     @GetMapping("/product_list_for_calculator")
     public @ResponseBody List<ClsProductEntity> getProductDataForCalculator(){
         List<ClsProductEntity> list = clsProductService.getProductDataForCalculator();
+        list.sort(Comparator.comparing(ClsProductEntity::getWeight).reversed());
         return list;
     }
 

@@ -7,6 +7,7 @@ import ru.gly.fond.dto.ProductLineDto;
 import ru.gly.fond.repository.ClsProvisionRepo;
 
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -29,6 +30,7 @@ public class ClsProductServiceImpl extends SuperServiceImpl implements ClsProduc
                                         .name(ctr.getName())
                                         .time("до " + ctr.getLimitation() + " месяцев")
                                         .htmlText(ctr.getHtmlText())
+                                        .weight(ctr.getWeight())
                                         .build();
                     RegProductProvision productProvision = productProvisionMap.get(ctr);
 
@@ -38,6 +40,7 @@ public class ClsProductServiceImpl extends SuperServiceImpl implements ClsProduc
                     return el;
                 })
                 .collect(Collectors.toList());
+        productLineList.sort(Comparator.comparing(ProductLineDto::getWeight).reversed());
 
         return productLineList;
     }
