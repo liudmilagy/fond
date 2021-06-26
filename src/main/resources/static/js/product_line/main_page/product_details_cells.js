@@ -131,9 +131,10 @@ function createIconAndLabel(product) {
 function createImgCover(product) {
     return {
         borderless: true,
+        width: 300,
+        height: 300,
         template: "<div class='product_item'>" +
-            "<img src='" + product.attachmentPath + "' height='360' width='480' style='object-fit: cover'>" +
-            product.name +" <br>" +
+            "<img src='" + product.attachmentPath + "' style='width: 100%; object-fit: cover; border-color: #0b2e13'>" +
             // "Дата публикации: #startTime#"+
             "</div>",
     }
