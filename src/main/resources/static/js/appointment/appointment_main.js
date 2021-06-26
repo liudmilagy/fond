@@ -79,7 +79,7 @@ var calendarView = {
             };
             $$('chosenDateId').setValue(dateFormat(value));
             let xhr = webix.ajax().sync().get("free_times", params); //TODO изменить выбор времени
-            if (xhr.responseText != "") {
+            if (xhr.responseText != "" && xhr.responseText != "[]") {
                 let data = JSON.parse(xhr.responseText);
                 $$('timeListId').parse(data);
                 $$('timeListId').show();

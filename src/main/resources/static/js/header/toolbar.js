@@ -117,7 +117,7 @@ function bigHeader(size) {
                     {
                         width: size,
                         borderless: true,
-                        template: '<div class="index_item"><img src='+ fondLogoPath + ' style="object-fit:cover"></div>',
+                        template: "<div class = 'index_item'><img src='" + fondLogoPath +"' height='" + size + "' width='"+ size+ "' style='object-fit: cover; '>",
                         onClick: {
                             "index_item": () => {
                                 window.location.href = "/";
@@ -127,7 +127,7 @@ function bigHeader(size) {
                     {
                         width: size,
                         borderless: true,
-                        template: '<div class="business_item"><img src=' + businessLogoPath +' style="object-fit:cover"></div>',
+                        template: "<div class = 'business_item'><img src='" + businessLogoPath +"' height='" + size + "' width='"+ size+ "' style='object-fit: cover; '>",
                         onClick: {
                             "business_item": () => {
                                 window.open("https://fpmp03.ru/");
