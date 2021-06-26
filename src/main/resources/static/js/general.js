@@ -124,11 +124,11 @@ export function getFileIcon(fileExtension) {
         case '.pdf':
             docImg = 'pdf.png';
             break;
-        case '.jpeg':
-            docImg = 'jpg.png';
+        case '.xls':
+            docImg = 'xls.png';
             break;
-        case '.jpg':
-            docImg = 'jpg.png';
+        case '.xlsx':
+            docImg = 'xls.png';
             break;
         case '.doc':
             docImg = 'doc.png';
