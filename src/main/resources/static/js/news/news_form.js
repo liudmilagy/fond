@@ -88,6 +88,7 @@ function bigNewsForm(file_name_for_id, file_list_url) {
                                 autoheight: true,
                             },
                             newsDocs(file_name_for_id, file_list_url),
+                            {}
                         ]
                     }
 

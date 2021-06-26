@@ -30,7 +30,7 @@ public class NewsController extends SuperController {
     }
 
     @GetMapping("/news_list/news")
-    public String viewNews(@RequestParam(value = "id") String hashId, Model model, HttpSession session) {
+    public String viewNews(@RequestParam(value = "hash_id") String hashId, Model model, HttpSession session) {
         model.addAttribute("application_name", applicationConstants.getApplicationName());
         model.addAttribute("hash_id", hashId);
         return "news_view";
