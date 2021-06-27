@@ -175,6 +175,17 @@ const smallMenu = {
     on: {
         onAfterSelect: function (id) {
             onMenuClick(id);
+        },
+        onAfterLoad: function(){
+            var maxWidth =0;
+            this.data.each(function(item){
+                var size = webix.html.getTextSize(item.value);
+                var width = 70 + size.width;
+                if(width > maxWidth)
+                    maxWidth = width;
+            });
+            this.define("width",maxWidth);
+            this.resize();
         }
     }
 }
