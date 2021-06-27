@@ -62,11 +62,12 @@ function Form(file_name_for_id, file_list_url) {
         borderless: true,
         rows: [
             {
-                view: 'label',
+                view: 'template',
                 id: 'headerId',
                 css: 'product_label_main_title',
                 borderless: true,
                 align: 'center',
+                autoheight: true,
             },
             {
                 view: 'template',
@@ -101,7 +102,7 @@ function bigForm(width) {
         }
     }, $$('content'));
 
-    $$('headerId').setValue("Документы");
+    $$('headerId').setHTML("Документы");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {
@@ -128,7 +129,7 @@ function smallForm(width) {
         }
     }, $$('content'));
 
-    $$('headerId').setValue("Документы");
+    $$('headerId').setHTML("Документы");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {

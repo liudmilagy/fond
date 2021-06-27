@@ -65,10 +65,10 @@ function normativeDocsForm(file_name_for_id, file_list_url) {
                 // view: 'label',
                 id: 'normativeDocsHeaderId',
                 template: 'Нормативные документы',
-                autoheight: true,
                 css: 'product_label_main_title',
                 borderless: true,
                 align: 'center',
+                autoheight: true,
             },
             {
                 view: 'template',
@@ -134,7 +134,7 @@ function bigNormativeForm(width) {
         }
     }, $$('content'));
 
-    $$('normativeDocsHeaderId').setValue("Нормативные документы");
+    $$('normativeDocsHeaderId').setHTML("Нормативные документы");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {

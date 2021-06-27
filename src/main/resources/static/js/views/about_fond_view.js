@@ -62,11 +62,12 @@ function aboutFondForm(file_name_for_id, file_list_url) {
         borderless: true,
         rows: [
             {
-                view: 'label',
+                view: 'template',
                 id: 'aboutFondHeaderId',
                 css: 'product_label_main_title',
                 borderless: true,
                 align: 'center',
+                autoheight: true,
             },
             {
                 view: 'template',
@@ -101,7 +102,7 @@ function bigAboutFond(width) {
         }
     }, $$('content'));
 
-    $$('aboutFondHeaderId').setValue("О фонде");
+    $$('aboutFondHeaderId').setHTML("О фонде");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {
@@ -128,7 +129,7 @@ function smallAboutFond(width) {
         }
     }, $$('content'));
 
-    $$('aboutFondHeaderId').setValue("О фонде");
+    $$('aboutFondHeaderId').setHTML("О фонде");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {

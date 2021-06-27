@@ -64,11 +64,12 @@ function contactsForm(file_name_for_id, file_list_url) {
         borderless: true,
         rows: [
             {
-                view: 'label',
+                view: 'template',
                 id: 'contactsHeaderId',
                 css: 'product_label_main_title',
                 borderless: true,
                 align: 'center',
+                autoheight: true,
             },
             {
                 view: 'template',
@@ -105,7 +106,7 @@ function bigContactsForm() {
         }
     }, $$('content'));
 
-    $$('contactsHeaderId').setValue("Контакты");
+    $$('contactsHeaderId').setHTML("Контакты");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {
@@ -139,7 +140,7 @@ function smallContactsForm() {
         }
     }, $$('content'));
 
-    $$('contactsHeaderId').setValue("Контакты");
+    $$('contactsHeaderId').setHTML("Контакты");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {

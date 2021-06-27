@@ -47,6 +47,9 @@ function calculator_form(label_position) {
         rows: [
             view_header('Калькулятор'),
             {
+                padding: {
+                    top: 20
+                },
                 cols: [
                     {
                         rows: [

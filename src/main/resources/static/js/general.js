@@ -2,7 +2,7 @@ export function view_header(title) {
     return {
         view: 'template',
         // type: 'header',
-        css: 'fond_label',
+        css: 'product_label_main_title',
         template: title,
         autoheight: true,
         borderless: true,
