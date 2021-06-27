@@ -1,4 +1,11 @@
-import {view_header, main_padding, main_body_width, numberFormatWithoutDecimal, changeContentView} from "../general.js";
+import {
+    view_header,
+    main_padding,
+    main_body_width,
+    numberFormatWithoutDecimal,
+    changeContentView,
+    view_header_left
+} from "../general.js";
 import {collapsedSideBarWidth} from "../general.js";
 import {calculator_with_schedule, calculate} from "./calculator_with_schedule.js";
 
@@ -244,7 +251,7 @@ export function calculator(data) {
             width: width,
             // type: 'space',
             rows: [
-                view_header('Калькулятор'),
+                view_header_left('Калькулятор'),
                 {
                     borderless: true,
                     // type: 'space',
@@ -267,7 +274,7 @@ export function calculator(data) {
             width: width,
             // type: 'space',
             rows: [
-                view_header('Калькулятор'),
+                view_header_left('Калькулятор'),
                 {
                     borderless: true,
                     // type: 'space',

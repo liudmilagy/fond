@@ -9,6 +9,17 @@ export function view_header(title) {
     }
 }
 
+export function view_header_left(title) {
+    return {
+        view: 'template',
+        // type: 'header',
+        css: 'product_label_main_title_left',
+        template: title,
+        autoheight: true,
+        borderless: true,
+    }
+}
+
 export const main_padding = 20;
 
 export const main_body_width = 1300;

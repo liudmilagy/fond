@@ -1,6 +1,13 @@
 import {createProductBtnLine} from "./product_btn_line.js";
 import {createProductDetailsCells} from "./product_details_cells.js";
-import {main_padding, main_body_width, getOtherWidth, view_header, collapsedSideBarWidth} from "../../general.js";
+import {
+    main_padding,
+    main_body_width,
+    getOtherWidth,
+    view_header,
+    collapsedSideBarWidth,
+    view_header_left
+} from "../../general.js";
 
 export function productLine(data, isBigForm) {
 
@@ -34,7 +41,7 @@ export function productLine(data, isBigForm) {
             // minHeight: 370,
             padding: main_padding,
             rows: [
-                view_header('Продуктовая линейка'),
+                view_header_left('Продуктовая линейка'),
                 productBtnLine,
                 {
                     id: 'productViews',

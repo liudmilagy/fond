@@ -1,4 +1,4 @@
-import {main_body_width, main_padding, view_header,collapsedSideBarWidth} from "../general.js";
+import {main_body_width, main_padding, view_header, collapsedSideBarWidth, view_header_left} from "../general.js";
 
 function newsDataview(isBigForm, pagerCnt) {
    if (isBigForm) {
@@ -86,7 +86,7 @@ export function news(isBigForm) {
             bottom: 20
         },
         rows: [
-            view_header('Новости'),
+            view_header_left('Новости'),
             {
                 cols: [
                     {},

@@ -1,4 +1,4 @@
-import {collapsedSideBarWidth, main_body_width, view_header} from "../general.js";
+import {collapsedSideBarWidth, main_body_width, view_header, view_header_left} from "../general.js";
 
 function partnersDataviewWithPager(isBigForm) {
     if (isBigForm) {
@@ -118,7 +118,7 @@ export function partners(isBigForm) {
             bottom: 20
         },
         rows: [
-            view_header('Партнеры'),
+            view_header_left('Партнеры'),
             partnersDataviewWithPager(isBigForm),
             { gravity:0.001 },
         ]
