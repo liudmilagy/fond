@@ -48,6 +48,9 @@ public class SuperController {
     protected RegClientAppointmentRepo regClientAppointmentRepo;
 
     @Autowired
+    protected ClsBusinessCalendarRepo clsBusinessCalendarRepo;
+
+    @Autowired
     protected ClsTabRepo clsTabRepo;
 
     @Autowired

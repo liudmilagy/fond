@@ -56,6 +56,10 @@ public class AppointmentContoller extends SuperController{
             isToday = true;
         }
 
+        if (clsBusinessCalendarRepo.findByDate(parsed).getIsHoliday()) {
+            return null;
+        }
+
         if (parsedInLD.compareTo(currentLocalDate) < 0) {
             return null;
         } else if (ChronoUnit.DAYS.between(currentLocalDate, parsedInLD) > 14 ) {
