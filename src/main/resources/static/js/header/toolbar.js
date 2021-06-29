@@ -53,8 +53,8 @@ const icon_contacts = {
 }
 
 function smallHeader(size) {
-    var xhr = webix.ajax().sync().get('fond_icon');
-    var fondLogoPath = xhr.responseText;
+    var xhr = webix.ajax().sync().get('business_icon');
+    var businessLogoPath = xhr.responseText;
 
     return {
         borderless: true,
@@ -74,10 +74,10 @@ function smallHeader(size) {
                 {
                     borderless: true,
                     width: 70,
-                    template: '<div class="index_item"><img align="right" width="50" height="50" src=' + fondLogoPath + ' style="object-fit:cover"></div>',
+                    template: '<div class="index_item"><img align="right" width="50" height="50" src=' + businessLogoPath + ' style="object-fit:cover"></div>',
                     onClick: {
                         "index_item": () => {
-                            window.location.href = "/";
+                            window.open("https://fpmp03.ru/");
                         }
                     }
                 },
@@ -114,16 +114,16 @@ function bigHeader(size) {
                 width: main_body_width,
                 borderless: true,
                 elements: [
-                    {
-                        width: size,
-                        borderless: true,
-                        template: "<div class = 'index_item'><img src='" + fondLogoPath +"' height='" + size + "' width='"+ size+ "' style='object-fit: cover; '>",
-                        onClick: {
-                            "index_item": () => {
-                                window.location.href = "/";
-                            }
-                        }
-                    },
+                    // {
+                    //     width: size,
+                    //     borderless: true,
+                    //     template: "<div class = 'index_item'><img src='" + fondLogoPath +"' height='" + size + "' width='"+ size+ "' style='object-fit: cover; '>",
+                    //     onClick: {
+                    //         "index_item": () => {
+                    //             window.location.href = "/";
+                    //         }
+                    //     }
+                    // },
                     {
                         width: size,
                         borderless: true,
