@@ -39,6 +39,7 @@ export function createProductBtnLine(data) {
 
     var productLineBtns = {
         view: 'flexlayout',
+        id: 'productLineBtnsId',
         gravity:0,
         margin: 10,
         rows: productLineBtnData,

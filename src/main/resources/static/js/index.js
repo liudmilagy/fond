@@ -134,11 +134,13 @@ function smallMainPage() {
                 ]
             }
         }, $$('content'));
+        setSizeToMobileProductLine();
     });
+
 
     webix.event(window, "resize", function (event) {
         layout.resize();
-
+        setSizeToMobileProductLine();
     });
 
     if (webix.env.touch){
@@ -147,11 +149,19 @@ function smallMainPage() {
     };
 }
 
+function setSizeToMobileProductLine() {
+    if ($$('productLineHeaderId')) {
+        var productLineHeight =  $$('productLineHeaderId').$height + $$('productLineBtnsId').$height + $$('productViews').$height;
+        $$('productLineId').config.height = productLineHeight;
+        $$('productLineId').resize();
+    }
+}
+
 webix.ready(function() {
     if (document.body.clientWidth < main_body_width) {
-        return smallMainPage();
+        smallMainPage();
     } else {
-        return bigMainPage();
+        bigMainPage();
     }
 
 })

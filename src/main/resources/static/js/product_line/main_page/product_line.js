@@ -31,24 +31,36 @@ export function productLine(data, isBigForm) {
 
         return {
             view: 'form',
+            id: 'productLineId',
             width: width,
             resize: true,
             borderless: true,
             margin: 3,
             gravity: 0,
+            adjust: true,
             // autoheight: true,
             // type:{height:"auto"},
             // minHeight: 370,
             padding: main_padding,
-            rows: [
-                view_header_left('Продуктовая линейка'),
-                productBtnLine,
-                {
-                    id: 'productViews',
-                    cells: productDetailCells,
-                },
-                {gravity: 0.001},
-            ]
+            // body: {
+                rows: [
+                    {
+                        view: 'template',
+                        id: 'productLineHeaderId',
+                        // type: 'header',
+                        template: 'Продуктовая линейка',
+                        css: 'product_label_main_title_left',
+                        autoheight: true,
+                        borderless: true,
+                    },
+                    productBtnLine,
+                    {
+                        id: 'productViews',
+                        cells: productDetailCells,
+                    },
+                    // {gravity: 0.001},
+                ],
+            // }
         }
     // })
 }
