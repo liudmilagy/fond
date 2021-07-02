@@ -33,21 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/libs/**", "/css/**", "/uploads/**", "/imgs/**").permitAll();
-////                .antMatchers("/js/**").permitAll()
-//                .antMatchers("/login").permitAll()
-//                .antMatchers("/admin").hasRole("ADMIN")
-//                .antMatchers("/favicon.ico","/logo.png").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .loginProcessingUrl("/perform_login")
-////                .defaultSuccessUrl("/", true)
-//                .failureUrl("/login?error=true")
-//                .and()
-//                .logout()
-//                .logoutUrl("/logout")
-//                .deleteCookies("JSESSIONID");
+                .antMatchers("/libs/**", "/css/**", "/uploads/**", "/imgs/**").permitAll()
+                .antMatchers("/favicon.ico").permitAll();
     }
 }
