@@ -63,8 +63,9 @@ var sideBarData = [
         id: "4", icon: 'fas fa-user-tie', value: "Предпринимателям",
         data: [
             {id: 'termsOfProvidingMicroloans',value: "Правила предоставления микрозаймов"},
-            {id: 'documents',value: "Документы",
+            {id: 'documents_', value: "Документы",
                 data: [
+                    {id: 'documents', value: "Документы"},
                     {id: 'documentsIP', value: "Перечень ИП"},
                     {id: 'documentsUL', value: "Перечень ЮЛ"}
                 ]},
@@ -188,6 +189,7 @@ const smallMenu = {
     // css: 'fond',
     data: sideBarData,
     collapsed:true,
+    scroll:"y",
     on: {
         onAfterSelect: function (id) {
             onMenuClick(id);
