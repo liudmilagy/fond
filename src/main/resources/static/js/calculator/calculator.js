@@ -7,7 +7,7 @@ import {
     view_header_left
 } from "../general.js";
 import {collapsedSideBarWidth} from "../general.js";
-import {calculator_with_schedule, calculate} from "./calculator_with_schedule.js";
+import {calculator_with_schedule, calculateDifferentiated} from "./calculator_with_schedule.js";
 
 export function calculator(data) {
     var productMap = data.reduce((hashMap, obj) => {hashMap[obj.id] = obj; return hashMap}, {});
@@ -19,7 +19,7 @@ export function calculator(data) {
     var disabledWithDeposit = data[0].hiddenWithDeposit || data[0].hiddenWithoutDeposit
     var defaultMinAmount = (defaultWithDeposit) ? data[0].minAmountWithDeposit :data[0].minAmountWithoutDeposit
     var defaultMaxAmount = (defaultWithDeposit) ? data[0].maxAmountWithDeposit :data[0].maxAmountWithoutDeposit
-    var defaultLimitation = data[0].limitation;
+    var defaultLimitation = 6;
     var defaultRate = getRate(defaultProgram, defaultWithDeposit, keyRate);
 
 
@@ -151,7 +151,8 @@ export function calculator(data) {
             {
                 view: 'label',
                 id: 'monthlyPaymentId',
-                label: getMonthlyPayment(defaultRate, defaultMinAmount, defaultLimitation),
+                // label: getMonthlyPayment(defaultRate, defaultMinAmount, defaultLimitation),
+                label: getMonthlyPaymentDifferentiated(defaultRate, defaultMinAmount, defaultLimitation),
                 autoheight: true,
                 borderless: true,
                 align: 'right',
@@ -173,7 +174,8 @@ export function calculator(data) {
             {
                 id: 'overPaymentId',
                 view: 'label',
-                label: getOverPayment(defaultRate, defaultMinAmount, defaultLimitation),
+                // label: getOverPayment(defaultRate, defaultMinAmount, defaultLimitation),
+                label: getOverPaymentDifferentiated(defaultRate, defaultMinAmount, defaultLimitation),
                 autoheight: true,
                 borderless: true,
                 align: 'right',
@@ -208,7 +210,8 @@ export function calculator(data) {
                     $$('amountId').setValue(amount);
                     $$('limitationId').setValue(limitation);
                     $$('rateId').setValue(rate);
-                    calculate();
+                    $$('typeId').setValue(2);
+                    calculateDifferentiated();
                     $$('calculatorResultId').resize();
                 }
         }
@@ -325,14 +328,27 @@ function getOverPayment(rate, amount, limitation) {
 
 }
 
+function getMonthlyPaymentDifferentiated(rate, amount, limitation) {
+    var monthlyPayment = (amount/limitation) * (1 + rate*(limitation+1)/2400);
+    return webix.Number.format(monthlyPayment, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "});
+}
+
+function getOverPaymentDifferentiated(rate, amount, limitation) {
+    var overPayment = amount * rate*(limitation+1)/2400;
+    return webix.Number.format(overPayment, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "});
+
+}
+
 function setCalculatorResultValues(product, keyRate) {
     var rate = getRate(product, $$('depositId').getValue(), keyRate);
 
     $$('rateLabelId').setValue(rate);
     $$('rateValueId').setValue(rate);
 
-    $$('monthlyPaymentId').setValue(getMonthlyPayment(rate, $$('amountSliderId').getValue(), $$('timeSliderId').getValue()));
-    $$('overPaymentId').setValue(getOverPayment(rate, $$('amountSliderId').getValue(), $$('timeSliderId').getValue() ))
+    // $$('monthlyPaymentId').setValue(getMonthlyPayment(rate, $$('amountSliderId').getValue(), $$('timeSliderId').getValue()));
+    // $$('overPaymentId').setValue(getOverPayment(rate, $$('amountSliderId').getValue(), $$('timeSliderId').getValue() ))
+    $$('monthlyPaymentId').setValue(getMonthlyPaymentDifferentiated(rate, $$('amountSliderId').getValue(), $$('timeSliderId').getValue()));
+    $$('overPaymentId').setValue(getOverPaymentDifferentiated(rate, $$('amountSliderId').getValue(), $$('timeSliderId').getValue() ))
 }
 
 export function clickOnProductButton(product){

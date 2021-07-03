@@ -1,7 +1,7 @@
 import {view_header, main_padding, main_body_width, numberFormatWithoutDecimal, getOtherWidth} from "../general.js";
 import {collapsedSideBarWidth} from "../general.js";
 
-export function calculate() {
+export function calculateAnnuity() {
     $$('calculatorDatatableId').clearAll();
     $$('monthlyPaymentId').setValue("");
     $$('overPaymentId').setValue("");
@@ -39,6 +39,59 @@ export function calculate() {
             };
             $$('calculatorDatatableId').add(row);
         }
+    }
+}
+
+export function calculateDifferentiated() {
+    $$('calculatorDatatableId').clearAll();
+    $$('monthlyPaymentId').setValue("");
+    $$('overPaymentId').setValue("");
+    $$('calculatorResultId').hide();
+
+    if (($$('amountId').getValue() != "")
+        && ($$('limitationId').getValue() != "") && ($$('limitationId').getValue() > 0)
+        && ($$('rateId').getValue() != "") && ($$('rateId').getValue() > 0) && ($$('rateId').getValue() < 100)) {
+
+        $$('calculatorResultId').show();
+
+        var i = 1;
+        var rate = $$('rateId').getValue();
+        var months = $$('limitationId').getValue();
+        var amountStr = $$('amountId').getValue().toString();
+        amountStr = amountStr.replace(" ", "");
+        var amount = parseInt(amountStr);
+
+        // $$('monthlyPaymentId').setValue(webix.Number.format(monthlyPayment, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "}));
+        var firstPayment = '';
+        var lastPayment = '';
+        var overPayment = 0;
+
+        for (i = 1; i <= months; i++) {
+            var percentDebt = getPercentDebtDifferentiated(rate, amount, months, i);
+            overPayment = overPayment + percentDebt;
+            var monthlyPayment = amount / months + percentDebt;
+            if (i===1) {
+                firstPayment = monthlyPayment;
+            } else if (i.toString()===months) {
+                lastPayment = monthlyPayment;
+            }
+            var mainDebt = amount / months;
+            var balanceOwed = amount - mainDebt*i;
+            var row = {
+                'index': i,
+                'monthlyPayment': webix.Number.format(monthlyPayment, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "}),
+                'mainDebt': webix.Number.format(mainDebt, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "}),
+                'percentDebt': webix.Number.format(percentDebt, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "}),
+                'balanceOwed': webix.Number.format(balanceOwed, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "}),
+            };
+            $$('calculatorDatatableId').add(row);
+        }
+
+        var lastPaymentInFormat = webix.Number.format(lastPayment, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "});
+        var firstPaymentInFormat = webix.Number.format(firstPayment, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "});
+        $$('monthlyPaymentId').setValue(lastPaymentInFormat + ' ... ' + firstPaymentInFormat);
+        $$('overPaymentId').setValue(webix.Number.format(overPayment, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "}));
+
     }
 }
 
@@ -97,6 +150,17 @@ function calculator_form(label_position) {
                                     return !isNaN(val * 1);
                                 }, attributes: {type: "number"}
                             },
+                            {
+                                view:"richselect",
+                                id: 'typeId',
+                                label:"Вид платежа",
+                                labelPosition: label_position,
+                                labelWidth: 250,
+                                value:2, options:[
+                                    { "id":1, "value":"Аннуитетный"},
+                                    { "id":2, "value":"Дифференцированный"},
+                                ]
+                            }
                         ]
                     },
                     {}
@@ -110,7 +174,13 @@ function calculator_form(label_position) {
                         value: 'Рассчитать',
                         css: 'fond',
                         maxWidth: 250,
-                        click: () => calculate()
+                        click: () => {
+                            if ($$('typeId').getValue()===1) {
+                                calculateAnnuity();
+                            } else {
+                                calculateDifferentiated();
+                            }
+                        }
                     },
                     {},
                 ]
@@ -240,6 +310,7 @@ export function calculator_with_schedule(isBigForm) {
     }
 }
 
+/// Аннуитентный
 function getMonthlyPayment(rate, amount, limitation) {
     var r = rate*0.01/12;
     var monthlyPayment = (r + r/(Math.pow(1+r, limitation) - 1)) * amount;
@@ -257,6 +328,15 @@ function getOverPayment(rate, amount, limitation) {
 
 function getMainDebt(monthlyPayment, r, i, months) {
     return monthlyPayment*Math.pow(1+r, i-months-1);
+}
+
+/// Дифференцированный
+function getPercentDebtDifferentiated(rate, amount, limitation, monthNumber) {
+    var r = rate*0.01/12;
+    var paymentWOPercent = amount/limitation;
+    var moneyRest = amount - (monthNumber-1)*paymentWOPercent;
+    var paymentWPercent = moneyRest*r;
+    return paymentWPercent;
 }
 
 function setCalculatorResultValues(data) {
