@@ -64,11 +64,13 @@ const bigNewsList = {
     id: 'newsListId',
     rows: [
         {
-            cols: [
-                {},
-                view_header('Новости'),
-                {},
-            ]
+            // view: 'label',
+            id: 'newsListsHeaderId',
+            template: 'Новости',
+            css: 'other_tab_main_title',
+            borderless: true,
+            align: 'center',
+            autoheight: true,
         },
         {gravity: 0.04},
         {
@@ -115,8 +117,15 @@ const bigNewsList = {
 const smallNewsList = {
     id: 'newsListId',
     rows: [
-        view_header('Новости'),
-        {gravity: 0.04},
+        {
+            // view: 'label',
+            id: 'newsListsHeaderId',
+            template: 'Новости',
+            css: 'other_tab_main_title',
+            borderless: true,
+            align: 'center',
+            autoheight: true,
+        },
         {
             view: "dataview",
             id: "newsListDataview",

@@ -2,19 +2,6 @@ import {view_header, changeContentView, main_body_width, main_padding} from "../
 webix.Date.startOnMonday = true;
 webix.i18n.setLocale("ru-RU")
 
-
-function appointmentHeader() {
-    if (document.body.clientWidth < main_body_width) {
-        return  view_header("Онлайн запись")
-    } else return {
-        cols: [
-            {},
-            view_header("Онлайн запись"),
-            {},
-        ]
-    }
-}
-
 const appointmentStep1Main = {
     view:"datatable",
     id:"appointment_datatable",
@@ -262,10 +249,15 @@ export const appointment = {
     scroll: false,
     body: {
         rows: [
-            {gravity: 0.03},
-            appointmentHeader(),
-            {gravity: 0.03},
-            // { id: 'idTypeAppointment', hidden: true},
+            {
+                // view: 'label',
+                id: 'normativeDocsHeaderId',
+                template: 'Онлайн запись',
+                css: 'other_tab_main_title',
+                borderless: true,
+                align: 'center',
+                autoheight: true,
+            },
             {
                 view: 'multiview',
                 id: 'appointmentMultiviewId',

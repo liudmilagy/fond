@@ -205,6 +205,19 @@
     /*font-family:Montserrat, sans-serif;*/
 }
 
+.other_tab_main_title{
+    /*font-weight: 600;*/
+    font-size: x-large;
+    text-transform: uppercase;
+    color: var(--text_color);
+    text-align: center;
+    background: transparent;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /*font-family:Montserrat, sans-serif;*/
+}
+
+
 .product_label_main_title_left{
     /*font-weight: 600;*/
     font-size: x-large;

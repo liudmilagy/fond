@@ -2,8 +2,9 @@ export function view_header(title) {
     return {
         view: 'template',
         // type: 'header',
-        css: 'product_label_main_title',
+        css: 'other_tab_main_title',
         template: title,
+        align: 'center',
         autoheight: true,
         borderless: true,
     }

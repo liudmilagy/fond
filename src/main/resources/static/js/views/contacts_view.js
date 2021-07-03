@@ -66,7 +66,7 @@ function contactsForm(file_name_for_id, file_list_url) {
             {
                 view: 'template',
                 id: 'contactsHeaderId',
-                css: 'product_label_main_title',
+                css: 'other_tab_main_title',
                 borderless: true,
                 align: 'center',
                 autoheight: true,
