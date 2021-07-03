@@ -7,6 +7,7 @@ import {getFileIcon} from "../general.js";
 function Docs(name_for_id, list_url) {
     return  {
         view: "dataview",
+        // sizeToContent:true,
         label: 'Прикрепленные файлы',
         labelPosition: 'top',
         id: name_for_id + '_docs_grid',
@@ -14,6 +15,7 @@ function Docs(name_for_id, list_url) {
         borderless: true,
         align: 'center',
         scroll: false,
+        // scroll: 'y',
         select: 1,
         minWidth: 320,
         minHeight: 200,
@@ -36,7 +38,7 @@ function Docs(name_for_id, list_url) {
         url: list_url,
         xCount: 2,
         type: {
-            height: "auto",
+            height: 96,
             width: "auto",
             float: "right"
         },
@@ -48,8 +50,17 @@ function Docs(name_for_id, list_url) {
                 }
             },
             onAfterLoad: () => {
-                if ($$(name_for_id + '_docs_grid').count() === 0) {
+                var el_count = $$(name_for_id + '_docs_grid').count();
+                if ( el_count === 0) {
                     $$(name_for_id + '_docs_grid').hide();
+                } else {
+                    var xCount = $$(name_for_id + '_docs_grid').config.xCount;
+                    var rowCount = (el_count % xCount == 0) ? (el_count/xCount) : (1 + el_count/xCount);
+                    var dataviewHeight = 100 * rowCount;
+                    if ( $$(name_for_id + '_docs_grid').$height < dataviewHeight) {
+                        $$(name_for_id + '_docs_grid').config.height = dataviewHeight;
+                        $$(name_for_id + '_docs_grid').resize();
+                    }
                 }
             },
         }
@@ -104,6 +115,10 @@ function bigForm(width) {
 
     $$('headerId').setHTML("Документы");
     $$('htmlText').setHTML(xhr.responseText);
+
+    // var element_count = $$('tab_file_docs_grid').
+    // $$('tab_file_docs_grid').config.height =1000;
+
 
     webix.event(window, "resize", function (event) {
         resizeMenuOptions();

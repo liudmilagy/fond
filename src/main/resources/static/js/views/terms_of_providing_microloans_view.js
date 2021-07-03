@@ -24,7 +24,7 @@ function Docs(name_for_id, list_url) {
             let result = "<div class='overall'>" +
                 "<div>" +
                 "<img style='position: absolute' src = " + docImg + "> " +
-                "<div class='doc_title'>" + obj.originalFileName.slice(0, -4) + "</div>";
+                "<div class='doc_title' style='width: available'>" + obj.originalFileName.slice(0, -4) + "</div>";
             result += "<div class='doc_time_create'>" + downloadTime + "</div>" +
                 "<div class='download_docs'>" +
                 "<a style='text-decoration: none; color: #1ca1c1' href=" + obj.attachmentPath + " download>Скачать файл</a>" +
@@ -36,7 +36,7 @@ function Docs(name_for_id, list_url) {
         url: list_url,
         xCount: 2,
         type: {
-            height: "auto",
+            height: 96,
             width: "auto",
             float: "right"
         },
@@ -48,8 +48,17 @@ function Docs(name_for_id, list_url) {
                 }
             },
             onAfterLoad: () => {
-                if ($$(name_for_id + '_docs_grid').count() === 0) {
+                var el_count = $$(name_for_id + '_docs_grid').count();
+                if ( el_count === 0) {
                     $$(name_for_id + '_docs_grid').hide();
+                } else {
+                    var xCount = $$(name_for_id + '_docs_grid').config.xCount;
+                    var rowCount = (el_count % xCount == 0) ? (el_count/xCount) : (1 + el_count/xCount);
+                    var dataviewHeight = 100 * rowCount;
+                    if ( $$(name_for_id + '_docs_grid').$height < dataviewHeight) {
+                        $$(name_for_id + '_docs_grid').config.height = dataviewHeight;
+                        $$(name_for_id + '_docs_grid').resize();
+                    }
                 }
             },
         }
