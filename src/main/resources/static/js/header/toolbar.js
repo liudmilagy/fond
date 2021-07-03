@@ -77,7 +77,7 @@ function smallHeader(size) {
                     template: '<div class="index_item"><img align="right" width="50" height="50" src=' + businessLogoPath + ' style="object-fit:cover"></div>',
                     onClick: {
                         "index_item": () => {
-                            window.open("https://fpmp03.ru/");
+                            window.location.href = "/";
                         }
                     }
                 },
@@ -130,7 +130,7 @@ function bigHeader(size) {
                         template: "<div class = 'business_item'><img src='" + businessLogoPath +"' height='" + size + "' width='"+ size+ "' style='object-fit: cover; '>",
                         onClick: {
                             "business_item": () => {
-                                window.open("https://fpmp03.ru/");
+                                window.location.href = "/";
                             }
                         }
                     },
