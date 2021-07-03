@@ -175,7 +175,7 @@ function calculator_form(label_position) {
                         css: 'fond',
                         maxWidth: 250,
                         click: () => {
-                            if ($$('typeId').getValue()===1) {
+                            if ($$('typeId').getValue()==="1") {
                                 calculateAnnuity();
                             } else {
                                 calculateDifferentiated();
