@@ -45,11 +45,21 @@ export function calculate() {
 function calculator_form(label_position) {
     return {
         rows: [
-            view_header('Калькулятор'),
             {
-                padding: {
-                    top: 20
-                },
+                padding: 20,
+                rows: [
+                    {
+                        view: 'template',
+                        id: 'contactsHeaderId',
+                        css: 'product_label_main_title',
+                        template: 'Калькулятор',
+                        borderless: true,
+                        align: 'center',
+                        autoheight: true,
+                    },
+                ]
+            },
+            {
                 cols: [
                     {
                         rows: [
