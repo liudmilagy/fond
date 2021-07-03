@@ -20,7 +20,11 @@ var menuData = [
         id: "4", value: "Предпринимателям",
         submenu: [
             {id: 'termsOfProvidingMicroloans',value: "Правила предоставления микрозаймов"},
-            {id: 'documents',value: "Документы"},
+            {id: 'documents',value: "Документы",
+                submenu: [
+                    {id: 'documentsIP', value: "Перечень ИП"},
+                    {id: 'documentsUL', value: "Перечень ЮЛ"}
+                ]},
             {id: "ProductList_", value: "Продуктовая линейка"},
             {id: "Calculator", value: "Калькулятор"},
         ]
@@ -59,7 +63,11 @@ var sideBarData = [
         id: "4", icon: 'fas fa-user-tie', value: "Предпринимателям",
         data: [
             {id: 'termsOfProvidingMicroloans',value: "Правила предоставления микрозаймов"},
-            {id: 'documents',value: "Документы"},
+            {id: 'documents',value: "Документы",
+                data: [
+                    {id: 'documentsIP', value: "Перечень ИП"},
+                    {id: 'documentsUL', value: "Перечень ЮЛ"}
+                ]},
             {id: "ProductList_", value: "Продуктовая линейка"},
             {id: "Calculator", value: "Калькулятор"},
         ]
@@ -134,6 +142,14 @@ function onMenuClick(id) {
         }
         case ('Contacts'): {
             window.location.href = "/contacts";
+            break;
+        }
+        case ('documentsIP'): {
+            window.location.href = "/documents_IP";
+            break;
+        }
+        case ('documentsUL'): {
+            window.location.href = "/documents_UL";
             break;
         }
     }

@@ -8,7 +8,9 @@ public enum TabCodes {
     DOCUMENTS("DOCUMENTS"),
     REQUISITES("REQUISITES"),
     NORMATIVE_DOCS("NORMATIVE_DOCS"),
-    CONTACTS("CONTACTS");
+    CONTACTS("CONTACTS"),
+    DOCUMENTS_IP("DOCS_IP"),
+    DOCUMENTS_UL("DOCS_UL"),;
 
     private final String value;
     private TabCodes(String value) {

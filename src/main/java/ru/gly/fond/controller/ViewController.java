@@ -197,4 +197,48 @@ public class ViewController extends SuperController {
         List<RegTabFile> tabFiles = regTabFileRepo.findRegTabFileByTab_IdAndIsDeleted(tab.getId(), false);
         return tabFiles;
     }
+
+    @GetMapping("/documents_IP")
+    public String viewDocumentsIP(Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+
+        return "documents_ip_view";
+    }
+
+    @GetMapping("/documents_IP_info")
+    public @ResponseBody
+    String getDocumentsIPHTML() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.DOCUMENTS_IP.getValue());
+        return tab.getHtmlText();
+    }
+
+    @GetMapping("/documents_IP_files")
+    public @ResponseBody
+    List<RegTabFile> getDocumentsIPFiles() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.DOCUMENTS_IP.getValue());
+        List<RegTabFile> tabFiles = regTabFileRepo.findRegTabFileByTab_IdAndIsDeleted(tab.getId(), false);
+        return tabFiles;
+    }
+
+    @GetMapping("/documents_UL")
+    public String viewDocumentsUL(Model model, HttpSession session) {
+        model.addAttribute("application_name", applicationConstants.getApplicationName());
+
+        return "documents_ul_view";
+    }
+
+    @GetMapping("/documents_UL_info")
+    public @ResponseBody
+    String getDocumentsULHTML() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.DOCUMENTS_UL.getValue());
+        return tab.getHtmlText();
+    }
+
+    @GetMapping("/documents_UL_files")
+    public @ResponseBody
+    List<RegTabFile> getDocumentsULFiles() {
+        ClsTab tab = clsTabRepo.findByCode(TabCodes.DOCUMENTS_UL.getValue());
+        List<RegTabFile> tabFiles = regTabFileRepo.findRegTabFileByTab_IdAndIsDeleted(tab.getId(), false);
+        return tabFiles;
+    }
 }
