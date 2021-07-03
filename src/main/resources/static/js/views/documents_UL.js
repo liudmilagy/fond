@@ -102,7 +102,7 @@ function bigForm(width) {
         }
     }, $$('content'));
 
-    $$('headerId').setHTML("Перечень ЮЛ");
+    $$('headerId').setHTML("Перечень документов для юридических лиц");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {
@@ -129,7 +129,7 @@ function smallForm(width) {
         }
     }, $$('content'));
 
-    $$('headerId').setHTML("Перечень ЮЛ");
+    $$('headerId').setHTML("Перечень документов для ЮЛ");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {

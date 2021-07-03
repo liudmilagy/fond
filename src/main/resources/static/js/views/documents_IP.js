@@ -102,7 +102,7 @@ function bigForm(width) {
         }
     }, $$('content'));
 
-    $$('headerId').setHTML("Перечень ИП");
+    $$('headerId').setHTML("Перечень документов для индивидуальных предпринимателей");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {
@@ -129,7 +129,7 @@ function smallForm(width) {
         }
     }, $$('content'));
 
-    $$('headerId').setHTML("Перечень ИП");
+    $$('headerId').setHTML("Перечень документов для ИП");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {
