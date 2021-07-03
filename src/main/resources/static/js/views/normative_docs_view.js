@@ -36,7 +36,7 @@ function normativeDocsDocs(name_for_id, list_url) {
         url: list_url,
         xCount: 2,
         type: {
-            height: "auto",
+            height: 96,
             width: "auto",
             float: "right"
         },
@@ -48,8 +48,17 @@ function normativeDocsDocs(name_for_id, list_url) {
                 }
             },
             onAfterLoad: () => {
-                if ($$(name_for_id + '_docs_grid').count() === 0) {
+                var el_count = $$(name_for_id + '_docs_grid').count();
+                if ( el_count === 0) {
                     $$(name_for_id + '_docs_grid').hide();
+                } else {
+                    var xCount = $$(name_for_id + '_docs_grid').config.xCount;
+                    var rowCount = (el_count % xCount == 0) ? (el_count/xCount) : (1 + el_count/xCount);
+                    var dataviewHeight = 100 * rowCount;
+                    if ( $$(name_for_id + '_docs_grid').$height < dataviewHeight) {
+                        $$(name_for_id + '_docs_grid').config.height = dataviewHeight;
+                        $$(name_for_id + '_docs_grid').resize();
+                    }
                 }
             },
         }

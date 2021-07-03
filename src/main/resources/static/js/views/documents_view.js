@@ -56,9 +56,11 @@ function Docs(name_for_id, list_url) {
                 } else {
                     var xCount = $$(name_for_id + '_docs_grid').config.xCount;
                     var rowCount = (el_count % xCount == 0) ? (el_count/xCount) : (1 + el_count/xCount);
-                    var dataviewHeight = 96 * rowCount;
-                    $$(name_for_id + '_docs_grid').config.height = dataviewHeight;
-                    $$(name_for_id + '_docs_grid').resize();
+                    var dataviewHeight = 100 * rowCount;
+                    if ( $$(name_for_id + '_docs_grid').$height < dataviewHeight) {
+                        $$(name_for_id + '_docs_grid').config.height = dataviewHeight;
+                        $$(name_for_id + '_docs_grid').resize();
+                    }
                 }
             },
         }
