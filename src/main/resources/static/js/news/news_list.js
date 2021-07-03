@@ -81,7 +81,7 @@ const bigNewsList = {
             // scroll: 'y',
             borderless: true,
             template: "<div class='news_item'>" +
-                "<img src='#attachmentPath#' height='225' width='300' style='object-fit: cover'>" +
+                "<img src='#attachmentPath#' height='225' width='300' style='object-fit: cover'> <br>" +
                 "#heading# <br>" +
                 "Дата публикации: #startTime#"+
                 "</div>",
@@ -133,7 +133,7 @@ const smallNewsList = {
             scroll: 'y',
             borderless: true,
             template: "<div class='news_item'>" +
-                "<img src='#attachmentPath#' height='187.5' width='250' style='object-fit: cover'>" +
+                "<img src='#attachmentPath#' height='187.5' width='250' style='object-fit: cover'> <br>" +
                 "#heading# <br>" +
                 "Дата публикации: #startTime#"+
                 "</div>",
