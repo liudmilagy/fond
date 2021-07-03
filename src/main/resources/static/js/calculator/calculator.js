@@ -19,7 +19,7 @@ export function calculator(data) {
     var disabledWithDeposit = data[0].hiddenWithDeposit || data[0].hiddenWithoutDeposit
     var defaultMinAmount = (defaultWithDeposit) ? data[0].minAmountWithDeposit :data[0].minAmountWithoutDeposit
     var defaultMaxAmount = (defaultWithDeposit) ? data[0].maxAmountWithDeposit :data[0].maxAmountWithoutDeposit
-    var defaultLimitation = 6;
+    var defaultLimitation = data[0].limitation;
     var defaultRate = getRate(defaultProgram, defaultWithDeposit, keyRate);
 
 
@@ -88,7 +88,7 @@ export function calculator(data) {
         id: 'timeSliderId',
         label: 'Срок займа',
         labelPosition: 'top',
-        value: '6',
+        value: defaultLimitation,
         step: 1,
         min: 6,
         max: defaultLimitation,
