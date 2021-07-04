@@ -329,12 +329,12 @@ function getOverPayment(rate, amount, limitation) {
 }
 
 function getMonthlyPaymentDifferentiated(rate, amount, limitation) {
-    var monthlyPayment = (amount/limitation) * (1 + rate*(limitation+1)/2400);
+    var monthlyPayment = (amount/limitation) * (1 + rate*(limitation+1)*31/(2*365*100));
     return webix.Number.format(monthlyPayment, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "});
 }
 
 function getOverPaymentDifferentiated(rate, amount, limitation) {
-    var overPayment = amount * rate*(limitation+1)/2400;
+    var overPayment = amount * rate*(limitation+1)*31/(2*365*100);
     return webix.Number.format(overPayment, {groupSize: 3, decimalSize: 2, decimalDelimiter: ".", groupDelimiter: " "});
 
 }

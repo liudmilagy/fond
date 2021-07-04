@@ -156,6 +156,7 @@ function calculator_form(label_position) {
                                 label:"Вид платежа",
                                 labelPosition: label_position,
                                 labelWidth: 250,
+                                hidden: true,
                                 value:2, options:[
                                     { "id":1, "value":"Аннуитетный"},
                                     { "id":2, "value":"Дифференцированный"},
@@ -332,7 +333,7 @@ function getMainDebt(monthlyPayment, r, i, months) {
 
 /// Дифференцированный
 function getPercentDebtDifferentiated(rate, amount, limitation, monthNumber) {
-    var r = rate*0.01/12;
+    var r = rate*0.01*31/365;
     var paymentWOPercent = amount/limitation;
     var moneyRest = amount - (monthNumber-1)*paymentWOPercent;
     var paymentWPercent = moneyRest*r;
