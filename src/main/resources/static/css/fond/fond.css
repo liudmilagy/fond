@@ -36,7 +36,7 @@
 }
 
 .fond .webix_button{
-    border: 1px solid var(--main_color);
+    border: 2px solid var(--focus_color);
     border-radius: 10px;
     background-color: #fff;
     color: var(--text_color);
