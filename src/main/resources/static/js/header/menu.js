@@ -173,13 +173,16 @@ const bigMenu = {
     data: menuData,
     type: {
         subsign: true,
-        width: getMenuWidth(),
+        // width: getMenuWidth(),
         height: 40,
     },
     on: {
         onMenuItemClick: function (id) {
             onMenuClick(id);
         }
+    },
+    ready() {
+        webix.delay(() => resizeMenuOptions())
     }
 }
 
@@ -211,16 +214,26 @@ const smallMenu = {
 export const menu = getMenu();
 
 export function resizeMenuOptions(){
-    const menu = $$('menuId');
-    menu.customize({
-        width: menu.$width / 8
-    });
-    menu.refresh();
+    if (document.body.clientWidth/8 < 202) {
+        const menu = $$('menuId');
+        menu.hideItem('Main');
+        menu.customize({
+            width: (menu.$width - 5)/ 7
+        });
+        menu.refresh();
+    } else {
+        const menu = $$('menuId');
+        menu.customize({
+            width: menu.$width / 8
+        });
+        menu.refresh();
+    }
+
 }
 
 function getMenuWidth() {
     // if (document.body.clientWidth < main_body_width) {
-        return document.body.clientWidth/8;
+        return document.body.clientWidth /8;
     // } else {
     //     return (main_body_width - 5)/8;
     // }
