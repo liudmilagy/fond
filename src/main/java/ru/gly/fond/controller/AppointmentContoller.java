@@ -6,9 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gly.fond.dto.ClientAppointmentDto;
+import ru.gly.fond.dto.ClsTypeAppointmentDto;
 import ru.gly.fond.model.ClsTypeAppointment;
 import ru.gly.fond.model.RegClientAppointment;
 import ru.gly.fond.model.RegTimeTypeAppointment;
+import ru.gly.fond.model.RegTypeAppointmentFile;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Time;
@@ -16,6 +18,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -34,9 +37,24 @@ public class AppointmentContoller extends SuperController{
 
     @GetMapping("/type_appointments")
     public @ResponseBody
-    List<ClsTypeAppointment> getTimeAppointments() {
+    List<ClsTypeAppointmentDto> getTimeAppointments() {
         List<ClsTypeAppointment> typeAppointments = clsTypeAppointmentRepo.findAllByIsDeleted(false);
-        return typeAppointments;
+        List<ClsTypeAppointmentDto> typeAppointmentDtos = new ArrayList<>();
+        typeAppointments.forEach(clsTypeAppointment -> {
+            RegTypeAppointmentFile regTypeAppointmentFile = regTypeAppointmentFileRepo.findById(clsTypeAppointment.getIdImgCover()).orElse(null);
+            String attachmentPath = (regTypeAppointmentFile != null) ? regTypeAppointmentFile.getAttachmentPath() : "";
+            ClsTypeAppointmentDto clsTypeAppointmentDto = ClsTypeAppointmentDto.builder()
+                                                        .id(clsTypeAppointment.getId())
+                                                        .code(clsTypeAppointment.getCode())
+                                                        .name(clsTypeAppointment.getName())
+                                                        .description(clsTypeAppointment.getDescription())
+                                                        .isDeleted(clsTypeAppointment.getIsDeleted())
+                                                        .attachmentPath(attachmentPath)
+                                                        .build();
+            typeAppointmentDtos.add(clsTypeAppointmentDto);
+        });
+
+        return typeAppointmentDtos;
     }
 
     @GetMapping("/free_times")

@@ -24,6 +24,8 @@ public class ClsTypeAppointment implements Serializable {
     private String code;
     private String description;
     private Boolean isDeleted;
+    private Long idImgCover;
+
 
     public Long getId() {
         return id;
@@ -68,19 +70,25 @@ public class ClsTypeAppointment implements Serializable {
         this.isDeleted = isDeleted;
     }
 
+    @Basic
+    @Column(name = "id_img_cover")
+    public Long getIdImgCover() {
+        return idImgCover;
+    }
+    public void setIdImgCover(Long idImgCover) {
+        this.idImgCover = idImgCover;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ClsTypeAppointment that = (ClsTypeAppointment) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(code, that.code) &&
-                Objects.equals(description, that.description);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(code, that.code) && Objects.equals(description, that.description) && Objects.equals(isDeleted, that.isDeleted) && Objects.equals(idImgCover, that.idImgCover);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, code, description);
+        return Objects.hash(id, name, code, description, isDeleted, idImgCover);
     }
 }

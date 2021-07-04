@@ -2,27 +2,66 @@ import {view_header, changeContentView, main_body_width, main_padding} from "../
 webix.Date.startOnMonday = true;
 webix.i18n.setLocale("ru-RU")
 
+// const appointmentStep1Main = {
+//     view:"datatable",
+//     id:"appointment_datatable",
+//     // height:120,
+//     // xCount:1,
+//     header:false,
+//     select: "row",
+//     scroll: false,
+//     borderless: true,
+//     type: {
+//         height: "auto",
+//         width:"auto"
+//     },
+//     columns: [
+//         {
+//             id: 'appointmentNameId',
+//             template:"<div class='btn_click' style='overflow-wrap: normal'>#name#</div> #description# ",
+//             fillspace: true,
+//             adjust: true,
+//         },
+//     ],
+//     onClick:{
+//         btn_click: function(ev, id, html){
+//             // webix.alert("Clicked row "+id);
+//             let row = $$('appointment_datatable').getItem(id);
+//             // webix.ui(appointment_form, $$('appointmentMainId'));
+//             $$("appointmentMultiviewId").getChildViews()[1].show();
+//             $$('idTypeAppointment').setValue(row.id);
+//             $$('nameTypeAppointment').setValue(row.name)
+//         }
+//     },
+//     url: 'type_appointments',
+// }
+
 const appointmentStep1Main = {
-    view:"datatable",
+    view:"dataview",
     id:"appointment_datatable",
     // height:120,
-    // xCount:1,
+    xCount:1,
     header:false,
     select: "row",
     scroll: false,
     borderless: true,
+    // autowidth: true,
     type: {
-        height: "auto",
-        width:"auto"
+        height: 100,
+        width: 'auto',
+        template:"<div class='btn_click'><img src='#attachmentPath#' style='width:100px; height: 100px;  object-fit: cover; padding-right: 10px; ' align='left'>" +
+            "<div style='font-weight: bolder; font-size: larger'>#name#</div>" +
+            "<div> #description#</div>" +
+            "</div>"
     },
-    columns: [
-        {
-            id: 'appointmentNameId',
-            template:"<div class='btn_click' style='overflow-wrap: normal'>#name#</div> #description# ",
-            fillspace: true,
-            adjust: true,
-        },
-    ],
+    // columns: [
+    //     {
+    //         id: 'appointmentNameId',
+    //         template:"<div class='btn_click' style='overflow-wrap: normal'>#name#</div> #description# ",
+    //         fillspace: true,
+    //         adjust: true,
+    //     },
+    // ],
     onClick:{
         btn_click: function(ev, id, html){
             // webix.alert("Clicked row "+id);

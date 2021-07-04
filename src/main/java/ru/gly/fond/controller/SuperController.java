@@ -68,4 +68,7 @@ public class SuperController {
     @Autowired
     protected SmsService smsService;
 
+    @Autowired
+    protected RegTypeAppointmentFileRepo regTypeAppointmentFileRepo;
+
 }
