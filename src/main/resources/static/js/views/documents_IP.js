@@ -71,12 +71,25 @@ function Form(file_name_for_id, file_list_url) {
         borderless: true,
         rows: [
             {
-                view: 'template',
-                id: 'headerId',
-                css: 'other_tab_main_title',
-                borderless: true,
-                align: 'center',
-                autoheight: true,
+                minHeight: 78,
+                cols: [
+                    {
+                        view: 'icon',
+                        icon:'fas fa-arrow-left',
+                        align: 'left',
+                        click: () => {
+                            window.location.href = "/documents";
+                        }
+                    },
+                    {
+                        view: 'template',
+                        id: 'headerId',
+                        css: 'other_tab_main_title',
+                        borderless: true,
+                        align: 'center',
+                        autoheight: true,
+                    },
+                ]
             },
             {
                 view: 'template',
