@@ -14,7 +14,7 @@ webix.ready(function() {
         css: 'fond_bg2',
         type:"space",
         view: 'scrollview',
-        scroll: 'xy',
+        scroll: 'false',
         body: {
             // padding: 20,
             margin: 10,

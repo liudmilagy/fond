@@ -65,10 +65,17 @@ const productTable = {
 export const productList = {
     id: 'productListId',
     rows:[
-        {gravity: 0.1},
-        view_header('Продуктовая линейка'),
-        {gravity: 0.04},
+        // view_header('Продуктовая линейка'),
+        {
+            view: 'template',
+            template: 'Продуктовая линейка',
+            id: 'headerId',
+            css: 'other_tab_main_title',
+            borderless: true,
+            align: 'center',
+            autoheight: true,
+        },
         productTable,
-        {},
+        {height: 72}
     ]
 }

@@ -2,40 +2,6 @@ import {view_header, changeContentView, main_body_width, main_padding} from "../
 webix.Date.startOnMonday = true;
 webix.i18n.setLocale("ru-RU")
 
-// const appointmentStep1Main = {
-//     view:"datatable",
-//     id:"appointment_datatable",
-//     // height:120,
-//     // xCount:1,
-//     header:false,
-//     select: "row",
-//     scroll: false,
-//     borderless: true,
-//     type: {
-//         height: "auto",
-//         width:"auto"
-//     },
-//     columns: [
-//         {
-//             id: 'appointmentNameId',
-//             template:"<div class='btn_click' style='overflow-wrap: normal'>#name#</div> #description# ",
-//             fillspace: true,
-//             adjust: true,
-//         },
-//     ],
-//     onClick:{
-//         btn_click: function(ev, id, html){
-//             // webix.alert("Clicked row "+id);
-//             let row = $$('appointment_datatable').getItem(id);
-//             // webix.ui(appointment_form, $$('appointmentMainId'));
-//             $$("appointmentMultiviewId").getChildViews()[1].show();
-//             $$('idTypeAppointment').setValue(row.id);
-//             $$('nameTypeAppointment').setValue(row.name)
-//         }
-//     },
-//     url: 'type_appointments',
-// }
-
 const appointmentStep1Main = {
     view:"dataview",
     id:"appointment_datatable",
@@ -158,7 +124,8 @@ const appointmentStep2 = {
                         $$('chosenTimeId').setValue($$('timeListId').getSelectedItem().value);
                         $$("appointmentMultiviewId").getChildViews()[2].show();
                     }
-                }
+                },
+                {}
             ]
         },
         {},
@@ -219,6 +186,7 @@ const appointmentStep3Main = {
         {
             view: 'textarea',
             id: 'messageId',
+            height: 150,
             label: 'Сообщение',
             labelPosition: 'top',
         },
@@ -252,7 +220,8 @@ const appointmentStep3Main = {
                 },
                 {},
             ]
-        }
+        },
+        {},
     ]
 }
 
@@ -284,8 +253,8 @@ export const appointment = {
     // autowidth: true,
     autoheight: true,
     id: 'appointmentId',
-    // scroll: 'xy',
-    scroll: false,
+    scroll: 'y',
+    // scroll: false,
     body: {
         rows: [
             {
@@ -300,7 +269,8 @@ export const appointment = {
             {
                 view: 'multiview',
                 id: 'appointmentMultiviewId',
-                minHeight: 500,
+                minHeight: 700,
+                // autoheight: true,
                 cells: [
                     appointmentStep1(),
                     appointmentStep2,
