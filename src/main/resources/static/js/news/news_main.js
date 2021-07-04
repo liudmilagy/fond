@@ -14,11 +14,11 @@ function newsDataview(isBigForm, pagerCnt) {
            borderless: true,
            margin: 3,
            gravity:0,
-           minHeight: 350,
+           minHeight: 330,
            type:{
                width: 300,
-               height: 350,
-               template: "<div class = 'news_item'><img src='#attachmentPath#' height='225' width='300' style='object-fit: cover; '><br>" +
+               height: 330,
+               template: "<div class = 'news_item' style='height: 330px;'><img src='#attachmentPath#' height='225' width='300' style='object-fit: cover; '><br>" +
                    "#startTime#<br>"+
                    "#heading#</div>",
            },
