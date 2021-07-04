@@ -79,6 +79,7 @@ const bigNewsList = {
             margin: 20, paddingX: 10,
             css: 'fond_bg2',
             // scroll: 'y',
+            scroll: false,
             borderless: true,
             template: "<div class='news_item'>" +
                 "<img src='#attachmentPath#' height='225' width='300' style='object-fit: cover'> <br>" +
@@ -94,13 +95,26 @@ const bigNewsList = {
                 float: "right"
             },
             datafetch: 10,
-            scroll: false,
             url: 'idata->' + news_url,
             onClick:{
                 "news_item":function(ev, id){
                     var item = $$('newsListDataview').getItem(id);
                     window.location.href = "/news_list/news?hash_id=" + item.hashId;
                 }
+            },
+            on: {
+                onAfterLoad: () => {
+                    var el_count = $$('newsListDataview').count();
+                    if ( el_count != 0) {
+                        var xCount = $$('newsListDataview').config.xCount;
+                        var rowCount = Math.round(el_count/xCount);
+                        var dataviewHeight = 350 * rowCount;
+                        if ( $$('newsListDataview').$height < dataviewHeight) {
+                            $$('newsListDataview').config.height = dataviewHeight;
+                            $$('newsListDataview').resize();
+                        }
+                    }
+                },
             }
         },
         {
