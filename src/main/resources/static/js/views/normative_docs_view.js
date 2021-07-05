@@ -87,6 +87,9 @@ function normativeDocsForm(file_name_for_id, file_list_url) {
                 autoheight: true,
             },
             normativeDocsDocs(file_name_for_id, file_list_url),
+            {
+                height: 100,
+            }
         ]
     }
 }

@@ -99,6 +99,9 @@ function Form(file_name_for_id, file_list_url) {
                 autoheight: true,
             },
             Docs(file_name_for_id, file_list_url),
+            {
+                height: 100,
+            }
         ]
     }
 }
@@ -151,7 +154,7 @@ function smallForm(width) {
         }
     }, $$('content'));
 
-    $$('headerId').setHTML("Перечень документов для ЮЛ");
+    $$('headerId').setHTML("Перечень для ЮЛ");
     $$('htmlText').setHTML(xhr.responseText);
 
     webix.event(window, "resize", function (event) {

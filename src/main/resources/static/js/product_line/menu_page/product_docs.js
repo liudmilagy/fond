@@ -70,6 +70,9 @@ export function productDocs(name_for_id, list_url) {
                         },
                     }
                 },
+                {
+                    height: 100,
+                }
             ]
         }
     }

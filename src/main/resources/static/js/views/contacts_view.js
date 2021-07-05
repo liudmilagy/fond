@@ -89,6 +89,9 @@ function contactsForm(file_name_for_id, file_list_url) {
             },
             contactsDocs(file_name_for_id, file_list_url),
             map(),
+            {
+                height: 100,
+            }
         ]
     }
 }
