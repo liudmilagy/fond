@@ -13,6 +13,7 @@ function partnersDataviewWithPager(isBigForm) {
                             size: 8,
                             width: 80,
                             align: 'right',
+                            css: 'pager',
                             animate:{
                                 type:"slide"
                             },
@@ -64,6 +65,7 @@ function partnersDataviewWithPager(isBigForm) {
                             id: 'partnerPager',
                             size: pagerCnt*2,
                             width: 80,
+                            css: 'pager',
                             align: 'right',
                             animate:{
                                 type:"slide"

@@ -498,3 +498,8 @@ body {margin: 0}
     color: blue;
     cursor: pointer;
 }
+
+.pager .webix_icon{
+    color: #ff0000;
+    font-size: large;
+}

@@ -94,6 +94,7 @@ export function news(isBigForm) {
                         view: 'pager',
                         id: 'newsPager',
                         size: pagerCnt,
+                        css: 'pager',
                         width: 80,
                         align: 'right',
                         animate:{
