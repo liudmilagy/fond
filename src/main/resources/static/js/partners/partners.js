@@ -26,8 +26,12 @@ function partnersDataviewWithPager(isBigForm) {
                     id: 'partnerDataviewId',
                     width: main_body_width,
                     // resize: true,
+                    sizeToContent:true,
                     borderless: true,
                     margin: 3,
+                    css: {
+                        'border': 'transparent'
+                    },
                     gravity: 0,
                     minHeight: 300,
                     datafetch: 8,
