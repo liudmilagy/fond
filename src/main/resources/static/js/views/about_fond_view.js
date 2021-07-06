@@ -148,6 +148,11 @@ function smallAboutFond(width) {
         layout.resize();
 
     });
+
+    webix.attachEvent("onRotate", function(orientation){
+        $$('content').config.width = document.body.clientWidth - collapsedSideBarWidth;
+        $$('content').resize();
+    });
 }
 
 webix.ready(function() {

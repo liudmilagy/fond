@@ -157,7 +157,11 @@ function smallContactsForm() {
 
     webix.event(window, "resize", function (event) {
         layout.resize();
+    });
 
+    webix.attachEvent("onRotate", function(orientation){
+        $$('content').config.width = document.body.clientWidth - collapsedSideBarWidth;
+        $$('content').resize();
     });
 }
 
