@@ -53,6 +53,12 @@ export const padding_for_big_form = {
 
 }
 
+export function resizePadding(id) {
+    let view = $$(id);
+    view.define("padding", webix.extend({left: getOtherWidth(), right: getOtherWidth()}, view.config.padding));
+    view.reconstruct();
+}
+
 export function resizeSides() {
     const lftMain = $$('leftMainTemplateId');
     if (lftMain) {

@@ -223,6 +223,7 @@ export function resizeMenuOptions(){
         menu.refresh();
     } else {
         const menu = $$('menuId');
+        menu.showItem('Main');
         menu.customize({
             width: menu.$width / 8
         });

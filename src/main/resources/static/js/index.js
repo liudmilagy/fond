@@ -17,7 +17,15 @@ import {footer} from "./footer/footer.js"
 import {news} from "./news/news_main.js";
 import {image_header} from "./image_header/image_header.js";
 import {mainTemplate} from "./views/mainTemplate.js";
-import {lft_wdth, getOtherWidth, resizeSides, rght_wdth, main_body_width, padding_for_big_form} from "./general.js";
+import {
+    lft_wdth,
+    getOtherWidth,
+    resizeSides,
+    rght_wdth,
+    main_body_width,
+    padding_for_big_form,
+    resizePadding
+} from "./general.js";
 import {checkYourself} from "./check_yourself/check_yourself.js";
 import {footer_contacts} from "./footer_contacts/footer_contacts.js";
 import {partners} from "./partners/partners.js";
@@ -30,25 +38,14 @@ function bigMainPage() {
 
         webix.ui({
             id: 'content',
-            // css: 'fond_bg2',                    // {
-                    //     padding: padding_for_big_form,
-                    //     // type: 'space',
-                    //     // css: 'fond_bg2',
-                    //     borderless: true,
-                    //     rows: [
-                    //         calculator(calculatorData),
-                    //     ]
-                    // },
-            // type: "space",
             view: 'scrollview',
             scroll: 'xy',
             body: {
-                // margin: 10,
                 borderless: true,
                 rows: [
                     image_header,
-                    // carousel,
                     {
+                        id: 'productLineViewId',
                         padding: padding_for_big_form,
                         borderless: true,
                         rows: [
@@ -56,17 +53,16 @@ function bigMainPage() {
                         ]
                     },
                     {
+                        id: 'calculatorViewId',
                         padding: padding_for_big_form,
-                        // type: 'space',
-                        // css: 'fond_bg2',
                         borderless: true,
                         rows: [
                             calculator(calculatorData),
                         ]
                     },
                     {
+                        id: 'otherViewsId',
                         padding: padding_for_big_form,
-                        // type: "space",
                         borderless: true,
                         rows: [
                             checkYourself(true),
@@ -88,7 +84,10 @@ function bigMainPage() {
 
     webix.event(window, "resize", function (event) {
         resizeMenuOptions();
-        resizeSides();
+        // resizeSides();
+        resizePadding('productLineViewId');
+        resizePadding('calculatorViewId');
+        resizePadding('otherViewsId');
         layout.resize();
         // layout.define("width",document.body.clientWidth);
         // layout.define("height",window.innerHeight);
