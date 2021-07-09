@@ -54,7 +54,8 @@ public class EmailServiceImpl extends SuperServiceImpl implements EmailService {
             ClsTypeAppointment typeAppointment = clientAppointment.getClsTypeAppointment();
             String message = clientAppointment.getClientName() + ", Вы успешно записаны на '" + typeAppointment.getName() + "'. \n" +
                             "Дата: " + df.format(clientAppointment.getDate()) + "\n" +
-                            "Время: " + tf.format(clientAppointment.getTime());
+//                            "Время: " + tf.format(clientAppointment.getTime());
+                           "Время: " + clientAppointment.getTime().toString().substring(0, 5);
 
             sendSimpleMessage(clientEmail, fromAddress, subject, message);
 
@@ -62,7 +63,8 @@ public class EmailServiceImpl extends SuperServiceImpl implements EmailService {
             String messageToFond = "Клиент: " + clientAppointment.getClientName() + "\n" +
                     "Тип записи: " + typeAppointment.getName() + "\n" +
                     "Дата: " + df.format(clientAppointment.getDate()) + "\n" +
-                    "Время: " + tf.format(clientAppointment.getTime());
+//                    "Время: " + tf.format(clientAppointment.getTime());
+                    "Время: " + clientAppointment.getTime().toString().substring(0, 5);
             sendSimpleMessage(fondMail, fromAddress, subject, messageToFond);
         }
     }

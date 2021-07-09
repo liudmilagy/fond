@@ -53,7 +53,8 @@ public class SmsServiceImpl implements SmsService {
             ClsTypeAppointment typeAppointment = clientAppointment.getClsTypeAppointment();
             String message = clientAppointment.getClientName() + ", Вы успешно записаны на '" + typeAppointment.getName() + "'. \n" +
                     "Дата: " + df.format(clientAppointment.getDate()) + "\n" +
-                    "Время: " + tf.format(clientAppointment.getTime());
+//                    "Время: " + tf.format(clientAppointment.getTime());
+                    "Время: " + clientAppointment.getTime().toString().substring(0, 5);
             String[] ret = smsc.send_sms(clientPhone, message, 0, "", clientAppointment.getId().toString(), 0, "", "" );
         }
     }
